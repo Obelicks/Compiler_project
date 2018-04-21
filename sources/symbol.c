@@ -5,6 +5,7 @@
 #include <math.h>
 
 
+
 int Hash(char *str){
   int sum = 0;
   unsigned int i;
