@@ -1,5 +1,24 @@
-|| and | not the same, || handled in the parser.
-
 %prec NAME -> define it in association
-in scanner make sure comments gets ignored (* comment *) and # comment
-if we cant make || and |exp| work then we make abs() indead of |exp|
+
+
+NEEDS TO BE CHECKED:
+
+
+Alle regler i grammatikken der leder til et "statement" kræver et nyt scope
+
+symbol struct contains void pointer "value" in case we want to expand our types to extend other than integers
+
+strings are not a native part of tiger (sheer khan).
+
+
+Smøkisering:
+- Sæt mellemrum i alt Emul har lavet
+- exp.y - match funktioner med argumenter
+-
+
+
+Have done:
+- changed dumpSymbolTable to printSymbolTable
+- symbolTable is called as the first argument in the functions
+- Purged tree.h, removed the unused cases and unused kinds and made so that all cases and kinds have the same name
+  - Also updated pretty.c files so they work with the new tree.c files
