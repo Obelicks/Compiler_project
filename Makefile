@@ -11,6 +11,8 @@ DEPS += headers/tree.h
 DEPS += headers/symbol.h
 DEPS += headers/typecheck.h
 DEPS += headers/weed.h
+DEPS += headers/gen.h
+
 
 OBJ  = y.tab.o
 OBJ += lex.yy.o
@@ -39,6 +41,14 @@ OBJ += typeCheck/typecheckLIST.o
 OBJ += typeCheck/typecheckSTM.o
 OBJ += typeCheck/typecheckTERM.o
 OBJ += typeCheck/typecheckTYPE.o
+
+OBJ += gen/genDEC.o
+OBJ += gen/genEXP.o
+OBJ += gen/genFUNC.o
+OBJ += gen/genLIST.o
+OBJ += gen/genSTM.o
+OBJ += gen/genTERM.o
+OBJ += gen/genTYPE.o
 
 OBJ += sources/symbol.o
 OBJ += sources/memory.o
