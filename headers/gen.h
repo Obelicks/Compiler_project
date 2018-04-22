@@ -19,5 +19,8 @@ void generate_TYPE(FILE* file, TYPE* type);
 
 void generate_DEC(FILE* file, DEC* declaration);
 
+void parse_variables(FILE* file, LIST* decl_list);
+
+
 //TODO optimization
 #endif

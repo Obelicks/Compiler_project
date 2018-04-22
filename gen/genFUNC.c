@@ -27,3 +27,5 @@ void generate_FUNC(FILE* file, FUNC* function){
       break;
   }
 }
+void parse_variables(FILE* file, LIST* decl_list){
+}
