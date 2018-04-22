@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include "../headers/gen.h"
 
-void generate_EXP(FILE* file,EXP *e)
-{ switch (e->kind) {
+void generate_EXP(FILE* file,EXP *e){ 
+  switch (e->kind) {
     case equaltoK:
       generate_EXP(file,e->val.equaltoE.left);
       generate_EXP(file,e->val.equaltoE.right);
