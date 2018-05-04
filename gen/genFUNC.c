@@ -1,6 +1,10 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "../headers/gen.h"
+
 extern int regNr;
+
 void generate_FUNC(FILE* file, FUNC* function){
   switch (function->kind) {
     case functionK:
@@ -11,6 +15,8 @@ void generate_FUNC(FILE* file, FUNC* function){
 
     case headK:
       parse_variables(file,function->val.headF.par_decl_list);
+      char* s = concat(function->val.headF.id, ":");
+      fputs(s,file);
       break;
 
     case bodyK:
@@ -28,4 +34,11 @@ void generate_FUNC(FILE* file, FUNC* function){
   }
 }
 void parse_variables(FILE* file, LIST* decl_list){
+}
+char* concat(const char *s1, const char *s2){
+    char *result = malloc(strlen(s1)+strlen(s2)+1);//+1 for the null-terminator
+    //in real code you would check for errors in malloc here
+    strcpy(result, s1);
+    strcat(result, s2);
+    return result;
 }
