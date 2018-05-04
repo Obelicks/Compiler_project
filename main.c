@@ -4,17 +4,19 @@
 #include "headers/tree.h"
 #include "headers/typecheck.h"
 #include "headers/weed.h"
+#include "headers/gen.h"
 int lineno;
 int debug;
 int regNr;
 void yyparse();
 
 FILE* yyin;
+FILE* fp;
 
 FUNC* thebody;
 
 int main(){
-  regNr = 1; 
+  regNr = 1;
   lineno = 1;
   //set debug to 1 to enter debug mode
   debug = 0;
@@ -25,7 +27,10 @@ int main(){
     prettyFUNC(thebody);
   }
   int doesItWork = typeCheckFUNC(root, thebody);
-  printf("\n");
+  fp = fopen("file.txt", "w+");
+  generate_prologue(fp);
+  generate_FUNC(fp, root);
+  generate_epilogue(fp);
   fclose(yyin);
   // printf("doesItWork = %i\n", doesItWork);
   return 0;

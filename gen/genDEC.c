@@ -20,3 +20,7 @@ void generate_DEC(FILE* file,DEC *d){
       break;
   }
 }
+void generate_prologue(FILE* file){
+}
+void generate_epilogue(FILE* file){
+}
