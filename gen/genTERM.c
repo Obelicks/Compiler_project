@@ -4,15 +4,11 @@ extern int regNr;
 void generate_TERM(FILE* file,TERM *t){
   switch (t->kind) {
     case notK:
-        printf("not( ");
         generate_TERM(file,t->val.notT);
-        printf(") " );
         break;
 
     case absoluteK:
-        printf("| ");
         generate_EXP(file,t->val.absoluteT);
-        printf("| ");
         break;
 
     case numK:
