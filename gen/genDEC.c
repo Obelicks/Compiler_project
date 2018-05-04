@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "../headers/gen.h"
-
+extern int regNr;
 void generate_DEC(FILE* file,DEC *d){
   switch (d->kind) {
     case listK:

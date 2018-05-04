@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "../headers/gen.h"
-extern FILE* file;
+extern int regNr;
 void generate_FUNC(FILE* file, FUNC* function){
   switch (function->kind) {
     case functionK:
@@ -19,7 +19,7 @@ void generate_FUNC(FILE* file, FUNC* function){
       break;
 
     case tailK:
-      fputs("#/end of function", file);
+      fputs("#end of function", file);
       break;
 
     default:

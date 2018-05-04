@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "../headers/gen.h"
-
-void generate_EXP(FILE* file,EXP *e){ 
+extern int regNr;
+void generate_EXP(FILE* file,EXP *e){
   switch (e->kind) {
     case equaltoK:
       generate_EXP(file,e->val.equaltoE.left);

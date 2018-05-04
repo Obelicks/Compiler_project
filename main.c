@@ -6,6 +6,7 @@
 #include "headers/weed.h"
 int lineno;
 int debug;
+int regNr;
 void yyparse();
 
 FILE* yyin;
@@ -13,6 +14,7 @@ FILE* yyin;
 FUNC* thebody;
 
 int main(){
+  regNr = 1; 
   lineno = 1;
   //set debug to 1 to enter debug mode
   debug = 0;
