@@ -1,25 +1,37 @@
 #include <stdio.h>
 #include "headers/symbol.h"
+#include "headers/pretty.h"
+#include "headers/tree.h"
+#include "headers/typecheck.h"
+#include "headers/weed.h"
+#include "headers/gen.h"
+int lineno;
+int debug;
+int regNr;
+void yyparse();
 
-int main(int argc, char const *argv[]) {
+FILE* yyin;
+FILE* fp;
 
-  char *string = "kitty";
-  int value = 21;
+FUNC* thebody;
 
-  // int result = Hash(string);
-  // printf("String hash value: %i\n", result);
-
-  SymbolTable* newTable;
-
-  newTable = initSymbolTable();
-
-  // printf("Size of table: %li\n", sizeof(newTable->table));
-
-  SYMBOL *newSymbol;
-
-  newSymbol = putSymbol(newTable, string, value);
-
-  printf("Index kitty: %d\n", (newTable->table[199]->value));
-
+int main(){
+  regNr = 1;
+  lineno = 1;
+  //set debug to 1 to enter debug mode
+  debug = 0;
+  SymbolTable* root = initSymbolTable();
+  yyin = fopen("test.sk", "r");
+  yyparse();
+  if (debug){
+    prettyFUNC(thebody);
+  }
+  int doesItWork = typeCheckFUNC(root, thebody);
+  fp = fopen("file.txt", "w+");
+  generate_prologue(fp);
+  generate_FUNC(fp, root);
+  generate_epilogue(fp);
+  fclose(yyin);
+  // printf("doesItWork = %i\n", doesItWork);
   return 0;
 }

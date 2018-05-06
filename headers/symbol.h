@@ -1,21 +1,23 @@
 #ifndef SYMBOL_H
 #define SYMBOL_H
 
+
+#define INTEGER 0
+#define BOOLEAN 1
+#define ID 2
+
 #define HashSize 317
 
-/* SYMBOL will be extended later.
-   Function calls will take more parameters later.
-*/
-
-typedef struct SYMBOL {
+typedef struct Symbol {
   char *name;
-  int value;
-  struct SYMBOL *next;
-} SYMBOL;
+  int type;
+  void* value;
+  struct Symbol *next;
+} Symbol;
 
 typedef struct SymbolTable {
-    SYMBOL *table[HashSize * sizeof(SYMBOL)];
-    struct SymbolTable *next;
+  Symbol *table[HashSize];
+  struct SymbolTable *next;
 } SymbolTable;
 
 int Hash(char *str);
@@ -24,10 +26,12 @@ SymbolTable *initSymbolTable();
 
 SymbolTable *scopeSymbolTable(SymbolTable *t);
 
-SYMBOL *putSymbol(SymbolTable *t, char *name, int value);
+Symbol *putSymbol(SymbolTable *t, char *name, int type, void* value);
 
-SYMBOL *getSymbol(SymbolTable *t, char *name);
+Symbol *getSymbol(SymbolTable *t, char *name);
 
-void dumpSymbolTable(SymbolTable *t);
+void dropLinkedList(Symbol *s, int i);
+
+void printSymbolTable(SymbolTable *t);
 
 #endif

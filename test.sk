@@ -1,0 +1,5 @@
+var a:int, b:bool, c:int;
+a = 42;
+b = true;
+c = 21;
+return not(5-3+7)
