@@ -44,6 +44,7 @@ SymbolTable *scopeSymbolTable(SymbolTable *oldTable){
   return table;
 }
 
+
 Symbol *putSymbol(SymbolTable *t, char *name, int type, void* value){
   int hashValue;
   hashValue = Hash(name);
@@ -56,6 +57,7 @@ Symbol *putSymbol(SymbolTable *t, char *name, int type, void* value){
 
   if (t->table[hashValue] == NULL){
     t->table[hashValue] = symbol;
+
 
     return symbol;
   }
