@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "../headers/gen.h"
+
 extern int regNr;
+
 void generate_LIST(FILE* file,LIST *l){
   switch (l->kind) {
     case parK:

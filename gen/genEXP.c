@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "../headers/gen.h"
+
 extern int regNr;
+
 void generate_EXP(FILE* file,EXP *e){
   switch (e->kind) {
     case equaltoK:

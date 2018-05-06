@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "../headers/gen.h"
+
 extern int regNr;
+
 void generate_DEC(FILE* file,DEC *d){
   switch (d->kind) {
     case listK:
@@ -8,7 +10,8 @@ void generate_DEC(FILE* file,DEC *d){
       break;
 
     case dectypeK:
-      generate_TYPE(file,d->val.dectypeD.type);
+      //generate_TYPE(file,d->val.dectypeD.type);
+      return 0;
       break;
 
     case decfuncK:

@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "../headers/gen.h"
+
 extern int regNr;
+
 void generate_TYPE(FILE* file,TYPE *t){
    switch (t->kind) {
     case idK:

@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "../headers/gen.h"
+
 extern int regNr;
+
 void generate_STM(FILE* file, STM *s){
   switch (s->kind) {
     case returnK:
