@@ -11,7 +11,6 @@ void generate_DEC(FILE* file,DEC *d){
 
     case dectypeK:
       //generate_TYPE(file,d->val.dectypeD.type);
-      return 0;
       break;
 
     case decfuncK:
@@ -22,8 +21,4 @@ void generate_DEC(FILE* file,DEC *d){
       printf("in default case in DEC\n");
       break;
   }
-}
-void generate_prologue(FILE* file){
-}
-void generate_epilogue(FILE* file){
 }

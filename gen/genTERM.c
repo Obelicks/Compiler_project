@@ -10,7 +10,7 @@ void generate_TERM(FILE* file,TERM *t){
         break;
 
     case absoluteK:
-        generate_EXP(file,t->val.absoluteT);
+        generate_EXP_V(file,t->val.absoluteT);
         break;
 
     case numK:
@@ -18,7 +18,7 @@ void generate_TERM(FILE* file,TERM *t){
         break;
 
     case expK:
-        generate_EXP(file,t->val.expT);
+        generate_EXP_V(file,t->val.expT);
         break;
 
     case booleanK:

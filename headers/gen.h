@@ -22,7 +22,9 @@ void generate_prologue(FILE* file);
 
 void generate_epilogue(FILE* file);
 
-void generate_EXP(FILE* file, EXP* expression);
+void generate_EXP_H(FILE* file,EXP* expression);
+
+void generate_EXP_V(FILE* file,EXP* expression);
 
 void generate_STM(FILE* file, STM* statement);
 

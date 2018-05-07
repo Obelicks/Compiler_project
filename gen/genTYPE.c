@@ -28,7 +28,7 @@ void generate_TYPE(FILE* file,TYPE *t){
 
     case varexpK:
       generate_TYPE(file,t->val.varexpT.variable);
-      generate_EXP(file,t->val.varexpT.expression);
+      generate_EXP_V(file,t->val.varexpT.expression);
       break;
 
     case var_typeK:
