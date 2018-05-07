@@ -14,7 +14,7 @@ void generate_TERM(FILE* file,TERM *t){
         break;
 
     case numK:
-      return 0;
+      //return 0;
         break;
 
     case expK:
