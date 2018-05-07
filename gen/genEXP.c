@@ -85,6 +85,7 @@ void generate_EXP(FILE* file,EXP *e){
 
     case termK:
       generate_TERM(file,e->val.termE);
+      //we have reached a leaf of the expression tree
        break;
 
     case orK:

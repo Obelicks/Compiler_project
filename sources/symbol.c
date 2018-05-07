@@ -8,8 +8,6 @@
   hash = hash % mod;
   return hash;
 }*/
-
-
 int Hash(char *str){
   int sum = 0;
   unsigned int i;
@@ -22,7 +20,6 @@ int Hash(char *str){
 }
 
 SymbolTable *initSymbolTable(){
-
   SymbolTable *table = (SymbolTable*)malloc(sizeof(SymbolTable));
   table->next = NULL;
   //we dont have a next so no need to make space for it.
@@ -32,12 +29,10 @@ SymbolTable *initSymbolTable(){
     //set all pointers to NULL, can probably be optimized
     table->table[i] = NULL;
   }
-
   return table;
 }
 
 SymbolTable *scopeSymbolTable(SymbolTable *oldTable){
-
   SymbolTable *table;
   table = initSymbolTable();
   table->next = oldTable;
@@ -57,8 +52,6 @@ Symbol *putSymbol(SymbolTable *t, char *name, int type, void* value){
 
   if (t->table[hashValue] == NULL){
     t->table[hashValue] = symbol;
-
-
     return symbol;
   }
   else {
@@ -67,7 +60,6 @@ Symbol *putSymbol(SymbolTable *t, char *name, int type, void* value){
     while(currentSymbol != NULL){
       if(strcmp(currentSymbol->name, name) == 0){
         currentSymbol->value = value;
-
         free(symbol);
         return currentSymbol;
       }
@@ -94,7 +86,7 @@ Symbol *getSymbol(SymbolTable *table, char *name){
     symbol = table->table[hashValue];
     while(symbol != NULL){
       if(strcmp(symbol->name, name) == 0){
-return symbol;
+        return symbol;
       }
       symbol = symbol->next;
     }
@@ -142,5 +134,4 @@ void printSymbolTable(SymbolTable *t){
   if (t->next != NULL){
     printSymbolTable(t->next);
   }
-
 }

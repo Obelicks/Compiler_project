@@ -1,6 +1,5 @@
 #ifndef __gen_h
 #define __gen_h
-
 #include "tree.h"
 /*typedef struct IRtree {
   int lineno;
@@ -12,12 +11,13 @@
   }val;
 }IRtree;
 */
-typedef struct block {
+typedef struct BLOCK {
   char* label;
   char* code;
   char* jump;
-  block* next;
-}block;
+  struct BLOCK* next;
+}BLOCK;
+
 void generate_prologue(FILE* file);
 
 void generate_epilogue(FILE* file);
@@ -38,14 +38,4 @@ void parse_variables(FILE* file, LIST* decl_list);
 
 char* concat(const char *s1, const char *s2);
 
-print_block(block* block){
-  fput(block->label,fp);
-  fput(":\n",fp);
-
-  fput(block->code,fp);
-  fput(":\n",fp);
-  fput(block->jumps,fp);
-  print_block(block->next);
-}
-//TODO optimization
 #endif
