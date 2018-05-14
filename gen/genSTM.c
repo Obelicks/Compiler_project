@@ -6,12 +6,12 @@ extern int regNr;
 void generate_STM( STM *s){
   switch (s->kind) {
     case returnK:
-      generate_EXP_V(s->val.returnS);
+      generate_EXP(s->val.returnS);
       //Intern or extern
       break;
 
     case writeK:
-      generate_EXP_V(s->val.writeS);
+      generate_EXP(s->val.writeS);
       break;
 
    case allocateK:
@@ -24,24 +24,24 @@ void generate_STM( STM *s){
 
     case assignK:
       generate_TYPE( s->val.assignS.variable);
-      generate_EXP_V( s->val.assignS.expression);
+      generate_EXP( s->val.assignS.expression);
       break;
 
     case ifthenK:
-      generate_EXP_V(s->val.ifthenS.ifState);
+      generate_EXP(s->val.ifthenS.ifState);
       //jnp start
       /*start mark*/generate_STM(s->val.ifthenS.thenState);
       break;
 
     case ifelseK:
-      generate_EXP_V(s->val.ifelseS.ifState);
+      generate_EXP(s->val.ifelseS.ifState);
       //jne
       generate_STM(s->val.ifelseS.thenState);
       generate_STM(s->val.ifelseS.elseState);
       break;
 
     case whileK:
-      generate_EXP_V(s->val.whileS.expression);
+      generate_EXP(s->val.whileS.expression);
       //start
       if(s->val.whileS.statement->kind == stmlistK){
         generate_LIST(s->val.whileS.statement->val.stmlistS);
