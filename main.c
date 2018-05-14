@@ -33,7 +33,7 @@ int main(){
   }else{
     fprintf(stderr, "Generating code...\n");
     generate_prologue();
-    generate_FUNC(root);
+    generate_FUNC(thebody);
     generate_epilogue();
   }
   fclose(yyin);
