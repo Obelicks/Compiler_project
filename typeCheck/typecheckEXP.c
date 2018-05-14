@@ -16,7 +16,7 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
       if (x == y){
         return x;
       }else{
-        printf("type-error '==' on line %i\n",expression->lineno);
+        fprintf(stderr,"type-error '==' on line %i\n",expression->lineno);
         return -1;
       }
       break;
@@ -27,7 +27,7 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
       if (x == y){
         return x;
       }else{
-        printf("type-error '!=' on line %i\n",expression->lineno);
+        fprintf(stderr,"type-error '!=' on line %i\n",expression->lineno);
         return -1;
       }
       break;
@@ -38,7 +38,7 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
       if (x == y && x == BOOLEAN){
         return x;
       }else{
-        printf("type-error '&&' on line %i\n",expression->lineno);
+        fprintf(stderr,"type-error '&&' on line %i\n",expression->lineno);
         return -1;
       }
       break;
@@ -49,7 +49,7 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
       if (x == y && x == INTEGER){
         return x;
       }else{
-        printf("type-error '<' on line %i\n",expression->lineno);
+        fprintf(stderr,"type-error '<' on line %i\n",expression->lineno);
         return -1;
       }
       break;
@@ -60,7 +60,7 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
       if (x == y && x == INTEGER){
         return x;
       }else{
-        printf("type-error '>' on line %i\n",expression->lineno);
+        fprintf(stderr,"type-error '>' on line %i\n",expression->lineno);
         return -1;
       }
       break;
@@ -71,7 +71,7 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
       if (x == y && x == INTEGER){
         return x;
       }else{
-        printf("type-error '<=' on line %i\n",expression->lineno);
+        fprintf(stderr,"type-error '<=' on line %i\n",expression->lineno);
         return -1;
       }
       break;
@@ -82,7 +82,7 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
       if (x == y && x == INTEGER){
         return x;
       }else{
-        printf("type-error '>=' on line %i\n",expression->lineno);
+        fprintf(stderr,"type-error '>=' on line %i\n",expression->lineno);
         return -1;
       }
       break;
@@ -93,7 +93,7 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
       if (x == y && x == INTEGER){
         return x;
       }else{
-        printf("type-error 'mod' on line %i\n",expression->lineno);
+        fprintf(stderr,"type-error 'mod' on line %i\n",expression->lineno);
         return -1;
       }
       break;
@@ -104,7 +104,7 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
       if (x == y && x ==INTEGER){
         return x;
       }else{
-        printf("type-error '*' on line %i\n",expression->lineno);
+        fprintf(stderr,"type-error '*' on line %i\n",expression->lineno);
         return -1;
       }
       break;
@@ -115,7 +115,7 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
       if (x == y && x == INTEGER){
         return x;
       }else{
-        printf("type-error '/' on line %i\n",expression->lineno);
+        fprintf(stderr,"type-error '/' on line %i\n",expression->lineno);
         return -1;
       }
       break;
@@ -127,7 +127,7 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
       if (x == y && x == INTEGER){
         return x;
       }else{
-        printf("type-error '+' on line %i\n",expression->lineno);
+        fprintf(stderr,"type-error '+' on line %i\n",expression->lineno);
         return -1;
       }
       break;
@@ -139,7 +139,7 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
       if (x == y && x == INTEGER){
         return x;
       }else{
-        printf("type-error '-' on line %i\n",expression->lineno);
+        fprintf(stderr,"type-error '-' on line %i\n",expression->lineno);
         return -1;
       }
       break;
@@ -158,13 +158,13 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
       if (x == y && x == BOOLEAN){
         return x;
       }else{
-        printf("type-error '||' on line %i\n",expression->lineno);
+        fprintf(stderr,"type-error '||' on line %i\n",expression->lineno);
         return -1;
       }
       break;
 
     default:
-      printf("default case in typeCheckEXP\n");
+      fprintf(stderr,"default case in typeCheckEXP\n");
       break;
   }
 

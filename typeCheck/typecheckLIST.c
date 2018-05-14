@@ -62,7 +62,7 @@ int typeCheckLIST(SymbolTable* symbolTable, LIST* list){
       break;
 
     default:
-      printf("default case in typeCheckLIST\n");
+      fprintf(stderr,"default case in typeCheckLIST\n");
       break;
   }
 

@@ -106,7 +106,7 @@ void dropLinkedList(Symbol *symbol, int i){
   Symbol *currentSymbol;
   currentSymbol = symbol;
   while(currentSymbol != NULL){
-    printf("Index %i = (%s, %p)\n", i,
+    fprintf(stderr,"Index %i = (%s, %p)\n", i,
     currentSymbol->name, currentSymbol->value);
     //On two lines so as to not go over the 79 characters
     currentSymbol = currentSymbol->next;
@@ -114,15 +114,15 @@ void dropLinkedList(Symbol *symbol, int i){
 }
 
 void printSymbolTable(SymbolTable *t){
-  printf("\n");
-  printf("Start of table\n");
+  fprintf(stderr,"\n");
+  fprintf(stderr,"Start of table\n");
 
   int i;
 
   for (i = 0; i < HashSize; i++){
     if (t->table[i] != NULL){
       if (t->table[i]->next == NULL){
-        printf("Index %i = (%s, %p)\n", i,
+        fprintf(stderr,"Index %i = (%s, %p)\n", i,
         t->table[i]->name, t->table[i]->value);
         //On two lines so as to not go over the 79 characters
       }

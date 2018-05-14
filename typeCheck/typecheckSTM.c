@@ -34,7 +34,7 @@ int typeCheckSTM(SymbolTable* symbolTable, STM* statement){
       type = statement->val.assignS.variable;
       typeCheckTYPE(symbolTable, type);
       if(type->kind != 0 /*bad coding style i know but i like it*/){
-        printf("error undefined assign variable \n");
+        fprintf(stderr,"error undefined assign variable \n");
         return -1;
       }
       symbol = getSymbol(symbolTable, type->val.idT);
@@ -42,7 +42,7 @@ int typeCheckSTM(SymbolTable* symbolTable, STM* statement){
       if (symbol->type == typeCheck){
         return symbol->type;
       }else{
-        printf("TYPE ERROR: cant assign type %i to type %i\n", symbol->type, typeCheck);
+        fprintf(stderr,"TYPE ERROR: cant assign type %i to type %i\n", symbol->type, typeCheck);
       }
       break;
 
@@ -71,7 +71,7 @@ int typeCheckSTM(SymbolTable* symbolTable, STM* statement){
       break;
 
     default:
-      printf("default case in typeCheckSTM\n");
+      fprintf(stderr,"default case in typeCheckSTM\n");
       break;
   }
   return 0;

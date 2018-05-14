@@ -3,7 +3,7 @@
 
 extern int regNr;
 
-void generate_TERM(TERM *t){
+int generate_TERM(TERM *t){
   switch (t->kind) {
     case notK:
         generate_TERM(t->val.notT);
@@ -14,7 +14,7 @@ void generate_TERM(TERM *t){
         break;
 
     case numK:
-      //return 0;
+        return t->val.numT;
         break;
 
     case expK:
@@ -40,4 +40,5 @@ void generate_TERM(TERM *t){
         printf("in default case in TERM\n");
         break;
   }
+  return 0;
 }

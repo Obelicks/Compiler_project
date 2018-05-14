@@ -4,7 +4,7 @@
 
 void* checkForFaultyFunction(FUNC* func){
   if (func->val.functionF.head->val.headF.id != func->val.functionF.tail->val.tailF){
-    printf("function incorrectly structured- end does not match beginning.  %d\n",func->lineno);
+    fprintf(stderr,"function incorrectly structured- end does not match beginning.  %d\n",func->lineno);
   }else{
 
   }
@@ -23,7 +23,7 @@ void* checkForReturns(FUNC* func){
 
   }
   if (countingReturns !=0){
-    printf("missing Return statements in function. %d\n",func->lineno);
+    fprintf(stderr,"missing Return statements in function. %d\n",func->lineno);
   }
 }
 
@@ -34,7 +34,7 @@ void* checkForDevideByZero(EXP* expression){
   if(expression != NULL){
     //i =evaluateDevident(expression);
     if (i == 0){
-      printf("ERROR DEVISION BY ZERO %d\n",expression->lineno);
+      fprintf(stderr,"ERROR DEVISION BY ZERO %d\n",expression->lineno);
     }
   }
 }

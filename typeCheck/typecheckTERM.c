@@ -47,7 +47,7 @@ int typeCheckTERM(SymbolTable* symbolTable, TERM* term){
       break;
 
     default:
-      printf("default case in typeCheckTERM\n");
+      fprintf(stderr,"default case in typeCheckTERM\n");
       break;
   }
   return 0;

@@ -25,7 +25,7 @@ int typeCheckDEC(SymbolTable* symbolTable, DEC* declaration){
       typeCheckFUNC(symbolTable, declaration->val.decfuncD);
       break;
     default:
-      printf("default case in typeCheckDEC\n");
+      fprintf(stderr,"default case in typeCheckDEC\n");
       break;
   }
   return 0;

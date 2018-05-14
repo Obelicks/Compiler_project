@@ -6,7 +6,7 @@ extern char *yytext;
 extern FUNC* thebody;
 
 void yyerror() {
-   printf("syntax error before %s\n",yytext);
+   fprintf(stderr,"syntax error before %s\n",yytext);
 }
 %}
 

@@ -16,9 +16,8 @@ void generate_prologue(){
 
 
 void generate_EXP_V(EXP* e){
-  char a[80];
   int aterm;
-  TERM* term;
+  TERM* t;
   switch (e->kind) {
     case equaltoK:
       generate_EXP_V(e->val.equaltoE.left);
@@ -160,14 +159,9 @@ void generate_EXP_V(EXP* e){
        break;
 
     case termK:
-      term = e->val.termE;
-      if (term->kind == numK){
-        aterm = term->val.numT;
-      }
-      if (term->kind == boolK){
-        aterm = term->val.booleanT;
-      }
-      printf("mov %%r13,%d", aterm);
+      aterm = generate_TERM(e->val.termE);
+      //printf("%i \n", aterm);
+      printf("mov %%r13,%i \n", aterm);
       printf("mov %%r15, %%r13\n");
       break;
 
@@ -338,13 +332,7 @@ void generate_EXP_H(EXP* e){
      /*min RX RY to RZ*/
      break;
     case termK:
-      term = e->val.termE;
-      if (term->kind == numK){
-          aterm = term->val.numT;
-      }
-      if (term->kind == boolK){
-        aterm = term->val.booleanT;
-      }
+      aterm = generate_TERM(e->val.termE);
       printf("mov %%r14,%d\n", aterm);
       printf("mov %%r15, %%r14\n");
       break;

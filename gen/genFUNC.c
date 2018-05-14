@@ -4,8 +4,9 @@
 #include "../headers/gen.h"
 
 extern int regNr;
+extern int debug;
 
-void generate_FUNC( FUNC* function){
+void generate_FUNC(FUNC* function){
   switch (function->kind) {
     case functionK:
       generate_FUNC(function->val.functionF.head);
@@ -14,13 +15,15 @@ void generate_FUNC( FUNC* function){
       break;
 
     case headK:
-      parse_variables(function->val.headF.par_decl_list);
-      char* s = concat(function->val.headF.id, ":");
-      printf("%s\n", s);
+      //parse_variables(function->val.headF.par_decl_list);
+      //char* s = concat(function->val.headF.id, ":");
+      //printf("%s\n", s);
       break;
 
     case bodyK:
-      generate_LIST( function->val.bodyF.decl_list);
+      if (function->val.bodyF.decl_list != NULL) {
+        generate_LIST( function->val.bodyF.decl_list);
+      }
       generate_LIST( function->val.bodyF.statement_list);
       break;
 

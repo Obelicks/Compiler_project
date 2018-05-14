@@ -56,7 +56,7 @@ int typeCheckTYPE(SymbolTable* symbolTable, TYPE* type){
       break;
 
     default:
-      printf("default case in typeCheckTYPE\n");
+      fprintf(stderr,"default case in typeCheckTYPE\n");
       break;
   }
   return 0;
