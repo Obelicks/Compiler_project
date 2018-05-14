@@ -5,27 +5,27 @@
 
 extern int regNr;
 
-void generate_FUNC(FILE* file, FUNC* function){
+void generate_FUNC( FUNC* function){
   switch (function->kind) {
     case functionK:
-      generate_FUNC(file, function->val.functionF.head);
-      generate_FUNC(file, function->val.functionF.body);
-      generate_FUNC(file, function->val.functionF.tail);
+      generate_FUNC(function->val.functionF.head);
+      generate_FUNC(function->val.functionF.body);
+      generate_FUNC(function->val.functionF.tail);
       break;
 
     case headK:
-      parse_variables(file,function->val.headF.par_decl_list);
+      parse_variables(function->val.headF.par_decl_list);
       char* s = concat(function->val.headF.id, ":");
-      fputs(s,file);
+      printf("%s\n", s);
       break;
 
     case bodyK:
-      generate_LIST(file, function->val.bodyF.decl_list);
-      generate_LIST(file, function->val.bodyF.statement_list);
+      generate_LIST( function->val.bodyF.decl_list);
+      generate_LIST( function->val.bodyF.statement_list);
       break;
 
     case tailK:
-      fputs("#end of function", file);
+      //printf("#end of function", );
       break;
 
     default:
@@ -33,7 +33,7 @@ void generate_FUNC(FILE* file, FUNC* function){
       break;
   }
 }
-void parse_variables(FILE* file, LIST* decl_list){
+void parse_variables( LIST* decl_list){
 }
 char* concat(const char *s1, const char *s2){
     char *result = malloc(strlen(s1)+strlen(s2)+1);

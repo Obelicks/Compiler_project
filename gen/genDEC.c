@@ -3,10 +3,10 @@
 
 extern int regNr;
 
-void generate_DEC(FILE* file,DEC *d){
+void generate_DEC(DEC *d){
   switch (d->kind) {
     case listK:
-      generate_LIST(file,d->val.listD);
+      generate_LIST(d->val.listD);
       break;
 
     case dectypeK:
@@ -14,7 +14,7 @@ void generate_DEC(FILE* file,DEC *d){
       break;
 
     case decfuncK:
-      generate_FUNC(file,d->val.decfuncD);
+      generate_FUNC(d->val.decfuncD);
       break;
 
     default:
