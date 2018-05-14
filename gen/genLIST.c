@@ -27,9 +27,9 @@ void generate_LIST(LIST *l){
       break;
 
     case statelistK:
-      fprintf(stderr,"statelist1\n");
+      //fprintf(stderr,"statelist1\n");
       generate_STM(l->val.statelistL.statement);
-      fprintf(stderr,"statelist2\n");
+      //fprintf(stderr,"statelist2\n");
       generate_LIST(l->val.statelistL.statement_list);
       break;
 

@@ -37,7 +37,6 @@ int main(int argc, char *argv[]){
     generate_prologue();
     fprintf(stderr,"ending prologue\n");
     generate_FUNC(thebody);
-
     fprintf(stderr,"ending code/starting epilogue\n");
     generate_epilogue();
   }
