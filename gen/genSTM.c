@@ -3,50 +3,50 @@
 
 extern int regNr;
 
-void generate_STM(FILE* file, STM *s){
+void generate_STM( STM *s){
   switch (s->kind) {
     case returnK:
-      generate_EXP_V(file,s->val.returnS);
+      generate_EXP_V(s->val.returnS);
       //Intern or extern
       break;
 
     case writeK:
-      generate_EXP_V(file,s->val.writeS);
+      generate_EXP_V(s->val.writeS);
       break;
 
    case allocateK:
-      generate_TYPE(file,s->val.allocateS);
+      generate_TYPE(s->val.allocateS);
       break;
 
     case allocateoflengthK:
-      generate_TYPE(file,s->val.allocateoflengthS.variable);
+      generate_TYPE(s->val.allocateoflengthS.variable);
       break;
 
     case assignK:
-      generate_TYPE(file, s->val.assignS.variable);
-      generate_EXP_V(file, s->val.assignS.expression);
+      generate_TYPE( s->val.assignS.variable);
+      generate_EXP_V( s->val.assignS.expression);
       break;
 
     case ifthenK:
-      generate_EXP_V(file,s->val.ifthenS.ifState);
+      generate_EXP_V(s->val.ifthenS.ifState);
       //jnp start
-      /*start mark*/generate_STM(file,s->val.ifthenS.thenState);
+      /*start mark*/generate_STM(s->val.ifthenS.thenState);
       break;
 
     case ifelseK:
-      generate_EXP_V(file,s->val.ifelseS.ifState);
+      generate_EXP_V(s->val.ifelseS.ifState);
       //jne
-      generate_STM(file,s->val.ifelseS.thenState);
-      generate_STM(file,s->val.ifelseS.elseState);
+      generate_STM(s->val.ifelseS.thenState);
+      generate_STM(s->val.ifelseS.elseState);
       break;
 
     case whileK:
-      generate_EXP_V(file,s->val.whileS.expression);
+      generate_EXP_V(s->val.whileS.expression);
       //start
       if(s->val.whileS.statement->kind == stmlistK){
-        generate_LIST(file,s->val.whileS.statement->val.stmlistS);
+        generate_LIST(s->val.whileS.statement->val.stmlistS);
       }else{
-        generate_STM(file,s->val.whileS.statement);
+        generate_STM(s->val.whileS.statement);
       }
       //jne to start
       break;

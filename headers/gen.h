@@ -18,25 +18,25 @@ typedef struct BLOCK {
   struct BLOCK* next;
 }BLOCK;
 
-void generate_prologue(FILE* file);
+void generate_prologue();
 
-void generate_epilogue(FILE* file);
+void generate_epilogue();
 
-void generate_EXP_H(FILE* file,EXP* expression);
+void generate_EXP_H(EXP* expression);
 
-void generate_EXP_V(FILE* file,EXP* expression);
+void generate_EXP_V(EXP* expression);
 
-void generate_STM(FILE* file, STM* statement);
+void generate_STM(STM* statement);
 
-void generate_FUNC(FILE* file, FUNC* function);
+void generate_FUNC(FUNC* function);
 
-void generate_LIST(FILE* file, LIST* list);
+void generate_LIST(LIST* list);
 
-void generate_TYPE(FILE* file, TYPE* type);
+void generate_TYPE(TYPE* type);
 
-void generate_DEC(FILE* file, DEC* declaration);
+void generate_DEC(DEC* declaration);
 
-void parse_variables(FILE* file, LIST* decl_list);
+void parse_variables(LIST* decl_list);
 
 char* concat(const char *s1, const char *s2);
 

@@ -11,7 +11,6 @@ int regNr;
 void yyparse();
 
 FILE* yyin;
-FILE* fp;
 
 FUNC* thebody;
 
@@ -22,15 +21,21 @@ int main(){
   debug = 0;
   SymbolTable* root = initSymbolTable();
   yyin = fopen("test.sk", "r");
+  fprintf(stderr, "Parsing...\n");
   yyparse();
   if (debug){
     prettyFUNC(thebody);
   }
+  fprintf(stderr, "Typechecking...\n");
   int doesItWork = typeCheckFUNC(root, thebody);
-  fp = fopen("file.txt", "w+");
-  generate_prologue(fp);
-  generate_FUNC(fp, root);
-  generate_epilogue(fp);
+  if (!doesItWork) {
+    fprintf(stderr, "typecheck error %d\n", doesItWork);
+  }else{
+    fprintf(stderr, "Generating code...\n");
+    generate_prologue();
+    generate_FUNC(thebody);
+    generate_epilogue();
+  }
   fclose(yyin);
   // printf("doesItWork = %i\n", doesItWork);
   return 0;

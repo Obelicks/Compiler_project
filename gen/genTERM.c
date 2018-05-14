@@ -3,14 +3,14 @@
 
 extern int regNr;
 
-void generate_TERM(FILE* file,TERM *t){
+void generate_TERM(TERM *t){
   switch (t->kind) {
     case notK:
-        generate_TERM(file,t->val.notT);
+        generate_TERM(t->val.notT);
         break;
 
     case absoluteK:
-        generate_EXP_V(file,t->val.absoluteT);
+        generate_EXP_V(t->val.absoluteT);
         break;
 
     case numK:
@@ -18,7 +18,7 @@ void generate_TERM(FILE* file,TERM *t){
         break;
 
     case expK:
-        generate_EXP_V(file,t->val.expT);
+        generate_EXP_V(t->val.expT);
         break;
 
     case booleanK:
@@ -29,11 +29,11 @@ void generate_TERM(FILE* file,TERM *t){
         break;
 
     case variableK:
-        generate_TYPE(file,t->val.variableT);
+        generate_TYPE(t->val.variableT);
         break;
 
     case act_listK:
-        generate_LIST(file,t->val.act_listT.act_list);
+        generate_LIST(t->val.act_listT.act_list);
         break;
 
     default:
