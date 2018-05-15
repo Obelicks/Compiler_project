@@ -22,7 +22,9 @@ int typeCheckFUNC(SymbolTable* symbolTable, FUNC* func){
       break;
 
     case bodyK:
-      typeCheckLIST(symbolTable, func->val.bodyF.decl_list);
+      if (func->val.bodyF.decl_list != NULL) {
+        typeCheckLIST(symbolTable, func->val.bodyF.decl_list);
+      }
       typeCheckLIST(symbolTable, func->val.bodyF.statement_list);
       break;
 

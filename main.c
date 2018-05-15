@@ -25,21 +25,25 @@ int main(int argc, char *argv[]){
     return -1;
   }
   fprintf(stderr, "Parsing...\n");
+
   yyparse();
+
   if (debug){
     prettyFUNC(thebody);
   }
   fprintf(stderr, "Typechecking...\n");
-  int doesItWork = 1; //typeCheckFUNC(root, thebody);
-  if (!doesItWork) {
+
+  int doesItWork = typeCheckFUNC(root, thebody);
+  if (doesItWork) {
     fprintf(stderr, "typecheck error %d\n", doesItWork);
   }else{
-    fprintf(stderr, "Generating code...\n");
+    fprintf(stderr, "Generating code...\nGenerating prologue...\n");
     generate_prologue();
-    fprintf(stderr,"ending prologue\n");
+    fprintf(stderr,"ending prologue\nwriting main...\n");
     generate_FUNC(thebody);
-    fprintf(stderr,"ending code/starting epilogue\n");
+    fprintf(stderr,"ending code/starting epilogue...\n");
     generate_epilogue();
+    fprintf(stderr,"code written\n");
   }
   fclose(yyin);
   // fprintf(stderr,"doesItWork = %i\n", doesItWork);
