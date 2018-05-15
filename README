@@ -1,18 +1,12 @@
-
-exp.zip contains all files.
-
-----------
-
 Run flex, bison, and compile by writing the following on the command line:
-
-  make -f Makefile
+   make
 
 To run, write the following on the command line:
 
-  ./exp
+  make run
 
-Now you can type an expression ended by $ and <Ctrl>-D.
-Example (leaving out the <Ctrl>-D):
+To test costum files not names test.sk
+  ./compiler (tiger file) > (src file) 2> (log file)
 
-  3*4-1/x$
-
+to clean (removes .o and executable files and the standard out and log file):
+  make clean
