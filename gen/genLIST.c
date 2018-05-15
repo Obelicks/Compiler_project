@@ -38,11 +38,11 @@ void generate_LIST(LIST *l){
       break;
 
     case expressionK:
-      generate_EXP_V(l->val.expressionL);
+      generate_EXP(l->val.expressionL);
       break;
 
     case explistK:
-      generate_EXP_V(l->val.explistL.expression);
+      generate_EXP(l->val.explistL.expression);
       generate_LIST(l->val.explistL.exp_list);
       break;
 

@@ -28,7 +28,7 @@ void generate_TYPE(TYPE *t){
 
     case varexpK:
       generate_TYPE(t->val.varexpT.variable);
-      generate_EXP_V(t->val.varexpT.expression);
+      generate_EXP(t->val.varexpT.expression);
       break;
 
     case var_typeK:
