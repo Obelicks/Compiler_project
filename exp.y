@@ -132,10 +132,10 @@ expression : expression tEQUALTO expression     {$$ = makeEXPequalto($1,$3);}
 
 term : variable                               {$$ = makeTERMvar($1);}
      | tID tLPAREN act_list tRPAREN           {$$ = makeTERMact($1, $3);}
-     | tNUM                                   {$$ = makeTERMnum($1);}
      | tLPAREN expression tRPAREN             {$$ = makeTERMexpression($2);}
      | tNOT term                              {$$ = makeTERMnot($2);}
      | tPIPE expression tPIPE                 {$$ = makeTERMabsolute($2);}
+     | tNUM                                   {$$ = makeTERMnum($1);}
      | tTRUE                                  {$$ = makeTERMboolean(0);}
      | tFALSE                                 {$$ = makeTERMboolean(1);}
      | tNULL                                  {$$ = makeTERMboolean(-1);}
