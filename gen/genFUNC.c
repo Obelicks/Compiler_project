@@ -34,9 +34,10 @@ void generate_FUNC(FUNC* function){
     default:
       fprintf(stderr,"in default case in FUNC (gen)\n");
       break;
-  }
+  }return;
 }
 void parse_variables( LIST* decl_list){
+
 }
 char* concat(const char *s1, const char *s2){
     char *result = malloc(strlen(s1)+strlen(s2)+1);

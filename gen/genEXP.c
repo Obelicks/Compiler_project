@@ -186,7 +186,7 @@ void generate_EXP_V(EXP* e){
     default:
        fprintf(stdout,"in default case in EXP\n\n");
        break;
-  }
+  }return;
 }
 void generate_EXP_H(EXP* e){
   char a[80];
@@ -333,6 +333,7 @@ void generate_EXP_H(EXP* e){
      /*mov to RX*/
      /*min RX RY to RZ*/
      break;
+
     case termK:
       aterm = generate_TERM(e->val.termE);
       fprintf(stdout,"mov %%r14,%d\n", aterm);
@@ -356,10 +357,9 @@ void generate_EXP_H(EXP* e){
      break;
 
   default:
-  fprintf( stderr, "default case reached");
-
-     break;
-  }
+    fprintf( stderr, "default case reached");
+    break;
+  }return;
 }
 
 void generate_epilogue(){

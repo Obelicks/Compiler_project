@@ -18,9 +18,10 @@ int main(int argc, char *argv[]){
   //set debug to 1 to enter debug mode
   debug = 1;
   SymbolTable* root = initSymbolTable();
-  yyin = fopen("test.sk", "r");
+  yyin = fopen(argv[1], "r");
   if (yyin == NULL) {
-    fprintf(stderr, "Not a file");
+    fprintf(stderr, "%s is not a file\n",argv[1]);
+    //fclose(yyin);
     return -1;
   }
   fprintf(stderr, "Parsing...\n");
@@ -29,7 +30,7 @@ int main(int argc, char *argv[]){
     prettyFUNC(thebody);
   }
   fprintf(stderr, "Typechecking...\n");
-  int doesItWork =1; //typeCheckFUNC(root, thebody);
+  int doesItWork = 1; //typeCheckFUNC(root, thebody);
   if (!doesItWork) {
     fprintf(stderr, "typecheck error %d\n", doesItWork);
   }else{

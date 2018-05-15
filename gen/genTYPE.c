@@ -38,5 +38,5 @@ void generate_TYPE(TYPE *t){
     default:
       fprintf(stderr,"in default case in TYPE\n");
       break;
-  }
+  }return;
 }
