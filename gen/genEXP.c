@@ -155,9 +155,6 @@ void generate_EXP(EXP* e){
        fprintf(stdout,"div %%r14\n");
        fprintf(stdout,"movq %%rax, %%r13\n");
        fprintf(stdout,"push %%r13\n");
-       /*movq to RX*/
-       /*movq to RY*/
-       /*div RX RY to RZ*/
        break;
 
      case plusK:
@@ -167,9 +164,6 @@ void generate_EXP(EXP* e){
         fprintf(stdout,"pop %%r14\n");
         fprintf(stdout,"add %%r14, %%r13\n");
         fprintf(stdout,"push %%r13\n");
-         /*movq exp to RX*/
-       /*movq exp to RY*/
-       /*add RX RY to RZ*/
         break;
 
      case minusK:
@@ -179,14 +173,10 @@ void generate_EXP(EXP* e){
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"sub %%r14, %%r13\n");
       fprintf(stdout,"push %%r13\n");
-       /*movq to RX*/
-       /*movq to RY*/
-       /*min RX RY to RZ*/
        break;
 
     case termK:
       aterm = generate_TERM(e->val.termE);
-      //fprintf(stdout,"%i \n", aterm);
       fprintf(stdout,"push %i\n", aterm);
       break;
 
@@ -203,10 +193,7 @@ void generate_EXP(EXP* e){
       fprintf(stdout,"jmp .11\n");
       fprintf(stdout,"movq 0, %%r13\n");
       fprintf(stdout,"push %%r13\n");
-       /*movq to RX*/
-       /*movq to RY*/
-       //or RX RY -> RZ (or RX)
-       break;
+      break;
 
     default:
        fprintf(stdout,"in default case in EXP\n\n");
