@@ -3,11 +3,10 @@
 #include "../headers/typecheck.h"
 #include <stdio.h>
 
-extern int debug;
 int typeCheckFUNC(SymbolTable* symbolTable, FUNC* func){
-  if (debug){
-    fprintf(stderr,"%d\n", func->kind);
-  }
+
+  fprintf(stderr,"%d\n", func->kind);
+
   switch (func->kind) {
     case functionK:
       typeCheckFUNC(symbolTable, func->val.functionF.head);
@@ -22,7 +21,9 @@ int typeCheckFUNC(SymbolTable* symbolTable, FUNC* func){
       break;
 
     case bodyK:
-      typeCheckLIST(symbolTable, func->val.bodyF.decl_list);
+      if (func->val.bodyF.decl_list != NULL) {
+        typeCheckLIST(symbolTable, func->val.bodyF.decl_list);
+      }
       typeCheckLIST(symbolTable, func->val.bodyF.statement_list);
       break;
 

@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include "../headers/gen.h"
 
-extern int regNr;
-
-
 int generate_TERM(TERM *t){
   switch (t->kind) {
     case notK:

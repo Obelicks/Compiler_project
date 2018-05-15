@@ -3,12 +3,11 @@
 #include "../headers/typecheck.h"
 #include <stdio.h>
 
-extern int debug;
 int typeCheckDEC(SymbolTable* symbolTable, DEC* declaration){
   int type;
-  if (debug){
-    fprintf(stderr,"DEC kind: %i\n", declaration->kind);
-  }
+
+  fprintf(stderr,"DEC kind: %i\n", declaration->kind);
+  
   switch (declaration->kind) {
     case listK:
       // fprintf(stderr,"DEC listK\n");
@@ -16,9 +15,7 @@ int typeCheckDEC(SymbolTable* symbolTable, DEC* declaration){
       break;
     case dectypeK:
       type =typeCheckTYPE(symbolTable, declaration->val.dectypeD.type);
-      if (debug){
-        fprintf(stderr,"putting %s %d\n",declaration->val.dectypeD.id,type);
-      }
+      fprintf(stderr,"putting %s %d\n",declaration->val.dectypeD.id,type);
       putSymbol(symbolTable,declaration->val.dectypeD.id,type,NULL);
       break;
     case decfuncK:

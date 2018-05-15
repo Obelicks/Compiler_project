@@ -3,11 +3,10 @@
 #include "../headers/typecheck.h"
 #include <stdio.h>
 
-extern int debug;
 int typeCheckLIST(SymbolTable* symbolTable, LIST* list){
-  if (debug){
-    fprintf(stderr,"LIST kind: %i\n", list->kind);
-  }
+
+  fprintf(stderr,"LIST kind: %i\n", list->kind);
+
   switch (list->kind) {
     case parK:
       // fprintf(stderr,"par\n");
