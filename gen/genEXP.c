@@ -2,7 +2,7 @@
 #include "../headers/gen.h"
 #include"../headers/tree.h"
 
-int generate_TERM(TERM* term);
+
 void generate_prologue(){
   fprintf(stdout,"form: \n");
   fprintf(stdout,".string \"%%d\n");

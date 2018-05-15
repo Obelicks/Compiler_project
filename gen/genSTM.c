@@ -31,8 +31,12 @@ void generate_STM( STM *s){
 
     case ifelseK:
       generate_EXP(s->val.ifelseS.ifState);
+      fprintf(stdout, "movq 0 %%rax\ncmp %%rax %%r15\nje else\n");
       generate_STM(s->val.ifelseS.thenState);
+      fprintf(stdout, "jmp end\n else:\n");
+
       generate_STM(s->val.ifelseS.elseState);
+      fprintf(stdout, "end:\n", );
       break;
 
     case whileK:

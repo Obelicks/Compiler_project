@@ -32,6 +32,8 @@ void generate_LIST(LIST* list);
 
 void generate_TYPE(TYPE* type);
 
+int generate_TERM(TERM* term);
+
 void generate_DEC(DEC* declaration);
 
 void parse_variables(LIST* decl_list);

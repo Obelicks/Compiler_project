@@ -11,7 +11,6 @@ FILE* yyin;
 FUNC* thebody;
 
 int main(int argc, char *argv[]){
-  //regNr = 1;
   lineno = 1;
   SymbolTable* root = initSymbolTable();
   yyin = fopen(argv[1], "r");
