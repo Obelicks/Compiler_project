@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include "../headers/gen.h"
 
-//extern int regNr;
 
 void generate_DEC(DEC *d){
   switch (d->kind) {

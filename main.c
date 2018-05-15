@@ -6,7 +6,6 @@
 #include "headers/weed.h"
 #include "headers/gen.h"
 int lineno;
-int regNr;
 void yyparse();
 FILE* yyin;
 FUNC* thebody;

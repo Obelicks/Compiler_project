@@ -13,7 +13,6 @@ DEPS += headers/typecheck.h
 DEPS += headers/weed.h
 DEPS += headers/gen.h
 
-
 OBJ  = y.tab.o
 OBJ += lex.yy.o
 OBJ += main.o
@@ -65,6 +64,9 @@ lex.yy.c:         exp.l y.tab.h
 	          flex exp.l
 
 run:
-	./compiler test.sk > out 2>log
+	./compiler test.sk > out.s 2>log
+
+compile:
+	gcc -o testout -m64 out.s
 clean:
-	rm -f $(OBJ) compiler lex.yy.c y.tab.c y.tab.h out log
+	rm -f $(OBJ) compiler lex.yy.c y.tab.c y.tab.h out.s log
