@@ -15,10 +15,6 @@ void generate_prologue(){
   fprintf(stdout,"push %%r14\n");
   fprintf(stdout,"push %%rax\n");
 }
-/*void generate_FUNC(FUNC root);{
-
-}*/
-
 
 void generate_EXP(EXP* e){
   int aterm;

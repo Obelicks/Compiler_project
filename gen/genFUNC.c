@@ -20,7 +20,7 @@ void generate_FUNC(FUNC* function){
       if (function->val.bodyF.decl_list != NULL) {
         generate_LIST(function->val.bodyF.decl_list);
       }
-      generate_LIST(function->val.bodyF.statement_list);
+      generate_LIST(function->val.bodyF.statement_list);//cant be empty so no reason to check
       break;
 
     case tailK:
@@ -33,12 +33,6 @@ void generate_FUNC(FUNC* function){
       break;
   }return;
 }
-void parse_variables( LIST* decl_list ){
+/*void parse_variables( LIST* decl_list ){
 
-}
-char* concat(const char *s1, const char *s2){
-    char *result = malloc(strlen(s1)+strlen(s2)+1);
-    strcpy(result, s1);
-    strcat(result, s2);
-    return result;
-}
+}*/
