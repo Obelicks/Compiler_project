@@ -22,9 +22,7 @@ void generate_prologue();
 
 void generate_epilogue();
 
-void generate_EXP_H(EXP* expression);
-
-void generate_EXP_V(EXP* expression);
+void generate_EXP(EXP* expression);
 
 void generate_STM(STM* statement);
 

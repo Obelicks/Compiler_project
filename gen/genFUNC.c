@@ -15,7 +15,7 @@ void generate_FUNC(FUNC* function){
       break;
 
     case headK:
-      fprintf(stdout, "%s:\n", function->val.heafF.id);
+      fprintf(stdout, "%s:\n", function->val.headF.id);
       //TODO function prologue
       break;
 

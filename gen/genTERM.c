@@ -3,6 +3,7 @@
 
 extern int regNr;
 
+
 int generate_TERM(TERM *t){
   switch (t->kind) {
     case notK:
