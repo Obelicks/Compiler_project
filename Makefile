@@ -71,4 +71,4 @@ run:
 compile:
 	gcc -o testout -m64 $(SRC)
 clean:
-	rm -f $(OBJ) compiler lex.yy.c y.tab.c y.tab.h $(SRC) log
+	rm -f $(OBJ) compiler lex.yy.c y.tab.c y.tab.h $(SRC) log testout
