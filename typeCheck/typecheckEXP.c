@@ -3,11 +3,10 @@
 #include "../headers/typecheck.h"
 #include <stdio.h>
 
-extern int debug;
 int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
-  if (debug){
-    fprintf(stderr,"EXP KIND: %i\n", expression->kind);
-  }
+
+  fprintf(stderr,"EXP KIND: %i\n", expression->kind);
+
   int x,y;
   switch (expression->kind) {
     case equaltoK:
@@ -146,9 +145,8 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
 
     case termK:
       x=typeCheckTERM(symbolTable, expression->val.termE);
-      if(debug){
-        fprintf(stderr,"%i\n", x);
-      }
+      fprintf(stderr,"found term of kind: %i\n", x);
+
       return x;
       break;
 
@@ -167,6 +165,5 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
       fprintf(stderr,"default case in typeCheckEXP\n");
       break;
   }
-
   return 0;
 }

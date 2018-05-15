@@ -3,9 +3,6 @@
 #include <string.h>
 #include "../headers/gen.h"
 
-extern int regNr;
-extern int debug;
-
 void generate_FUNC(FUNC* function){
   switch (function->kind) {
     case functionK:

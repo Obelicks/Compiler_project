@@ -3,20 +3,16 @@
 #include "../headers/typecheck.h"
 #include <stdio.h>
 
-extern int debug;
 int typeCheckTYPE(SymbolTable* symbolTable, TYPE* type){
   int error;
   int typeCheck;
   Symbol* symbol;
-  if(debug){
-     fprintf(stderr,"TYPE KIND: %i\n", type->kind);
-  }
+
+  fprintf(stderr,"TYPE KIND: %i\n", type->kind);
   switch (type->kind) {
     case idK:
       symbol = getSymbol(symbolTable, type->val.idT);
-      if(debug){
-        fprintf(stderr,"got symbol %s of type %i\n", symbol->name,symbol->type);
-      }
+      fprintf(stderr,"got symbol %s of type %i\n", symbol->name,symbol->type);
       return symbol->type;
       break;
 
@@ -50,9 +46,9 @@ int typeCheckTYPE(SymbolTable* symbolTable, TYPE* type){
       //fprintf(stderr,"here\n");
       typeCheck = typeCheckTYPE(symbolTable, type->val.var_typeT.variable);
       putSymbol(symbolTable,type->val.var_typeT.id,typeCheck,NULL);
-      if (debug){
-        fprintf(stderr,"putting id: %s of type: %i\n", type->val.var_typeT.id,typeCheck);
-      }
+
+      fprintf(stderr,"putting id: %s of type: %i\n", type->val.var_typeT.id,typeCheck);
+
       break;
 
     default:

@@ -6,17 +6,14 @@
 #include "headers/weed.h"
 #include "headers/gen.h"
 int lineno;
-int debug;
 int regNr;
 void yyparse();
 FILE* yyin;
 FUNC* thebody;
 
 int main(int argc, char *argv[]){
-  regNr = 1;
+  //regNr = 1;
   lineno = 1;
-  //set debug to 1 to enter debug mode
-  debug = 1;
   SymbolTable* root = initSymbolTable();
   yyin = fopen(argv[1], "r");
   if (yyin == NULL) {
@@ -28,9 +25,8 @@ int main(int argc, char *argv[]){
 
   yyparse();
 
-  if (debug){
-    prettyFUNC(thebody);
-  }
+  prettyFUNC(thebody);
+
   fprintf(stderr, "Typechecking...\n");
 
   int doesItWork = typeCheckFUNC(root, thebody);

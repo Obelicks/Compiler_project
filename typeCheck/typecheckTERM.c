@@ -4,11 +4,10 @@
 #include <stdio.h>
 
 int atoi (const char* str);
-extern int debug;
 int typeCheckTERM(SymbolTable* symbolTable, TERM* term){
-  if (debug){
-    fprintf(stderr,"TERM KIND: %i\n", term->kind);
-  }
+
+  fprintf(stderr,"TERM KIND: %i\n", term->kind);
+
   int type;
   switch (term->kind) {
     case notK:

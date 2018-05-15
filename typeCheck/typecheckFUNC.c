@@ -3,11 +3,10 @@
 #include "../headers/typecheck.h"
 #include <stdio.h>
 
-extern int debug;
 int typeCheckFUNC(SymbolTable* symbolTable, FUNC* func){
-  if (debug){
-    fprintf(stderr,"%d\n", func->kind);
-  }
+
+  fprintf(stderr,"%d\n", func->kind);
+
   switch (func->kind) {
     case functionK:
       typeCheckFUNC(symbolTable, func->val.functionF.head);
