@@ -15,9 +15,8 @@ void generate_FUNC(FUNC* function){
       break;
 
     case headK:
-      //parse_variables(function->val.headF.par_decl_list);
-      //char* s = concat(function->val.headF.id, ":");
-      //printf("%s\n", s);
+      fprintf(stdout, "%s:\n", function->val.heafF.id);
+      //TODO function prologue
       break;
 
     case bodyK:
@@ -28,7 +27,7 @@ void generate_FUNC(FUNC* function){
       break;
 
     case tailK:
-      //printf("#end of function", );
+      fprintf(stderr,"#end of function");
       break;
 
     default:
