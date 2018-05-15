@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include "../headers/gen.h"
 
+int rand();
 void generate_STM( STM *s){
+  int r;
   switch (s->kind) {
     case returnK:
       generate_EXP(s->val.returnS);
@@ -25,19 +27,21 @@ void generate_STM( STM *s){
       break;
 
     case ifthenK:
+      r = rand();
       generate_EXP(s->val.ifthenS.ifState);
-      fprintf(stdout, "movq 0 %%rax\ncmp %%rax %%r15\njne end\n");
+      fprintf(stdout, "movq 0 %%rax\ncmp %%rax %%r15\njne %i\n",r);
       generate_STM(s->val.ifthenS.thenState);
-      fprintf(stdout, "end:\n");
+      fprintf(stdout, "%i:\n",r);
       break;
 
     case ifelseK:
+      r = rand();
       generate_EXP(s->val.ifelseS.ifState);
-      fprintf(stdout, "movq 0 %%rax\ncmp %%rax %%r15\njne else\n");
+      fprintf(stdout, "movq 0 %%rax\ncmp %%rax %%r15\njne %i\n",r);
       generate_STM(s->val.ifelseS.thenState);
-      fprintf(stdout, "jmp end\n else:\n");
+      fprintf(stdout, "jmp %i\n %i:\n",r+1,r);
       generate_STM(s->val.ifelseS.elseState);
-      fprintf(stdout, "end:\n" );
+      fprintf(stdout, "%i:\n",r );
       break;
 
     case whileK:

@@ -166,14 +166,14 @@ void generate_EXP(EXP* e){
         fprintf(stdout,"push %%r13\n");
         break;
 
-     case minusK:
-      generate_EXP(e->val.minusE.left);
-      generate_EXP(e->val.minusE.right);
-      fprintf(stdout,"pop %%r13\n");
-      fprintf(stdout,"pop %%r14\n");
-      fprintf(stdout,"sub %%r14, %%r13\n");
-      fprintf(stdout,"push %%r13\n");
-       break;
+    case minusK:
+    generate_EXP(e->val.minusE.left);
+    generate_EXP(e->val.minusE.right);
+    fprintf(stdout,"pop %%r13\n");
+    fprintf(stdout,"pop %%r14\n");
+    fprintf(stdout,"sub %%r14, %%r13\n");
+    fprintf(stdout,"push %%r13\n");
+    break;
 
     case termK:
       aterm = generate_TERM(e->val.termE);
@@ -196,8 +196,8 @@ void generate_EXP(EXP* e){
       break;
 
     default:
-       fprintf(stdout,"in default case in EXP\n\n");
-       break;
+      fprintf(stdout,"in default case in EXP\n\n");
+      break;
   }return;
 }
 
