@@ -47,7 +47,7 @@ void generate_LIST(LIST *l){
       break;
 
     default:
-      printf("in default case in LIST\n");
+      fprintf(stderr,"in default case in LIST\n");
       break;
-  }
+  }return;
 }

@@ -8,7 +8,7 @@ void prettyDEC(DEC *d){
       break;
 
     case dectypeK:
-      printf("%s ", d->val.dectypeD.id);
+      fprintf(stderr,"%s ", d->val.dectypeD.id);
       prettyTYPE(d->val.dectypeD.type);
       break;
 
@@ -17,7 +17,7 @@ void prettyDEC(DEC *d){
       break;
 
     default:
-      printf("in default case in DEC\n");
+      fprintf(stderr,"in default case in DEC\n");
       break;
   }
 }

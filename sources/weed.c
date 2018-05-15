@@ -129,7 +129,7 @@ EXP* findDevision(EXP* expression){
            return findDevision(e->val.timesE.right);
            break;
       case divK:
-           printf("found div statement at %d\n",e->lineno);
+           fprintf(stderr,"found div statement at %d\n",e->lineno);
            return(e->val.divE.right);
            break;
       case plusK:

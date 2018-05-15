@@ -10,27 +10,27 @@ void prettyFUNC(FUNC *f){
       break;
 
     case headK:
-      printf("function %s (", f->val.headF.id);
+      fprintf(stderr,"function %s (", f->val.headF.id);
       prettyLIST(f->val.headF.par_decl_list);
       prettyTYPE(f->val.headF.type);
-      printf(")\n");
+      fprintf(stderr,")\n");
       break;
 
     case bodyK:
-      //printf("decl list\n");
+      //fprintf(stderr,"decl list\n");
       if(f->val.bodyF.decl_list != NULL){
         prettyLIST(f->val.bodyF.decl_list);
       }
-      //printf("stm list\n");
+      //fprintf(stderr,"stm list\n");
       prettyLIST(f->val.bodyF.statement_list);
       break;
 
     case tailK:
-      printf("end %s\n", f->val.tailF);
+      fprintf(stderr,"end %s\n", f->val.tailF);
       break;
 
     default:
-    printf("in default case in FUNC\n");
+    fprintf(stderr,"in default case in FUNC\n");
       break;
   }
 }

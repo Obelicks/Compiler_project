@@ -22,10 +22,7 @@ int generate_TERM(TERM *t){
         break;
 
     case booleanK:
-        if(t->val.booleanT == 0){
-        }else if(t->val.booleanT == 1){
-        }else{
-        }
+        return t->val.booleanT;
         break;
 
     case variableK:
@@ -33,12 +30,13 @@ int generate_TERM(TERM *t){
         break;
 
     case act_listK:
-        generate_LIST(t->val.act_listT.act_list);
+        generate_LIST(t->val.act_listT.act_list);//TODO pass the variables needed for the function
+        fprintf(stdout, "jmp %s\n",t->val.act_listT.id);
+        //jumping to id label
         break;
 
     default:
-        printf("in default case in TERM\n");
+        fprintf(stderr,"in default case in TERM\n");
         break;
   }
-  return 0;
 }

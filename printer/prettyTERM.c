@@ -4,19 +4,19 @@
 void prettyTERM(TERM *t){
   switch (t->kind) {
     case notK:
-        printf("not( ");
+        fprintf(stderr,"not( ");
         prettyTERM(t->val.notT);
-        printf(") " );
+        fprintf(stderr,") " );
         break;
 
     case absoluteK:
-        printf("| ");
+        fprintf(stderr,"| ");
         prettyEXP(t->val.absoluteT);
-        printf("| ");
+        fprintf(stderr,"| ");
         break;
 
     case numK:
-        printf("%d ",t->val.numT );
+        fprintf(stderr,"%d ",t->val.numT );
         break;
 
     case expK:
@@ -25,11 +25,11 @@ void prettyTERM(TERM *t){
 
     case booleanK:
         if(t->val.booleanT == 0){
-          printf("true ");
+          fprintf(stderr,"true ");
         }else if(t->val.booleanT == 1){
-          printf("false ");
+          fprintf(stderr,"false ");
         }else{
-          printf("NULL ");
+          fprintf(stderr,"NULL ");
         }
         break;
 
@@ -38,12 +38,12 @@ void prettyTERM(TERM *t){
         break;
 
     case act_listK:
-        printf("%s ", t->val.act_listT.id);
+        fprintf(stderr,"%s ", t->val.act_listT.id);
         prettyLIST(t->val.act_listT.act_list);
         break;
 
     default:
-        printf("in default case in TERM\n");
+        fprintf(stderr,"in default case in TERM\n");
         break;
   }
 }

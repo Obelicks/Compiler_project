@@ -8,11 +8,11 @@ void generate_prologue(){
   printf(".string \"%%d\n");
   printf("push %%rbp\n");
   printf("movq %%rsp, rbp\n");
-  printf("push %%rbx\n");
-  printf("push %%r12\n");
-  printf("push %%r13\n");
-  printf("push %%r14\n");
-  printf("push %%rbx\n");
+  fprintf(stdout,"push %%rbx\n");
+  fprintf(stdout,"push %%r12\n");
+  fprintf(stdout,"push %%r13\n");
+  fprintf(stdout,"push %%r14\n");
+  fprintf(stdout,"push %%rbx\n");
 }
 /*void generate_FUNC(FUNC root);{
 
@@ -208,9 +208,9 @@ void generate_EXP(EXP* e){
        break;
 
     default:
-       printf("in default case in EXP\n\n");
+       fprintf(stdout,"in default case in EXP\n\n");
        break;
-  }
+  }return;
 }
 
 void generate_epilogue(){

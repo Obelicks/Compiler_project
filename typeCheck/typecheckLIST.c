@@ -6,27 +6,27 @@
 extern int debug;
 int typeCheckLIST(SymbolTable* symbolTable, LIST* list){
   if (debug){
-    printf("LIST kind: %i\n", list->kind);
+    fprintf(stderr,"LIST kind: %i\n", list->kind);
   }
   switch (list->kind) {
     case parK:
-      // printf("par\n");
+      // fprintf(stderr,"par\n");
       typeCheckLIST(symbolTable, list->val.parL);
       break;
 
     case varlistK:
-      // printf("varlist\n");
+      // fprintf(stderr,"varlist\n");
       typeCheckTYPE(symbolTable, list->val.varlistL.var_type);
       typeCheckLIST(symbolTable, list->val.varlistL.var_decl_list);
       break;
 
     case varK:
-      // printf("var\n");
+      // fprintf(stderr,"var\n");
       typeCheckTYPE(symbolTable, list->val.varL);
       break;
 
     case decK:
-      // printf("dec\n");
+      // fprintf(stderr,"dec\n");
       typeCheckDEC(symbolTable, list->val.decL.declaration);
 
       if (list->val.decL.decl_list != NULL){
@@ -35,28 +35,28 @@ int typeCheckLIST(SymbolTable* symbolTable, LIST* list){
       break;
 
     case stateK:
-      // printf("state\n");
+      // fprintf(stderr,"state\n");
       typeCheckSTM(symbolTable, list->val.stateL);
       break;
 
     case statelistK:
-      // printf("statelist\n");
+      // fprintf(stderr,"statelist\n");
       typeCheckSTM(symbolTable, list->val.statelistL.statement);
       typeCheckLIST(symbolTable, list->val.statelistL.statement_list);
       break;
 
     case actlistK:
-      // printf("actlist\n");
+      // fprintf(stderr,"actlist\n");
       typeCheckLIST(symbolTable, list->val.actlistL);
       break;
 
     case expressionK:
-      // printf("expression\n");
+      // fprintf(stderr,"expression\n");
       typeCheckEXP(symbolTable, list->val.expressionL);
       break;
 
     case explistK:
-      // printf("explist\n");
+      // fprintf(stderr,"explist\n");
       typeCheckEXP(symbolTable, list->val.explistL.expression);
       typeCheckLIST(symbolTable, list->val.explistL.exp_list);
       break;
