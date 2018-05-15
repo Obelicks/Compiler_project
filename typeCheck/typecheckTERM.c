@@ -7,7 +7,7 @@ int atoi (const char* str);
 extern int debug;
 int typeCheckTERM(SymbolTable* symbolTable, TERM* term){
   if (debug){
-    printf("TERM KIND: %i\n", term->kind);
+    fprintf(stderr,"TERM KIND: %i\n", term->kind);
   }
   int type;
   switch (term->kind) {
@@ -24,7 +24,7 @@ int typeCheckTERM(SymbolTable* symbolTable, TERM* term){
       break;
 
     case numK:
-      //printf("its an int\n");
+      //fprintf(stderr,"its an int\n");
       return INTEGER;
       break;
 
@@ -33,7 +33,7 @@ int typeCheckTERM(SymbolTable* symbolTable, TERM* term){
       break;
 
     case booleanK:
-      //printf("its a bool\n");
+      //fprintf(stderr,"its a bool\n");
       return BOOLEAN;
       break;
 

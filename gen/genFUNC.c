@@ -32,7 +32,7 @@ void generate_FUNC(FUNC* function){
       break;
 
     default:
-      printf("in default case in FUNC (gen)\n");
+      fprintf(stderr,"in default case in FUNC (gen)\n");
       break;
   }
 }

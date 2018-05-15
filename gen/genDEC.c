@@ -18,7 +18,7 @@ void generate_DEC(DEC *d){
       break;
 
     default:
-      printf("in default case in DEC\n");
+      fprintf(stderr,"in default case in DEC\n");
       break;
   }
 }

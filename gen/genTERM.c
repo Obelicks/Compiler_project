@@ -37,7 +37,7 @@ int generate_TERM(TERM *t){
         break;
 
     default:
-        printf("in default case in TERM\n");
+        fprintf(stderr,"in default case in TERM\n");
         break;
   }
   return 0;

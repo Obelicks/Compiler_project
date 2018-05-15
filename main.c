@@ -41,6 +41,6 @@ int main(int argc, char *argv[]){
     generate_epilogue();
   }
   fclose(yyin);
-  // printf("doesItWork = %i\n", doesItWork);
+  // fprintf(stderr,"doesItWork = %i\n", doesItWork);
   return 0;
 }

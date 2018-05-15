@@ -36,7 +36,7 @@ void generate_TYPE(TYPE *t){
       break;
 
     default:
-      printf("in default case in TYPE\n");
+      fprintf(stderr,"in default case in TYPE\n");
       break;
   }
 }

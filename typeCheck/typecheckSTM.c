@@ -6,7 +6,7 @@
 extern int debug;
 int typeCheckSTM(SymbolTable* symbolTable, STM* statement){
   if (debug){
-    printf("STM KIND: %i\n", statement->kind);
+    fprintf(stderr,"STM KIND: %i\n", statement->kind);
   }
   Symbol* symbol;
   SymbolTable* nextsymbolTable;

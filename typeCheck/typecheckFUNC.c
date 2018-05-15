@@ -6,7 +6,7 @@
 extern int debug;
 int typeCheckFUNC(SymbolTable* symbolTable, FUNC* func){
   if (debug){
-    printf("%d\n", func->kind);
+    fprintf(stderr,"%d\n", func->kind);
   }
   switch (func->kind) {
     case functionK:

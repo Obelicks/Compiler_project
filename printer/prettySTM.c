@@ -4,75 +4,75 @@
 void prettySTM(STM *s){
   switch (s->kind) {
     case returnK:
-      printf("return( ");
+      fprintf(stderr,"return( ");
       prettyEXP(s->val.returnS);
-      printf(") \n");
+      fprintf(stderr,") \n");
       break;
 
     case writeK:
-      printf("write( ");
+      fprintf(stderr,"write( ");
       prettyEXP(s->val.writeS);
-      printf(") \n");
+      fprintf(stderr,") \n");
       break;
 
    case allocateK:
-      printf("allocating: ");
+      fprintf(stderr,"allocating: ");
       prettyTYPE(s->val.allocateS);
       break;
 
     case allocateoflengthK:
-      printf("allocating: ");
+      fprintf(stderr,"allocating: ");
       prettyTYPE(s->val.allocateoflengthS.variable);
       prettyEXP(s->val.allocateoflengthS.expression);
       break;
 
     case assignK:
-      printf("assigning: ");
+      fprintf(stderr,"assigning: ");
       prettyTYPE(s->val.assignS.variable);
       prettyEXP(s->val.assignS.expression);
       break;
 
     case ifthenK:
-      printf("if( ");
+      fprintf(stderr,"if( ");
       prettyEXP(s->val.ifthenS.ifState);
-      printf(")\n");
-      printf("then( ");
+      fprintf(stderr,")\n");
+      fprintf(stderr,"then( ");
       prettySTM(s->val.ifthenS.thenState);
-      printf(")\n");
+      fprintf(stderr,")\n");
       break;
 
     case ifelseK:
-      printf("if( ");
+      fprintf(stderr,"if( ");
       prettyEXP(s->val.ifelseS.ifState);
-      printf(")\n");
-      printf("then( ");
+      fprintf(stderr,")\n");
+      fprintf(stderr,"then( ");
       prettySTM(s->val.ifelseS.thenState);
-      printf(")\n");
-      printf("else( ");
+      fprintf(stderr,")\n");
+      fprintf(stderr,"else( ");
       prettySTM(s->val.ifelseS.elseState);
-      printf(")\n");
+      fprintf(stderr,")\n");
       break;
 
     case whileK:
-      printf("while( ");
+      fprintf(stderr,"while( ");
       prettyEXP(s->val.whileS.expression);
-      printf("){\n");
-      printf("do:\n");
+      fprintf(stderr,"){\n");
+      fprintf(stderr,"do:\n");
       if(s->val.whileS.statement->kind == stmlistK){
         prettyLIST(s->val.whileS.statement->val.stmlistS);
       }else{
         prettySTM(s->val.whileS.statement);
       }
-      printf("}end\n");
+      fprintf(stderr,"}end\n");
       break;
 
     case stmlistK:
     //TODO: MAKE THIS!!
-      printf("prettySTM case stmlistK\n");
+      fprintf(stderr,"prettySTM case stmlistK\n");
       break;
 
     default:
-      printf("in default case in STM\n");
+      fprintf(stderr,"in default case in STM\n");
       break;
   }
 }

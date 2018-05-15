@@ -6,7 +6,7 @@
 extern int debug;
 int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
   if (debug){
-    printf("EXP KIND: %i\n", expression->kind);
+    fprintf(stderr,"EXP KIND: %i\n", expression->kind);
   }
   int x,y;
   switch (expression->kind) {
@@ -123,7 +123,7 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
     case plusK:
       x = typeCheckEXP(symbolTable, expression->val.plusE.left);
       y = typeCheckEXP(symbolTable, expression->val.plusE.right);
-      // printf("x = %i y =%i\n",x,y );
+      // fprintf(stderr,"x = %i y =%i\n",x,y );
       if (x == y && x == INTEGER){
         return x;
       }else{
@@ -135,7 +135,7 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
     case minusK:
       x = typeCheckEXP(symbolTable, expression->val.minusE.left);
       y = typeCheckEXP(symbolTable, expression->val.minusE.right);
-      //printf("x = %i y =%i\n",x,y );
+      //fprintf(stderr,"x = %i y =%i\n",x,y );
       if (x == y && x == INTEGER){
         return x;
       }else{
@@ -147,7 +147,7 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
     case termK:
       x=typeCheckTERM(symbolTable, expression->val.termE);
       if(debug){
-        printf("%i\n", x);
+        fprintf(stderr,"%i\n", x);
       }
       return x;
       break;

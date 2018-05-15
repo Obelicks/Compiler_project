@@ -55,7 +55,7 @@ void generate_STM( STM *s){
       break;
 
     default:
-      printf("in default case in STM\n");
+      fprintf(stderr,"in default case in STM\n");
       break;
   }
 }
