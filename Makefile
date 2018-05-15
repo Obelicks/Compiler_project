@@ -65,6 +65,6 @@ lex.yy.c:         exp.l y.tab.h
 	          flex exp.l
 
 run:
-	./compiler test.sk > out 2>log
+	./compiler test.sk > out.s 2>log
 clean:
 	rm -f $(OBJ) compiler lex.yy.c y.tab.c y.tab.h out log
