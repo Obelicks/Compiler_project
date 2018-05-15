@@ -53,6 +53,8 @@ OBJ += sources/symbol.o
 OBJ += sources/memory.o
 OBJ += sources/weed.o
 
+SRC = out.s
+
 
 main:             $(DEPS) $(OBJ)
 	          $(CC) $(OBJ) -o compiler -lfl
@@ -64,9 +66,9 @@ lex.yy.c:         exp.l y.tab.h
 	          flex exp.l
 
 run:
-	./compiler test.sk > out.s 2>log
+	./compiler test.sk > $(SRC) 2>log
 
 compile:
-	gcc -o testout -m64 out.s
+	gcc -o testout -m64 $(SRC)
 clean:
-	rm -f $(OBJ) compiler lex.yy.c y.tab.c y.tab.h out.s log
+	rm -f $(OBJ) compiler lex.yy.c y.tab.c y.tab.h $(SRC) log
