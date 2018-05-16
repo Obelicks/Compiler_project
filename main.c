@@ -30,6 +30,7 @@ int main(int argc, char *argv[]){
   int doesItWork = typeCheckFUNC(root, thebody);
   if (doesItWork) {
     fprintf(stderr, "typecheck error %d\n", doesItWork);
+    return -2;
   }else{
     fprintf(stderr, "Generating code...\nGenerating prologue...\n");
     generate_prologue();
