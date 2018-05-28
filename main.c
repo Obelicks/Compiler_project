@@ -17,7 +17,7 @@ int main(int argc, char *argv[]){
   if (yyin == NULL) {
     fprintf(stderr, "%s is not a file\n",argv[1]);
     //fclose(yyin);
-    return -1;
+    return 1;
   }
   fprintf(stderr, "Parsing...\n");
 
@@ -30,7 +30,7 @@ int main(int argc, char *argv[]){
   int doesItWork = typeCheckFUNC(root, thebody);
   if (doesItWork) {
     fprintf(stderr, "typecheck error %d\n", doesItWork);
-    return -2;
+    return 2;
   }else{
     fprintf(stderr, "Generating code...\nGenerating prologue...\n");
     generate_prologue();
