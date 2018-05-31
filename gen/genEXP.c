@@ -178,6 +178,8 @@ void generate_EXP(EXP* e){
 
     case termK:
       aterm = generate_TERM(e->val.termE);
+      //TODO since term can be more than just an integer value
+      //we will have to move this code into genTerm.c at some point
       //fprintf(stdout,"%i \n", aterm);
       fprintf(stdout,"movq $%i, %%r13\n", aterm);
       fprintf(stdout,"push %%r13\n");
