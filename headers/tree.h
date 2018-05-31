@@ -20,9 +20,9 @@ typedef struct STM {
     struct EXP* returnS;
     struct EXP* writeS;
     struct TYPE* allocateS;
-    struct {struct TYPE *variable; struct EXP *expression;} allocateoflengthS;
-    struct {struct TYPE *variable; struct EXP *expression;} assignS;
-    struct {struct EXP *ifState; struct STM* thenState;} ifthenS;
+    struct {struct TYPE* variable; struct EXP* expression;} allocateoflengthS;
+    struct {struct TYPE* variable; struct EXP* expression;} assignS;
+    struct {struct EXP* ifState; struct STM* thenState;} ifthenS;
     struct {struct EXP* ifState; struct STM* thenState; struct STM* elseState;} ifelseS;
     struct {struct EXP* expression; struct STM* statement;} whileS;
     struct LIST* stmlistS;
@@ -85,7 +85,7 @@ typedef struct TYPE {
   int lineno;
   enum {idK, intconstK, boolK, arrayK, recordK, vareK, varexpK, var_typeK} kind;
   union {
-    char *idT;
+    char* idT;
     struct TYPE* arrayT;
     struct LIST* recordT;
     struct {struct TYPE* variable; char* id;} vareT;
@@ -201,11 +201,11 @@ TYPE* makeTYPEintconst();
 
 TYPE* makeTYPEbool();
 
-TYPE* makeTYPEarray(TYPE *type);
+TYPE* makeTYPEarray(TYPE* type);
 
-TYPE* makeTYPErecord(LIST *var_decl_list);
+TYPE* makeTYPErecord(LIST* var_decl_list);
 
-TYPE* makeTYPEvar(TYPE *variable, char* id);
+TYPE* makeTYPEvar(TYPE* variable, char* id);
 
 TYPE* makeTYPEvarexp(TYPE* variable, EXP* expression);
 
