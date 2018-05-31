@@ -5,7 +5,7 @@
 extern int lineno;
 
 TERM* makeTERMnot(TERM* term){
-  TERM *t;
+  TERM* t;
   t = NEW(TERM);
   t->lineno = lineno;
   t->kind = notK;
@@ -14,7 +14,7 @@ TERM* makeTERMnot(TERM* term){
 }
 
 TERM* makeTERMabsolute(EXP* expression){
-  TERM *t;
+  TERM* t;
   t = NEW(TERM);
   t->lineno = lineno;
   t->kind = absoluteK;
@@ -23,7 +23,7 @@ TERM* makeTERMabsolute(EXP* expression){
 }
 
 TERM* makeTERMnum(int num){
-  TERM *t;
+  TERM* t;
   t = NEW(TERM);
   t->lineno = lineno;
   t->kind = numK;
@@ -32,7 +32,7 @@ TERM* makeTERMnum(int num){
 }
 
 TERM* makeTERMexpression(EXP* expression){
-  TERM *t;
+  TERM* t;
   t = NEW(TERM);
   t->lineno = lineno;
   t->kind = expK;
@@ -41,7 +41,7 @@ TERM* makeTERMexpression(EXP* expression){
 }
 
 TERM* makeTERMboolean(int value){
-  TERM *t;
+  TERM* t;
   t = NEW(TERM);
   t->lineno = lineno;
   t->kind = booleanK;
@@ -50,7 +50,7 @@ TERM* makeTERMboolean(int value){
 }
 
 TERM* makeTERMvar(TYPE* variable){
-  TERM *t;
+  TERM* t;
   t = NEW(TERM);
   t->lineno = lineno;
   t->kind = variableK;
@@ -59,7 +59,7 @@ TERM* makeTERMvar(TYPE* variable){
 }
 
 TERM* makeTERMact(char* id, LIST* act_list){
-  TERM *t;
+  TERM* t;
   t = NEW(TERM);
   t->lineno = lineno;
   t->kind = act_listK;

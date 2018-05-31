@@ -159,13 +159,13 @@ void generate_EXP(EXP* e){
        break;
 
      case plusK:
-        generate_EXP(e->val.plusE.left);
-        generate_EXP(e->val.plusE.right);
-        fprintf(stdout,"pop %%r13\n");
-        fprintf(stdout,"pop %%r14\n");
-        fprintf(stdout,"add %%r14, %%r13\n");
-        fprintf(stdout,"push %%r13\n");
-        break;
+      generate_EXP(e->val.plusE.left);
+      generate_EXP(e->val.plusE.right);
+      fprintf(stdout,"pop %%r13\n");
+      fprintf(stdout,"pop %%r14\n");
+      fprintf(stdout,"add %%r14, %%r13\n");
+      fprintf(stdout,"push %%r13\n");
+      break;
 
     case minusK:
       generate_EXP(e->val.minusE.left);
