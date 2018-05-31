@@ -2,13 +2,20 @@
 #include "../headers/gen.h"
 
 int generate_TERM(TERM* t){
+  int val;
   switch (t->kind) {
     case notK:
         generate_TERM(t->val.notT);
         break;
 
     case absoluteK:
-        generate_EXP(t->val.absoluteT);
+        val =generate_EXP(t->val.absoluteT);
+        //TODO this will have to be done in assembler
+        //unless we can peephole it
+        /*if (val < 0){
+          val = val * (-1);
+        }
+        return val;*/
         break;
 
     case numK:
