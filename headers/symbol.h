@@ -12,7 +12,7 @@ typedef struct Symbol {
   char* name;
   int type;
   void* value;
-  struct Symbol *next;
+  struct Symbol* next;
 } Symbol;
 
 typedef struct SymbolTable {
