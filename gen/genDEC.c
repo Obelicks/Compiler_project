@@ -2,7 +2,7 @@
 #include "../headers/gen.h"
 
 
-void generate_DEC(DEC *d){
+void generate_DEC(DEC* d){
   switch (d->kind) {
     case listK:
       generate_LIST(d->val.listD);

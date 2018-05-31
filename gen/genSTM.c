@@ -2,7 +2,7 @@
 #include "../headers/gen.h"
 
 int rand();
-void generate_STM( STM *s){
+void generate_STM(STM* s){
   int r;
   switch (s->kind) {
     case returnK:

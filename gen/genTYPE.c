@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "../headers/gen.h"
 
-void generate_TYPE(TYPE *t){
+void generate_TYPE(TYPE* t){
    switch (t->kind) {
     case idK:
       break;

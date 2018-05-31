@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "../headers/gen.h"
 
-int generate_TERM(TERM *t){
+int generate_TERM(TERM* t){
   switch (t->kind) {
     case notK:
         generate_TERM(t->val.notT);

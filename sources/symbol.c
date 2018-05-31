@@ -8,7 +8,7 @@
   hash = hash % mod;
   return hash;
 }*/
-int Hash(char *str){
+int Hash(char* str){
   int sum = 0;
   unsigned int i;
   for(i = 0; i < strlen(str) ;i++ ){
@@ -19,8 +19,8 @@ int Hash(char *str){
   return sum % HashSize;
 }
 
-SymbolTable *initSymbolTable(){
-  SymbolTable *table = (SymbolTable*)malloc(sizeof(SymbolTable));
+SymbolTable* initSymbolTable(){
+  SymbolTable* table = (SymbolTable*)malloc(sizeof(SymbolTable));
   table->next = NULL;
   //we dont have a next so no need to make space for it.
 
@@ -32,19 +32,19 @@ SymbolTable *initSymbolTable(){
   return table;
 }
 
-SymbolTable *scopeSymbolTable(SymbolTable *oldTable){
-  SymbolTable *table;
+SymbolTable* scopeSymbolTable(SymbolTable* oldTable){
+  SymbolTable* table;
   table = initSymbolTable();
   table->next = oldTable;
   return table;
 }
 
 
-Symbol *putSymbol(SymbolTable *t, char *name, int type, void* value){
+Symbol* putSymbol(SymbolTable* t, char* name, int type, void* value){
   int hashValue;
   hashValue = Hash(name);
 
-  Symbol *symbol = (Symbol *) malloc(sizeof(Symbol));
+  Symbol* symbol = (Symbol *) malloc(sizeof(Symbol));
   symbol->name = name;
   symbol->type = type;
   symbol->value = value;
@@ -55,7 +55,7 @@ Symbol *putSymbol(SymbolTable *t, char *name, int type, void* value){
     return symbol;
   }
   else {
-    Symbol *currentSymbol;
+    Symbol* currentSymbol;
     currentSymbol = t->table[hashValue];
     while(currentSymbol != NULL){
       if(strcmp(currentSymbol->name, name) == 0){
@@ -74,10 +74,10 @@ Symbol *putSymbol(SymbolTable *t, char *name, int type, void* value){
   return NULL;
 }
 
-Symbol *getSymbol(SymbolTable *table, char *name){
+Symbol* getSymbol(SymbolTable* table, char* name){
 
   int hashValue;
-  Symbol *symbol;
+  Symbol* symbol;
 
   hashValue = Hash(name);
   if(table->table[hashValue] == NULL){
@@ -102,8 +102,8 @@ Symbol *getSymbol(SymbolTable *table, char *name){
   return NULL;
 }
 
-void dropLinkedList(Symbol *symbol, int i){
-  Symbol *currentSymbol;
+void dropLinkedList(Symbol* symbol, int i){
+  Symbol* currentSymbol;
   currentSymbol = symbol;
   while(currentSymbol != NULL){
     fprintf(stderr,"Index %i = (%s, %p)\n", i,
@@ -113,7 +113,7 @@ void dropLinkedList(Symbol *symbol, int i){
   }
 }
 
-void printSymbolTable(SymbolTable *t){
+void printSymbolTable(SymbolTable* t){
   fprintf(stderr,"\n");
   fprintf(stderr,"Start of table\n");
 

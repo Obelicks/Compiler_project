@@ -58,7 +58,7 @@ int checkForTautaulogy(STM* stm){
   }
   return 0;
 }
-int EXPtautology(EXP *e){
+int EXPtautology(EXP* e){
   switch (e->kind) {
       case termK:
            //evalTERM(e->val.termE);

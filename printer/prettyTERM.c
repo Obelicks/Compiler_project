@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "../headers/pretty.h"
 
-void prettyTERM(TERM *t){
+void prettyTERM(TERM* t){
   switch (t->kind) {
     case notK:
         fprintf(stderr,"not( ");

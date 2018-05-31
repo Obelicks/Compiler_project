@@ -6,7 +6,7 @@
 int checkForDevideByZero(EXP* exp);
 int checkForTautaulogy(STM* stm);
 int checkForReturns(FUNC* func);
-int EXPtautology(EXP *e);
+int EXPtautology(EXP* e);
 //statements that always return true
 
 #endif

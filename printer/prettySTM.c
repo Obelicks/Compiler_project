@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "../headers/pretty.h"
 
-void prettySTM(STM *s){
+void prettySTM(STM* s){
   switch (s->kind) {
     case returnK:
       fprintf(stderr,"return( ");

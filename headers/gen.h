@@ -11,13 +11,6 @@
   }val;
 }IRtree;
 */
-typedef struct BLOCK {
-  char* label;
-  char* code;
-  char* jump;
-  struct BLOCK* next;
-}BLOCK;
-
 void generate_prologue();
 
 void generate_epilogue();

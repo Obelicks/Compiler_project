@@ -10,7 +10,7 @@ void yyparse();
 FILE* yyin;
 FUNC* thebody;
 
-int main(int argc, char *argv[]){
+int main(int argc, char* argv[]){
   lineno = 1;
   SymbolTable* root = initSymbolTable();
   /*yyin = fopen(argv[1], "r");

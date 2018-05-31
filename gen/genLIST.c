@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "../headers/gen.h"
 
-void generate_LIST(LIST *l){
+void generate_LIST(LIST* l){
   switch (l->kind) {
     case parK:
       generate_LIST(l->val.parL);

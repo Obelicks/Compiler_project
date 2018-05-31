@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "../headers/pretty.h"
 
-void prettyFUNC(FUNC *f){
+void prettyFUNC(FUNC* f){
   switch (f->kind) {
     case functionK:
       prettyFUNC(f->val.functionF.head);
