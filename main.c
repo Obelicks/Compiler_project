@@ -19,18 +19,17 @@ int main(int argc, char* argv[]){
     //fclose(yyin);
     return 1;
   }*/
-
   fprintf(stderr, "Parsing...\n");
   yyparse();
-  prettyFUNC(thebody);
-
+  //prettyFUNC(thebody);
   fprintf(stderr, "Typechecking...\n");
-
   int doesItWork = typeCheckFUNC(root, thebody);
   if (doesItWork) {
-    fprintf(stderr, "typecheck error %d\n", doesItWork);
-    return 2;
+    fprintf(stderr, "typecheck error, code: %d\n", doesItWork);
+    return 10 + doesItWork;
   }else{
+    //doesItWork = weeder(thebody);
+    //if(doesItWork) return 100 + doesItWork;
     fprintf(stderr, "Generating code...\nGenerating prologue...\n");
     generate_prologue();
     fprintf(stderr,"ending prologue\nwriting main...\n");
