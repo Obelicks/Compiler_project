@@ -3,9 +3,9 @@
 #include "tree.h"
 
 
-void* checkForDevideByZero(EXP* exp);
-void* checkForTautaulogy(STM* stm);
-void* checkForReturns(FUNC* func);
+int checkForDevideByZero(EXP* exp);
+int checkForTautaulogy(STM* stm);
+int checkForReturns(FUNC* func);
 int EXPtautology(EXP *e);
 //statements that always return true
 
