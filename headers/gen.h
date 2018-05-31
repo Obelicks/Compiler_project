@@ -31,6 +31,6 @@ void generate_DEC(DEC* declaration);
 
 void parse_variables(LIST* decl_list);
 
-char* concat(const char *s1, const char *s2);
+char* concat(const char* s1, const char* s2);
 
 #endif
