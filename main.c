@@ -13,12 +13,6 @@ FUNC* thebody;
 int main(int argc, char* argv[]){
   lineno = 1;
   SymbolTable* root = initSymbolTable();
-  /*yyin = fopen(argv[1], "r");
-  if (yyin == NULL) {
-    fprintf(stderr, "%s is not a file\n",stdin);
-    //fclose(yyin);
-    return 1;
-  }*/
   fprintf(stderr, "Parsing...\n");
   yyparse();
   //prettyFUNC(thebody);
