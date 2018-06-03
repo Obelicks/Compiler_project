@@ -50,16 +50,16 @@ void generate_STM(STM* s){
     case whileK:
       r = rand();
       r1 = rand();
-      fprintf(stdout"%i:\n", r1);
+      fprintf(stdout,"%i:\n", r1);
       generate_EXP(s->val.whileS.expression);
-      fprintf(stdout"jne %i\n", r);
+      fprintf(stdout,"jne %i\n", r);
       if(s->val.whileS.statement->kind == stmlistK){
         generate_LIST(s->val.whileS.statement->val.stmlistS);
       }else{
         generate_STM(s->val.whileS.statement);
       }
-      fprintf(stdout"jmp %i\n", r1);
-      fprintf(stdout"%i\n", r);
+      fprintf(stdout,"jmp %i\n", r1);
+      fprintf(stdout,"%i\n", r);
 
       break;
 
