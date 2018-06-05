@@ -7,7 +7,7 @@ int typeCheckDEC(SymbolTable* symbolTable, DEC* declaration){
   int type;
 
   fprintf(stderr,"DEC kind: %i\n", declaration->kind);
-  
+
   switch (declaration->kind) {
     case listK:
       // fprintf(stderr,"DEC listK\n");
@@ -16,6 +16,11 @@ int typeCheckDEC(SymbolTable* symbolTable, DEC* declaration){
     case dectypeK:
       type =typeCheckTYPE(symbolTable, declaration->val.dectypeD.type);
       fprintf(stderr,"putting %s %d\n",declaration->val.dectypeD.id,type);
+      if(type == 2){
+        fprintf(stderr, "%s must be assigned to a type\n", declaration->val.dectypeD.id);
+        return -1;
+
+      }
       putSymbol(symbolTable,declaration->val.dectypeD.id,type,NULL);
       break;
     case decfuncK:
