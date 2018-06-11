@@ -13,10 +13,11 @@ void prettyFUNC(FUNC* f){
       fprintf(stderr,"function %s (", f->val.headF.id);
       prettyLIST(f->val.headF.par_decl_list);
       prettyTYPE(f->val.headF.type);
-      fprintf(stderr,")\n");
+      fprintf(stderr,"):\n");
       break;
 
     case bodyK:
+      fprintf(stderr,"do:");
       //fprintf(stderr,"decl list\n");
       if(f->val.bodyF.decl_list != NULL){
         prettyLIST(f->val.bodyF.decl_list);
@@ -26,7 +27,7 @@ void prettyFUNC(FUNC* f){
       break;
 
     case tailK:
-      fprintf(stderr,"end %s\n", f->val.tailF);
+      fprintf(stderr,"end. %s\n", f->val.tailF);
       break;
 
     default:
