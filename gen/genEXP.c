@@ -170,8 +170,8 @@ void generate_EXP(EXP* e){
     case minusK:
     generate_EXP(e->val.minusE.left);
     generate_EXP(e->val.minusE.right);
-    fprintf(stdout,"pop %%r13\n");
     fprintf(stdout,"pop %%r14\n");
+    fprintf(stdout,"pop %%r13\n");
     fprintf(stdout,"sub %%r14, %%r13\n");
     fprintf(stdout,"push %%r13\n");
     break;
