@@ -30,9 +30,9 @@ void generate_EXP(EXP* e){
       fprintf(stdout,"pop %%r13\n");
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"cmp %%r14, %%r13\n");
-      fprintf(stdout,"jeq .16\n");
+      fprintf(stdout,"je .+11\n");
       fprintf(stdout,"movq $1, %%r13\n");
-      fprintf(stdout,"jmp .11\n");
+      fprintf(stdout,"jmp .+9\n");
       fprintf(stdout,"movq $0, %%r13\n");
       fprintf(stdout,"push %%r13\n");
       break;
@@ -43,9 +43,9 @@ void generate_EXP(EXP* e){
       fprintf(stdout,"pop %%r13\n");
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"cmp %%r14, %%r13\n");
-      fprintf(stdout,"jne .16\n");
+      fprintf(stdout,"jne .+11\n");
       fprintf(stdout,"movq $1, %%r13\n");
-      fprintf(stdout,"jmp .11\n");
+      fprintf(stdout,"jmp .+9\n");
       fprintf(stdout,"movq $0, %%r13\n");
       fprintf(stdout,"push %%r13\n");
       break;
@@ -56,11 +56,11 @@ void generate_EXP(EXP* e){
       fprintf(stdout,"pop %%r13\n");
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"cmp $0, %%r13\n");
-      fprintf(stdout,"jne .34\n");
+      fprintf(stdout,"jne .+18\n");
       fprintf(stdout,"cmp $0, %%r14\n");
-      fprintf(stdout,"jne .16\n");
+      fprintf(stdout,"jne .+11\n");
       fprintf(stdout,"movq $0, %%r13\n");
-      fprintf(stdout,"jmp .11\n");
+      fprintf(stdout,"jmp .+9\n");
       fprintf(stdout,"movq $1, %%r13\n");
       fprintf(stdout,"push %%r13\n");
       /*movq to RX*/
@@ -74,9 +74,9 @@ void generate_EXP(EXP* e){
       fprintf(stdout,"pop %%r13\n");
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"cmp %%r13, %%r14\n");
-      fprintf(stdout,"jge .16\n");
+      fprintf(stdout,"jge .+11\n");
       fprintf(stdout,"movq $0, %%r13\n");
-      fprintf(stdout,"jmp .11\n");
+      fprintf(stdout,"jmp .+9\n");
       fprintf(stdout,"movq $1, %%r13\n");
       fprintf(stdout,"push %%r13\n");
       break;
@@ -87,9 +87,9 @@ void generate_EXP(EXP* e){
       fprintf(stdout,"pop %%r13\n");
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"cmp %%r13, %%r14\n");
-      fprintf(stdout,"jle .16\n");
+      fprintf(stdout,"jle .+11\n");
       fprintf(stdout,"movq $0, %%r13\n");
-      fprintf(stdout,"jmp .11\n");
+      fprintf(stdout,"jmp .+9\n");
       fprintf(stdout,"movq $1, %%r13\n");
       fprintf(stdout,"push %%r13\n");
        break;
@@ -100,9 +100,9 @@ void generate_EXP(EXP* e){
       fprintf(stdout,"pop %%r13\n");
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"cmp %%r13, %%r14\n");
-      fprintf(stdout,"jg .16\n");
+      fprintf(stdout,"jg .+11\n");
       fprintf(stdout,"movq $0, %%r13\n");
-      fprintf(stdout,"jmp .11\n");
+      fprintf(stdout,"jmp .+9\n");
       fprintf(stdout,"movq $1, %%r13\n");
       fprintf(stdout,"push %%r13\n");
        break;
@@ -113,9 +113,9 @@ void generate_EXP(EXP* e){
       fprintf(stdout,"pop %%r13\n");
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"cmp %%r13, %%r14\n");
-      fprintf(stdout,"jl .16\n");
+      fprintf(stdout,"jl .+11\n");
       fprintf(stdout,"movq $0, %%r13\n");
-      fprintf(stdout,"jmp .11\n");
+      fprintf(stdout,"jmp .+9\n");
       fprintf(stdout,"movq $1, %%r13\n");
       fprintf(stdout,"push %%r13\n");
       break;
@@ -123,12 +123,12 @@ void generate_EXP(EXP* e){
      case moduloK:
        generate_EXP(e->val.moduloE.left);
        generate_EXP(e->val.moduloE.right);
-       fprintf(stdout,"pop %%r13\n");
        fprintf(stdout,"pop %%r14\n");
+       fprintf(stdout,"pop %%r13\n");
        fprintf(stdout,"cmp %%r14, %%r13\n");
-       fprintf(stdout,"jl .22\n");
+       fprintf(stdout,"jl .+7\n");
        fprintf(stdout,"sub %%r14, %%r13\n");
-       fprintf(stdout,"jmp .-42\n");
+       fprintf(stdout,"jmp .-8\n");
        fprintf(stdout,"push %%r13\n");
        break;
 
@@ -152,8 +152,8 @@ void generate_EXP(EXP* e){
        fprintf(stdout,"pop %%r13\n");
        fprintf(stdout,"pop %%r14\n");
        fprintf(stdout,"xor %%rdx, %%rdx\n");
-       fprintf(stdout,"movq %%r13, %%rax\n");
-       fprintf(stdout,"idiv %%r14\n");
+       fprintf(stdout,"movq %%r14, %%rax\n");
+       fprintf(stdout,"idiv %%r13\n");
        fprintf(stdout,"movq %%rax, %%r13\n");
        fprintf(stdout,"push %%r13\n");
        break;
@@ -189,11 +189,11 @@ void generate_EXP(EXP* e){
       fprintf(stdout,"pop %%r13\n");
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"cmp $0, %%r13\n");
-      fprintf(stdout,"je .28\n");
+      fprintf(stdout,"je .+17\n");
       fprintf(stdout,"cmp $0, %%r14\n");
-      fprintf(stdout,"je .11\n");
+      fprintf(stdout,"je .+11\n");
       fprintf(stdout,"movq $1, %%r13\n");
-      fprintf(stdout,"jmp .11\n");
+      fprintf(stdout,"jmp .+9\n");
       fprintf(stdout,"movq $0, %%r13\n");
       fprintf(stdout,"push %%r13\n");
       break;
