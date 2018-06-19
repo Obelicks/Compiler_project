@@ -5,7 +5,7 @@
 extern int lineno;
 
 FUNC* makeFUNC(FUNC* head, FUNC* body, FUNC* tail){
-  FUNC *func;
+  FUNC* func;
   func = NEW(FUNC);
   func->lineno = lineno;
   func->kind = functionK;
@@ -16,7 +16,7 @@ FUNC* makeFUNC(FUNC* head, FUNC* body, FUNC* tail){
 }
 
 FUNC* makeFUNChead(char* id, LIST* par_decl_list, TYPE* type){
-  FUNC *func;
+  FUNC* func;
   func = NEW(FUNC);
   func->lineno = lineno;
   func->kind = headK;
@@ -27,7 +27,7 @@ FUNC* makeFUNChead(char* id, LIST* par_decl_list, TYPE* type){
 }
 
 FUNC* makeFUNCbody(LIST* decl_list, LIST* statement_list){
-  FUNC *func;
+  FUNC* func;
   func = NEW(FUNC);
   func->lineno = lineno;
   func->kind = bodyK;
@@ -37,7 +37,7 @@ FUNC* makeFUNCbody(LIST* decl_list, LIST* statement_list){
 }
 
 FUNC* makeFUNCtail(char* id){
-  FUNC *func;
+  FUNC* func;
   func = NEW(FUNC);
   func->lineno = lineno;
   func->kind = tailK;

@@ -1,4 +1,3 @@
-void *Malloc(unsigned n);
+void* Malloc(unsigned n);
 
-#define NEW(type) (type *)Malloc(sizeof(type))
-
+#define NEW(type) (type* )Malloc(sizeof(type))

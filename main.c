@@ -10,27 +10,20 @@ void yyparse();
 FILE* yyin;
 FUNC* thebody;
 
-int main(int argc, char *argv[]){
+int main(int argc, char* argv[]){
   lineno = 1;
   SymbolTable* root = initSymbolTable();
-  yyin = fopen(argv[1], "r");
-  if (yyin == NULL) {
-    fprintf(stderr, "%s is not a file\n",argv[1]);
-    //fclose(yyin);
-    return -1;
-  }
   fprintf(stderr, "Parsing...\n");
-
   yyparse();
-
-  prettyFUNC(thebody);
-
+  //prettyFUNC(thebody);
   fprintf(stderr, "Typechecking...\n");
-
   int doesItWork = typeCheckFUNC(root, thebody);
   if (doesItWork) {
-    fprintf(stderr, "typecheck error %d\n", doesItWork);
+    fprintf(stderr, "typecheck error, code: %d\n", doesItWork);
+    return 10 + doesItWork;
   }else{
+    //doesItWork = weeder(thebody);
+    //if(doesItWork) return 100 + doesItWork;
     fprintf(stderr, "Generating code...\nGenerating prologue...\n");
     generate_prologue();
     fprintf(stderr,"ending prologue\nwriting main...\n");

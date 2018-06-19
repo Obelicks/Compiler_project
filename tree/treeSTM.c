@@ -5,7 +5,7 @@
 extern int lineno;
 
 STM* makeSTMreturn(EXP* expression){
-  STM *s;
+  STM* s;
   s = NEW(STM);
   s->lineno = lineno;
   s->kind = returnK;
@@ -14,7 +14,7 @@ STM* makeSTMreturn(EXP* expression){
 }
 
 STM* makeSTMwrite(EXP* expression){
-  STM *s;
+  STM* s;
   s = NEW(STM);
   s->lineno = lineno;
   s->kind = writeK;
@@ -23,7 +23,7 @@ STM* makeSTMwrite(EXP* expression){
 }
 
 STM* makeSTMallocate(TYPE* variable){
-  STM *s;
+  STM* s;
   s = NEW(STM);
   s->lineno = lineno;
   s->kind = allocateK;
@@ -32,7 +32,7 @@ STM* makeSTMallocate(TYPE* variable){
 }
 
 STM* makeSTMallocateoflength(TYPE* variable, EXP* expression){
-  STM *s;
+  STM* s;
   s = NEW(STM);
   s->lineno = lineno;
   s->kind = allocateoflengthK;
@@ -42,7 +42,7 @@ STM* makeSTMallocateoflength(TYPE* variable, EXP* expression){
 }
 
 STM* makeSTMassign(TYPE* variable, EXP* expression){
-  STM *s;
+  STM* s;
   s = NEW(STM);
   s->lineno = lineno;
   s->kind = assignK;
@@ -52,7 +52,7 @@ STM* makeSTMassign(TYPE* variable, EXP* expression){
 }
 
 STM* makeSTMifthen(EXP* expression, STM* statement){
-  STM *s;
+  STM* s;
   s = NEW(STM);
   s->lineno = lineno;
   s->kind = ifthenK;
@@ -62,7 +62,7 @@ STM* makeSTMifthen(EXP* expression, STM* statement){
 }
 
 STM* makeSTMifelse(EXP* expression, STM* statement, STM* elseStatement){
-  STM *s;
+  STM* s;
   s = NEW(STM);
   s->lineno = lineno;
   s->kind = ifelseK;
@@ -73,7 +73,7 @@ STM* makeSTMifelse(EXP* expression, STM* statement, STM* elseStatement){
 }
 
 STM* makeSTMwhile(EXP* expression, STM* statement){
-  STM *s;
+  STM* s;
   s = NEW(STM);
   s->lineno = lineno;
   s->kind = whileK;
@@ -81,8 +81,8 @@ STM* makeSTMwhile(EXP* expression, STM* statement){
   s->val.whileS.statement = statement;
   return s;
 }
-STM* makeSTMlist(LIST *statement_list){
-  STM *s;
+STM* makeSTMlist(LIST* statement_list){
+  STM* s;
   s = NEW(STM);
   s->lineno;
   s->kind = stmlistK;

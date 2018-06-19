@@ -9,29 +9,29 @@
 #define HashSize 317
 
 typedef struct Symbol {
-  char *name;
+  char* name;
   int type;
   void* value;
-  struct Symbol *next;
+  struct Symbol* next;
 } Symbol;
 
 typedef struct SymbolTable {
-  Symbol *table[HashSize];
-  struct SymbolTable *next;
+  Symbol* table[HashSize];
+  struct SymbolTable* next;
 } SymbolTable;
 
-int Hash(char *str);
+int Hash(char* str);
 
-SymbolTable *initSymbolTable();
+SymbolTable* initSymbolTable();
 
-SymbolTable *scopeSymbolTable(SymbolTable *t);
+SymbolTable* scopeSymbolTable(SymbolTable* t);
 
-Symbol *putSymbol(SymbolTable *t, char *name, int type, void* value);
+Symbol* putSymbol(SymbolTable* t, char* name, int type, void* value);
 
-Symbol *getSymbol(SymbolTable *t, char *name);
+Symbol* getSymbol(SymbolTable* t, char* name);
 
-void dropLinkedList(Symbol *s, int i);
+void dropLinkedList(Symbol* s, int i);
 
-void printSymbolTable(SymbolTable *t);
+void printSymbolTable(SymbolTable* t);
 
 #endif

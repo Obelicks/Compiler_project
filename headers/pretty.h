@@ -4,19 +4,19 @@
 #include "tree.h"
 
 
-void prettyEXP(EXP *exp);
+void prettyEXP(EXP* exp);
 
-void prettySTM(STM *stm);
+void prettySTM(STM* stm);
 
-void prettyTERM(TERM *term);
+void prettyTERM(TERM* term);
 
-void prettyTYPE(TYPE *type);
+void prettyTYPE(TYPE* type);
 
-void prettyFUNC(FUNC *func);
+void prettyFUNC(FUNC* func);
 
-void prettyLIST(LIST *list);
+void prettyLIST(LIST* list);
 
-void prettyDEC(DEC *dec);
+void prettyDEC(DEC* dec);
 
 
 #endif

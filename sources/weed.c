@@ -2,14 +2,16 @@
 #include "../headers/weed.h"
 #include "../headers/tree.h"
 
-void* checkForFaultyFunction(FUNC* func){
+int checkForFaultyFunction(FUNC* func){
   if (func->val.functionF.head->val.headF.id != func->val.functionF.tail->val.tailF){
     fprintf(stderr,"function incorrectly structured- end does not match beginning.  %d\n",func->lineno);
+    return 1;
   }else{
-
+    return 0;
   }
 }
-void* checkForReturns(FUNC* func){
+
+int checkForReturns(FUNC* func){
   int countingReturns = 1;
   LIST* listcopy = func->val.functionF.body->val.bodyF.statement_list;
   while(listcopy){
@@ -24,10 +26,12 @@ void* checkForReturns(FUNC* func){
   }
   if (countingReturns !=0){
     fprintf(stderr,"missing Return statements in function. %d\n",func->lineno);
+    return 2;
   }
+  return 0;
 }
 
-void* checkForDevideByZero(EXP* expression){
+int checkForDevideByZero(EXP* expression){
   int i =0;
   //dives into an expression tree and checks for aby division by zero
   //expression = findDevision(expression);
@@ -35,11 +39,13 @@ void* checkForDevideByZero(EXP* expression){
     //i =evaluateDevident(expression);
     if (i == 0){
       fprintf(stderr,"ERROR DEVISION BY ZERO %d\n",expression->lineno);
+      return 3;
     }
   }
+  return 0;
 }
 
-void* checkForTautaulogy(STM* stm){
+int checkForTautaulogy(STM* stm){
   //like we saw in the lecture, if we see "something || true" we just compile
   //as if it was just "true" (or false)
   switch (stm->kind) {
@@ -50,8 +56,9 @@ void* checkForTautaulogy(STM* stm){
           EXPtautology(stm->val.ifelseS.ifState);
           break;
   }
+  return 0;
 }
-int EXPtautology(EXP *e){
+int EXPtautology(EXP* e){
   switch (e->kind) {
       case termK:
            //evalTERM(e->val.termE);
@@ -109,13 +116,14 @@ int EXPtautology(EXP *e){
             EXPtautology(e->val.smalequalE.right);
             break;
     }
+    return 0;
 }
 
 int evaluateDevident(EXP* expression){
   //auxillary function for the devide by zero check
   //here we evaluate the expression to see if its expression evaluate to ZERO
   //if it does we return an error since that is not a defined expression
-
+  return 0;
 }
 
 EXP* findDevision(EXP* expression){

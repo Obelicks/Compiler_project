@@ -5,7 +5,7 @@
 extern int lineno;
 
 LIST* makeLISTpar(LIST* var_decl_list){
-  LIST *list;
+  LIST* list;
   list = NEW(LIST);
   list->lineno = lineno;
   list->kind = parK;
@@ -14,7 +14,7 @@ LIST* makeLISTpar(LIST* var_decl_list){
 }
 
 LIST* makeLISTvarlist(TYPE* var_type, LIST* var_decl_list){
-  LIST *list;
+  LIST* list;
   list = NEW(LIST);
   list->lineno = lineno;
   list->kind = varlistK;
@@ -23,7 +23,7 @@ LIST* makeLISTvarlist(TYPE* var_type, LIST* var_decl_list){
   return list;
 }
 LIST* makeLISTvar(TYPE* var_type){
-  LIST *list;
+  LIST* list;
   list = NEW(LIST);
   list->lineno = lineno;
   list->kind = varK;
@@ -31,8 +31,8 @@ LIST* makeLISTvar(TYPE* var_type){
   return list;
 }
 
-LIST *makeLISTdecl(DEC* declaration, LIST* decl_list){
-  LIST *head;
+LIST* makeLISTdecl(DEC* declaration, LIST* decl_list){
+  LIST* head;
   head = NEW(LIST);
   head->lineno = lineno;
   head->kind = decK;
@@ -42,7 +42,7 @@ LIST *makeLISTdecl(DEC* declaration, LIST* decl_list){
 }
 
 LIST* makeLISTstate(STM* statement){
-  LIST *list;
+  LIST* list;
   list = NEW(LIST);
   list->lineno = lineno;
   list->kind = stateK;
@@ -51,7 +51,7 @@ LIST* makeLISTstate(STM* statement){
 }
 
 LIST* makeLISTstatelist(STM* statement, LIST* statement_list){
-  LIST *list;
+  LIST* list;
   list = NEW(LIST);
   list->lineno = lineno;
   list->kind = statelistK;
@@ -61,7 +61,7 @@ LIST* makeLISTstatelist(STM* statement, LIST* statement_list){
 }
 
 LIST* makeLISTact(LIST* exp_list){
-  LIST *list;
+  LIST* list;
   list = NEW(LIST);
   list->lineno = lineno;
   list->kind = actlistK;
@@ -70,7 +70,7 @@ LIST* makeLISTact(LIST* exp_list){
 }
 
 LIST* makeLISTexp(EXP* expression){
-  LIST *list;
+  LIST* list;
   list = NEW(LIST);
   list->lineno = lineno;
   list->kind = expressionK;
@@ -79,7 +79,7 @@ LIST* makeLISTexp(EXP* expression){
 }
 
 LIST* makeLISTexplist(EXP* expression, LIST* exp_list){
-  LIST *list;
+  LIST* list;
   list = NEW(LIST);
   list->lineno = lineno;
   list->kind = explistK;

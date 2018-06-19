@@ -7,6 +7,7 @@ int typeCheckTYPE(SymbolTable* symbolTable, TYPE* type){
   int error;
   int typeCheck;
   Symbol* symbol;
+  TYPE* next_type;
 
   fprintf(stderr,"TYPE KIND: %i\n", type->kind);
   switch (type->kind) {
@@ -33,8 +34,10 @@ int typeCheckTYPE(SymbolTable* symbolTable, TYPE* type){
       break;
 
     case vareK:
-      typeCheckTYPE(symbolTable, type->val.vareT.variable);
-      //TODO: find out how to do id
+      error=typeCheckTYPE(symbolTable, type->val.vareT.variable);
+      if(error){
+        return 1;
+      }
       break;
 
     case varexpK:

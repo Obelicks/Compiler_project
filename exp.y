@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "headers/tree.h"
 
-extern char *yytext;
+extern char* yytext;
 extern FUNC* thebody;
 
 void yyerror() {
@@ -12,7 +12,7 @@ void yyerror() {
 
 %union {
    int intconst;
-   char *stringconst;
+   char* stringconst;
    struct EXP* expression;
    struct STM* statement;
    struct DEC* declaration;

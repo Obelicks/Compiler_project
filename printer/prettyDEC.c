@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "../headers/pretty.h"
 
-void prettyDEC(DEC *d){
+void prettyDEC(DEC* d){
   switch (d->kind) {
     case listK:
       prettyLIST(d->val.listD);

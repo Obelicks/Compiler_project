@@ -11,13 +11,6 @@
   }val;
 }IRtree;
 */
-typedef struct BLOCK {
-  char* label;
-  char* code;
-  char* jump;
-  struct BLOCK* next;
-}BLOCK;
-
 void generate_prologue();
 
 void generate_epilogue();
@@ -38,6 +31,6 @@ void generate_DEC(DEC* declaration);
 
 void parse_variables(LIST* decl_list);
 
-char* concat(const char *s1, const char *s2);
+char* concat(const char* s1, const char* s2);
 
 #endif

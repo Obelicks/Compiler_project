@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "../headers/pretty.h"
 
-void prettyTYPE(TYPE *t){
+void prettyTYPE(TYPE* t){
    switch (t->kind) {
     case idK:
       fprintf(stderr,"id %s ", t->val.idT);

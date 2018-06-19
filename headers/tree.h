@@ -20,9 +20,9 @@ typedef struct STM {
     struct EXP* returnS;
     struct EXP* writeS;
     struct TYPE* allocateS;
-    struct {struct TYPE *variable; struct EXP *expression;} allocateoflengthS;
-    struct {struct TYPE *variable; struct EXP *expression;} assignS;
-    struct {struct EXP *ifState; struct STM* thenState;} ifthenS;
+    struct {struct TYPE* variable; struct EXP* expression;} allocateoflengthS;
+    struct {struct TYPE* variable; struct EXP* expression;} assignS;
+    struct {struct EXP* ifState; struct STM* thenState;} ifthenS;
     struct {struct EXP* ifState; struct STM* thenState; struct STM* elseState;} ifelseS;
     struct {struct EXP* expression; struct STM* statement;} whileS;
     struct LIST* stmlistS;
@@ -34,20 +34,20 @@ typedef struct EXP {
   enum {equaltoK, nequaltoK, andK, smallerK, biggerK, smalequalK,
     bigequalK, moduloK, timesK, divK, plusK, minusK, termK, orK} kind;
   union {
-    struct {struct EXP *left; struct EXP *right;} equaltoE;
-    struct {struct EXP *left; struct EXP *right;} nequaltoE;
-    struct {struct EXP *left; struct EXP *right;} andE;
-    struct {struct EXP *left; struct EXP *right;} smallerE;
-    struct {struct EXP *left; struct EXP *right;} biggerE;
-    struct {struct EXP *left; struct EXP *right;} smalequalE;
-    struct {struct EXP *left; struct EXP *right;} bigequalE;
-    struct {struct EXP *left; struct EXP *right;} moduloE;
-    struct {struct EXP *left; struct EXP *right;} timesE;
-    struct {struct EXP *left; struct EXP *right;} divE;
-    struct {struct EXP *left; struct EXP *right;} plusE;
-    struct {struct EXP *left; struct EXP *right;} minusE;
+    struct {struct EXP* left; struct EXP* right;} equaltoE;
+    struct {struct EXP* left; struct EXP* right;} nequaltoE;
+    struct {struct EXP* left; struct EXP* right;} andE;
+    struct {struct EXP* left; struct EXP* right;} smallerE;
+    struct {struct EXP* left; struct EXP* right;} biggerE;
+    struct {struct EXP* left; struct EXP* right;} smalequalE;
+    struct {struct EXP* left; struct EXP* right;} bigequalE;
+    struct {struct EXP* left; struct EXP* right;} moduloE;
+    struct {struct EXP* left; struct EXP* right;} timesE;
+    struct {struct EXP* left; struct EXP* right;} divE;
+    struct {struct EXP* left; struct EXP* right;} plusE;
+    struct {struct EXP* left; struct EXP* right;} minusE;
     struct TERM* termE;
-    struct {struct EXP *left; struct EXP *right;} orE;
+    struct {struct EXP* left; struct EXP* right;} orE;
   }val;
 }EXP;
 
@@ -72,7 +72,7 @@ typedef struct TERM {
   enum {notK, absoluteK, numK, expK, booleanK, variableK, act_listK} kind;
   union {
     struct TERM* notT;
-    struct EXP * absoluteT;
+    struct EXP* absoluteT;
     int numT;
     struct EXP* expT;
     int booleanT;
@@ -85,12 +85,12 @@ typedef struct TYPE {
   int lineno;
   enum {idK, intconstK, boolK, arrayK, recordK, vareK, varexpK, var_typeK} kind;
   union {
-    char *idT;
+    char* idT;
     struct TYPE* arrayT;
     struct LIST* recordT;
-    struct {struct TYPE *variable; char* id;} vareT;
-    struct {struct TYPE* variable; struct EXP *expression;} varexpT;
-    struct {char* id; struct TYPE *variable;} var_typeT;
+    struct {struct TYPE* variable; char* id;} vareT;
+    struct {struct TYPE* variable; struct EXP* expression;} varexpT;
+    struct {char* id; struct TYPE* variable;} var_typeT;
   }val;
 }TYPE;
 
@@ -98,9 +98,9 @@ typedef struct DEC{
   int lineno;
   enum{listK, dectypeK, decfuncK}kind;
   union{
-    struct LIST *listD;
-    struct {char* id; struct TYPE *type;} dectypeD;
-    struct FUNC *decfuncD;
+    struct LIST* listD;
+    struct {char* id; struct TYPE* type;} dectypeD;
+    struct FUNC* decfuncD;
   }val;
 }DEC;
 
@@ -113,33 +113,33 @@ FUNC* makeFUNCbody(LIST* decl_list, LIST* statement_list);
 FUNC* makeFUNCtail(char* id);
 
 
-EXP *makeEXPequalto(EXP *left, EXP *right);
+EXP* makeEXPequalto(EXP* left, EXP* right);
 
-EXP *makeEXPnoequalto(EXP *left, EXP *right);
+EXP* makeEXPnoequalto(EXP* left, EXP* right);
 
-EXP *makeEXPand(EXP *left, EXP *right);
+EXP* makeEXPand(EXP* left, EXP* right);
 
-EXP *makeEXPsmaller(EXP *left, EXP *right);
+EXP* makeEXPsmaller(EXP* left, EXP* right);
 
-EXP *makeEXPbigger(EXP *left, EXP *right);
+EXP* makeEXPbigger(EXP* left, EXP* right);
 
-EXP *makeEXPsmalequal(EXP *left, EXP *right);
+EXP* makeEXPsmalequal(EXP* left, EXP* right);
 
-EXP *makeEXPbigequal(EXP *left, EXP *right);
+EXP* makeEXPbigequal(EXP* left, EXP* right);
 
-EXP *makeEXPmodulo(EXP *left, EXP *right);
+EXP* makeEXPmodulo(EXP* left, EXP* right);
 
-EXP *makeEXPtimes(EXP *left, EXP *right);
+EXP* makeEXPtimes(EXP* left, EXP* right);
 
-EXP *makeEXPdiv(EXP *left, EXP *right);
+EXP* makeEXPdiv(EXP* left, EXP* right);
 
-EXP *makeEXPplus(EXP *left, EXP *right);
+EXP* makeEXPplus(EXP* left, EXP* right);
 
-EXP *makeEXPminus(EXP *left, EXP *right);
+EXP* makeEXPminus(EXP* left, EXP* right);
 
 EXP* makeEXPterm(TERM* term);
 
-EXP* makeEXPor(EXP *left, EXP *right);
+EXP* makeEXPor(EXP* left, EXP* right);
 
 
 STM* makeSTMreturn(EXP* expression);
@@ -158,7 +158,7 @@ STM* makeSTMifelse(EXP* expression, STM* statement, STM* elseStatement);
 
 STM* makeSTMwhile(EXP* expression, STM* statement);
 
-STM* makeSTMlist(LIST *statement_list);
+STM* makeSTMlist(LIST* statement_list);
 
 
 LIST* makeLISTpar(LIST* var_decl_list);
@@ -201,15 +201,15 @@ TYPE* makeTYPEintconst();
 
 TYPE* makeTYPEbool();
 
-TYPE* makeTYPEarray(TYPE *type);
+TYPE* makeTYPEarray(TYPE* type);
 
-TYPE* makeTYPErecord(LIST *var_decl_list);
+TYPE* makeTYPErecord(LIST* var_decl_list);
 
-TYPE* makeTYPEvar(TYPE *variable, char* id);
+TYPE* makeTYPEvar(TYPE* variable, char* id);
 
-TYPE* makeTYPEvarexp(TYPE* variable, EXP *expression);
+TYPE* makeTYPEvarexp(TYPE* variable, EXP* expression);
 
-TYPE* makeTYPEtype(char* id,TYPE *variable);
+TYPE* makeTYPEtype(char* id,TYPE* variable);
 
 
 DEC* makeDEClist(LIST* list);

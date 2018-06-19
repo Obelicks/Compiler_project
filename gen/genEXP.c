@@ -105,7 +105,7 @@ void generate_EXP(EXP* e){
       fprintf(stdout,"jmp .+9\n");
       fprintf(stdout,"movq $1, %%r13\n");
       fprintf(stdout,"push %%r13\n");
-       break;
+      break;
 
     case bigequalK:
       generate_EXP(e->val.bigequalE.left);
@@ -141,10 +141,10 @@ void generate_EXP(EXP* e){
         fprintf(stdout,"mul %%r14\n");
         fprintf(stdout,"movq %%rax, %%r13\n");
         fprintf(stdout,"push %%r13\n");
-         /*movq to RX*/
-         /*movq to RY*/
-         /*mul RX RY to RZ*/
-         break;
+        /*movq to RX*/
+        /*movq to RY*/
+        /*mul RX RY to RZ*/
+        break;
 
      case divK:
        generate_EXP(e->val.divE.left);
@@ -159,13 +159,13 @@ void generate_EXP(EXP* e){
        break;
 
      case plusK:
-        generate_EXP(e->val.plusE.left);
-        generate_EXP(e->val.plusE.right);
-        fprintf(stdout,"pop %%r13\n");
-        fprintf(stdout,"pop %%r14\n");
-        fprintf(stdout,"add %%r14, %%r13\n");
-        fprintf(stdout,"push %%r13\n");
-        break;
+      generate_EXP(e->val.plusE.left);
+      generate_EXP(e->val.plusE.right);
+      fprintf(stdout,"pop %%r13\n");
+      fprintf(stdout,"pop %%r14\n");
+      fprintf(stdout,"add %%r14, %%r13\n");
+      fprintf(stdout,"push %%r13\n");
+      break;
 
     case minusK:
     generate_EXP(e->val.minusE.left);
@@ -178,6 +178,8 @@ void generate_EXP(EXP* e){
 
     case termK:
       aterm = generate_TERM(e->val.termE);
+      //TODO since term can be more than just an integer value
+      //we will have to move this code into genTerm.c at some point
       //fprintf(stdout,"%i \n", aterm);
       fprintf(stdout,"movq $%i, %%r13\n", aterm);
       fprintf(stdout,"push %%r13\n");
@@ -205,7 +207,6 @@ void generate_EXP(EXP* e){
 }
 
 void generate_epilogue(){
-
   fprintf(stdout,"mov $format, %%rdi\n");
   fprintf(stdout,"pop %%rsi\n");
   fprintf(stdout,"mov $0, %%eax\n");

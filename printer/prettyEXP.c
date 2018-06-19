@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "../headers/pretty.h"
 
-void prettyEXP(EXP *e)
+void prettyEXP(EXP* e)
 { switch (e->kind) {
     case equaltoK:
       prettyEXP(e->val.equaltoE.left);

@@ -66,7 +66,7 @@ lex.yy.c:         exp.l y.tab.h
 	          flex exp.l
 
 run:
-	./compiler test.sk > $(SRC) 2>log
+	./compiler < test.sk > $(SRC) 2>log
 
 compile:
 	gcc -o testout -m64 $(SRC)

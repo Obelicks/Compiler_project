@@ -67,7 +67,7 @@ void generate_LIST(LIST *l){
       break;
 
     case decK:
-    
+
       generate_DEC(l->val.decL.declaration);
       break;
 

@@ -1,14 +1,21 @@
 #include <stdio.h>
 #include "../headers/gen.h"
 
-int generate_TERM(TERM *t){
+int generate_TERM(TERM* t){
+  //int val;
   switch (t->kind) {
     case notK:
         generate_TERM(t->val.notT);
         break;
 
     case absoluteK:
-        generate_EXP(t->val.absoluteT);
+        /*val=*/generate_EXP(t->val.absoluteT);
+        //TODO this will have to be done in assembler
+        //unless we can peephole it
+        /*if (val < 0){
+          val = val * (-1);
+        }
+        return val;*/
         break;
 
     case numK:
@@ -28,6 +35,7 @@ int generate_TERM(TERM *t){
         break;
 
     case act_listK:
+        //TODO this code might be outdated
         generate_LIST(t->val.act_listT.act_list);//TODO pass the variables needed for the function
         fprintf(stdout, "jmp %s\n",t->val.act_listT.id);
         //jumping to id label

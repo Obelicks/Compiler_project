@@ -5,7 +5,7 @@
 extern int lineno;
 
 TYPE* makeTYPEid(char* id){
-  TYPE *t;
+  TYPE* t;
   t = NEW(TYPE);
   t->lineno = lineno;
   t->kind = idK;
@@ -14,7 +14,7 @@ TYPE* makeTYPEid(char* id){
 }
 
 TYPE* makeTYPEintconst(){
-  TYPE *t;
+  TYPE* t;
   t = NEW(TYPE);
   t->lineno = lineno;
   t->kind = intconstK;
@@ -22,14 +22,15 @@ TYPE* makeTYPEintconst(){
 }
 
 TYPE* makeTYPEbool(){
-  TYPE *t;
+  TYPE* t;
   t = NEW(TYPE);
   t->lineno = lineno;
   t->kind = boolK;
+  return t;//TODO find out if this was deleted for a reason
 }
 
 TYPE* makeTYPEarray(TYPE *type){
-  TYPE *t;
+  TYPE* t;
   t = NEW(TYPE);
   t->lineno = lineno;
   t->kind = arrayK;
@@ -37,8 +38,8 @@ TYPE* makeTYPEarray(TYPE *type){
   return t;
 }
 
-TYPE* makeTYPErecord(LIST *var_decl_list){
-  TYPE *t;
+TYPE* makeTYPErecord(LIST* var_decl_list){
+  TYPE* t;
   t = NEW(TYPE);
   t->lineno = lineno;
   t->kind = recordK;
@@ -46,8 +47,8 @@ TYPE* makeTYPErecord(LIST *var_decl_list){
   return t;
 }
 
-TYPE* makeTYPEvar(TYPE *variable, char* id){
-  TYPE *t;
+TYPE* makeTYPEvar(TYPE* variable, char* id){
+  TYPE* t;
   t = NEW(TYPE);
   t->lineno = lineno;
   t->kind = vareK;
@@ -56,8 +57,8 @@ TYPE* makeTYPEvar(TYPE *variable, char* id){
   return t;
 }
 
-TYPE* makeTYPEvarexp(TYPE* variable, EXP *expression){
-  TYPE *t;
+TYPE* makeTYPEvarexp(TYPE* variable, EXP* expression){
+  TYPE* t;
   t = NEW(TYPE);
   t->lineno = lineno;
   t->kind = varexpK;
@@ -66,8 +67,8 @@ TYPE* makeTYPEvarexp(TYPE* variable, EXP *expression){
   return t;
 }
 
-TYPE* makeTYPEtype(char* id, TYPE *variable){
-  TYPE *t;
+TYPE* makeTYPEtype(char* id, TYPE* variable){
+  TYPE* t;
   t = NEW(TYPE);
   t->lineno = lineno;
   t->kind = var_typeK;

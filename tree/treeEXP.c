@@ -4,8 +4,8 @@
 
 extern int lineno;
 
-EXP *makeEXPequalto(EXP *left, EXP *right){
-  EXP *e;
+EXP* makeEXPequalto(EXP* left, EXP* right){
+  EXP* e;
   e = NEW(EXP);
   e->lineno = lineno;
   e->kind = equaltoK;
@@ -14,8 +14,8 @@ EXP *makeEXPequalto(EXP *left, EXP *right){
   return e;
 }
 
-EXP *makeEXPnoequalto(EXP *left, EXP *right){
-  EXP *e;
+EXP* makeEXPnoequalto(EXP* left, EXP* right){
+  EXP* e;
   e = NEW(EXP);
   e->lineno = lineno;
   e->kind = nequaltoK;
@@ -24,8 +24,8 @@ EXP *makeEXPnoequalto(EXP *left, EXP *right){
   return e;
 }
 
-EXP *makeEXPand(EXP *left, EXP *right){
-  EXP *e;
+EXP* makeEXPand(EXP* left, EXP* right){
+  EXP* e;
   e = NEW(EXP);
   e->lineno = lineno;
   e->kind = andK;
@@ -34,8 +34,8 @@ EXP *makeEXPand(EXP *left, EXP *right){
   return e;
 }
 
-EXP *makeEXPsmaller(EXP *left, EXP *right){
-  EXP *e;
+EXP* makeEXPsmaller(EXP* left, EXP* right){
+  EXP* e;
   e = NEW(EXP);
   e->lineno = lineno;
   e->kind = smallerK;
@@ -44,8 +44,8 @@ EXP *makeEXPsmaller(EXP *left, EXP *right){
   return e;
 }
 
-EXP *makeEXPbigger(EXP *left, EXP *right){
-  EXP *e;
+EXP* makeEXPbigger(EXP* left, EXP* right){
+  EXP* e;
   e = NEW(EXP);
   e->lineno = lineno;
   e->kind = biggerK;
@@ -54,8 +54,8 @@ EXP *makeEXPbigger(EXP *left, EXP *right){
   return e;
 }
 
-EXP *makeEXPsmalequal(EXP *left, EXP *right){
-  EXP *e;
+EXP* makeEXPsmalequal(EXP* left, EXP* right){
+  EXP* e;
   e = NEW(EXP);
   e->lineno = lineno;
   e->kind = smalequalK;
@@ -64,8 +64,8 @@ EXP *makeEXPsmalequal(EXP *left, EXP *right){
   return e;
 }
 
-EXP *makeEXPbigequal(EXP *left, EXP *right){
-  EXP *e;
+EXP* makeEXPbigequal(EXP* left, EXP* right){
+  EXP* e;
   e = NEW(EXP);
   e->lineno = lineno;
   e->kind = bigequalK;
@@ -74,8 +74,8 @@ EXP *makeEXPbigequal(EXP *left, EXP *right){
   return e;
 }
 
-EXP *makeEXPmodulo(EXP *left, EXP *right){
-  EXP *e;
+EXP* makeEXPmodulo(EXP* left, EXP* right){
+  EXP* e;
   e = NEW(EXP);
   e->lineno = lineno;
   e->kind = moduloK;
@@ -84,8 +84,8 @@ EXP *makeEXPmodulo(EXP *left, EXP *right){
   return e;
 }
 
-EXP *makeEXPtimes(EXP *left, EXP *right){
-  EXP *e;
+EXP* makeEXPtimes(EXP* left, EXP* right){
+  EXP* e;
   e = NEW(EXP);
   e->lineno = lineno;
   e->kind = timesK;
@@ -94,8 +94,8 @@ EXP *makeEXPtimes(EXP *left, EXP *right){
   return e;
 }
 
-EXP *makeEXPdiv(EXP *left, EXP *right){
-  EXP *e;
+EXP* makeEXPdiv(EXP* left, EXP* right){
+  EXP* e;
   e = NEW(EXP);
   e->lineno = lineno;
   e->kind = divK;
@@ -104,8 +104,8 @@ EXP *makeEXPdiv(EXP *left, EXP *right){
   return e;
 }
 
-EXP *makeEXPplus(EXP *left, EXP *right){
-  EXP *e;
+EXP* makeEXPplus(EXP* left, EXP* right){
+  EXP* e;
   e = NEW(EXP);
   e->lineno = lineno;
   e->kind = plusK;
@@ -114,8 +114,8 @@ EXP *makeEXPplus(EXP *left, EXP *right){
   return e;
 }
 
-EXP *makeEXPminus(EXP *left, EXP *right){
-  EXP *e;
+EXP* makeEXPminus(EXP* left, EXP* right){
+  EXP* e;
   e = NEW(EXP);
   e->lineno = lineno;
   e->kind = minusK;
@@ -125,7 +125,7 @@ EXP *makeEXPminus(EXP *left, EXP *right){
 }
 
 EXP* makeEXPterm(TERM* term){
-  EXP *e;
+  EXP* e;
   e = NEW(EXP);
   e->lineno = lineno;
   e->kind = termK;
@@ -133,8 +133,8 @@ EXP* makeEXPterm(TERM* term){
   return e;
 }
 
-EXP* makeEXPor(EXP *left, EXP *right){
-  EXP *e;
+EXP* makeEXPor(EXP* left, EXP* right){
+  EXP* e;
   e = NEW(EXP);
   e->lineno = lineno;
   e->kind = orK;
