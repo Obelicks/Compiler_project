@@ -9,7 +9,7 @@ void generate_LIST(LIST *l){
   switch (l->kind) {
     case parK:
       if(l->val.parL == NULL){
-        return NULL;
+        return;
       }
       generate_LIST(l->val.parL);
       break;
