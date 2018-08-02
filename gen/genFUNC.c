@@ -12,11 +12,12 @@ void generate_FUNC(FUNC* function){
       break;
 
     case headK:
-      fprintf(stdout,".data\n");
+/*      fprintf(stdout,".data\n");
       fprintf(stdout,"format: .ascii \"%%d\\n\"\n");
       fprintf(stdout,".text\n");
       fprintf(stdout, ".globl %s:\n", function->val.headF.id);
       fprintf(stdout, "%s:\n", function->val.headF.id);
+*/
       fprintf(stdout,"subq $8, %%rsp\n");
       fprintf(stdout,"movq $0, %%rdi\n");
       fprintf(stdout,"push %%r13\n");

@@ -16,51 +16,21 @@ void generate_LIST(LIST *l){
 
     case varlistK:
       fprintf(stderr, "generating var_list" );
-      apointer = l->val.varlistL.var_decl_list;
-      while (apointer !=NULL){
-        countes ++;
-        apointer = apointer->val.varlistL.var_decl_list;
+      while (l->val.varlistL.var_decl_list != NULL){
+        TYPE type=l->val.varlistL.var_type;
+        id = type->val.var_typeT.id;
+        kind = type->kind;
+
+        fprintf(stdout,"add $192, r9\n");
+        fprintf(stdout,"cmp %%r9, %%r10\n");
+        fprintf(stdout,"jge allocate_more\n");
+        fprintf(stdout,"sub $192, r9\n");
+        fprintf(stdout,"movq $%i, (%%r9)\n", id);
+        fprintf(stdout,"add $64, %%r9\n");
+        fprintf(stdout,"movq $%i, (%%r9)\n", kind);
+        fprintf(stdout,"movq $0, (%%r9)\n");
+        l = l->val.varlistL.var_decl_list;
       }
-      countes = countes * 3;
-      countes2 = countes * 4;
-      fprintf(stdout,";section	.text\n");
-
-      fprintf(stdout,"global allocate \n");
-
-      fprintf(stdout,"allocate:\n");
-
-
-      fprintf(stdout,"mov	45, eax\n");	//	 ;sys_brk
-      fprintf(stdout,"xor	ebx, ebx\n");
-      fprintf(stdout,"int	80h\n");
-
-      fprintf(stdout,"add	$%i, eax\n", countes2);
-      fprintf(stdout,"mov	eax, ebx\n");
-      fprintf(stdout,"mov	45, eax\n");	//	 ;sys_brk
-      fprintf(stdout,"int	80h\n");
-
-      fprintf(stdout,"cmp	0, eax\n");
-      fprintf(stdout,"jl	exit\n");
-      fprintf(stdout,"mov	eax, edi\n");	 //;EDI = highest available address
-      fprintf(stdout,"sub	4, edi\n");		 //;pointing to the last DWORD
-      fprintf(stdout,"mov	$%i, ecx\n", countes);	// ;number of DWORDs allocated
-      fprintf(stdout,"xor	eax, eax\n");	 //;clear eax
-      fprintf(stdout,"std\n");			// ;backward
-      fprintf(stdout,"rep	stosd\n"); //          ;repete for entire allocated area
-      fprintf(stdout,"cld\n");			// ;put DF flag to normal state
-
-      fprintf(stdout,"exit:\n");
-      fprintf(stdout,"mov	1, eax\n");
-      fprintf(stdout,"xor	ebx, ebx\n");
-      fprintf(stdout,"int	80h\n");
-
-
-
-      //generate_TYPE(l->val.varlistL.var_type);
-      //generate_LIST(l->val.varlistL.var_decl_list);
-
-
-
     case varK:
 
       generate_TYPE(l->val.varL);
