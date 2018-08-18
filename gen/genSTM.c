@@ -25,6 +25,9 @@ void generate_STM(STM* s){
     case assignK:
       generate_TYPE( s->val.assignS.variable);
       generate_EXP( s->val.assignS.expression);
+
+      fprintf(stdout,"add $192, r9\n");
+
       break;
 
     case ifthenK:
