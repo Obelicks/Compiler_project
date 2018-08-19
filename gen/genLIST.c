@@ -23,7 +23,7 @@ void generate_LIST(LIST *l){
 
         fprintf(stdout,"add $192, r9\n");
         fprintf(stdout,"cmp %%r9, %%r10\n");
-        fprintf(stdout,"jge allocate_more\n");
+        fprintf(stdout,"jge allocate_more\n");//TODO epilogue function
         fprintf(stdout,"sub $192, r9\n");
         fprintf(stdout,"movq $%i, (%%r9)\n", id);
         fprintf(stdout,"add $64, %%r9\n");

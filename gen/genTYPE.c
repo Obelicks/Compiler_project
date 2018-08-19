@@ -30,7 +30,7 @@ void generate_TYPE(TYPE* t){
       break;
 
     case var_typeK:
-      //add code 
+      //add code
       generate_TYPE(t->val.var_typeT.variable);
       break;
 

@@ -229,11 +229,6 @@ void generate_prologue(){
   fprintf(stdout,"add $16384, %%r10\n");
   fprintf(stdout,"mov %%r10, %%rbx\n");
   fprintf(stdout,"int %%0x80\n");
-
-
-
-
-
 }
 
 void generate_epilogue(){
@@ -247,6 +242,5 @@ void generate_epilogue(){
   fprintf(stdout,"pop %%r8\n");
   fprintf(stdout,"pop %%r14\n");
   fprintf(stdout,"pop %%r13\n");
-
   fprintf(stdout,"call _exit\n");
 }
