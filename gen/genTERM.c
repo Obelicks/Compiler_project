@@ -12,13 +12,13 @@ int generate_TERM(TERM* t){
         break;
 
     case absoluteK:
-        val=generate_EXP(t->val.absoluteT);
+        /*val=*/generate_EXP(t->val.absoluteT);
         //TODO this will have to be done in assembler
         //unless we can peephole it
-        if (val < 0){
+        /*if (val < 0){
           val = val * (-1);
         }
-        return val;
+        return val;*/
         break;
 
     case numK:
