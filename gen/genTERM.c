@@ -6,9 +6,9 @@ int generate_TERM(TERM* t){
   //int val;
   switch (t->kind) {
     case notK:
-        /*v =*/generate_TERM(t->val.notT);
-        //v = !v;
-        //return v;
+        v =generate_TERM(t->val.notT);
+        v = !v;
+        return v;
         break;
 
     case absoluteK:
