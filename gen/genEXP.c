@@ -2,13 +2,6 @@
 #include "../headers/gen.h"
 #include"../headers/tree.h"
 
-
-
-/*void generate_FUNC(FUNC root);{
-
-}*/
-
-
 void generate_EXP(EXP* e){
   fprintf(stderr, "generating generate_EXP\n" );
   int aterm;

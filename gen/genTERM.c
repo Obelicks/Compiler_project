@@ -26,8 +26,8 @@ int generate_TERM(TERM* t){
 
     case numK:
       fprintf(stderr, "generating generate_TERM -> numK \n" );
-        //assembly here to replace returnK
-    //    fprintf(stdout,"--->%i<---", t->val.numT);
+      //assembly here to replace returnK
+      //fprintf(stdout,"--->%i<---", t->val.numT);
       return t->val.numT;
       break;
 
@@ -43,7 +43,7 @@ int generate_TERM(TERM* t){
 
     case variableK:
       fprintf(stderr, "generating generate_TERM -> variableK \n" );
-      generate_TYPE(t->val.variableT);
+      /*return */generate_TYPE(t->val.variableT);
       break;
 
     case act_listK:
