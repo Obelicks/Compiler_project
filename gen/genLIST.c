@@ -15,7 +15,7 @@ void generate_LIST(LIST *l){
       break;
 
     case varlistK:
-      fprintf(stderr, "generating var_list" );
+      fprintf(stderr, "generating generate_LIST -> var_list\n" );
       while (l->val.varlistL.var_decl_list != NULL){
         TYPE* type=l->val.varlistL.var_type;
         char* id = type->val.var_typeT.id;
@@ -32,20 +32,23 @@ void generate_LIST(LIST *l){
         l = l->val.varlistL.var_decl_list;
       }
     case varK:
-
+      fprintf(stderr, "generating generate_LIST -> varK\n" );
       generate_TYPE(l->val.varL);
       break;
 
     case decK:
-
+      fprintf(stderr, "generating generate_LIST -> decK\n" );
       generate_DEC(l->val.decL.declaration);
       break;
 
     case stateK:
+      fprintf(stderr, "generating generate_LIST -> stateK\n" );
       generate_STM(l->val.stateL);
       break;
 
     case statelistK:
+      fprintf(stderr, "generating generate_LIST -> statelistK\n" );
+
       //fprintf(stderr,"statelist1\n");
       generate_STM(l->val.statelistL.statement);
       //fprintf(stderr,"statelist2\n");
@@ -53,14 +56,17 @@ void generate_LIST(LIST *l){
       break;
 
     case actlistK:
+      fprintf(stderr, "generating generate_LIST -> actlistK\n" );
       generate_LIST(l->val.actlistL);
       break;
 
     case expressionK:
+      fprintf(stderr, "generating generate_LIST -> expressionK\n" );
       generate_EXP(l->val.expressionL);
       break;
 
     case explistK:
+      fprintf(stderr, "generating generate_LIST -> explistK\n" );
       generate_EXP(l->val.explistL.expression);
       generate_LIST(l->val.explistL.exp_list);
       break;

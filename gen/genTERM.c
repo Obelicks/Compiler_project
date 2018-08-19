@@ -2,51 +2,58 @@
 #include "../headers/gen.h"
 
 int generate_TERM(TERM* t){
+  fprintf(stderr, "generating generate_TERM \n" );
   int v;
   //int val;
   switch (t->kind) {
     case notK:
-        v =generate_TERM(t->val.notT);
-        v = !v;
-        return v;
-        break;
+      fprintf(stderr, "generating generate_TERM -> notK \n" );
+      v =generate_TERM(t->val.notT);
+      v = !v;
+      return v;
+      break;
 
     case absoluteK:
-        /*val=*/generate_EXP(t->val.absoluteT);
-        //TODO this will have to be done in assembler
-        //unless we can peephole it
-        /*if (val < 0){
-          val = val * (-1);
-        }
-        return val;*/
-        break;
+      fprintf(stderr, "generating generate_TERM -> absoluteK \n" );
+      /*val=*/generate_EXP(t->val.absoluteT);
+      //TODO this will have to be done in assembler
+      //unless we can peephole it
+      /*if (val < 0){
+        val = val * (-1);
+      }
+      return val;*/
+      break;
 
     case numK:
+      fprintf(stderr, "generating generate_TERM -> numK \n" );
         //assembly here to replace returnK
     //    fprintf(stdout,"--->%i<---", t->val.numT);
-        return t->val.numT;
-
-        break;
+      return t->val.numT;
+      break;
 
     case expK:
-        generate_EXP(t->val.expT);
-        break;
+      fprintf(stderr, "generating generate_TERM -> expK \n" );
+      generate_EXP(t->val.expT);
+      break;
 
     case booleanK:
-        return t->val.booleanT;
-        break;
+      fprintf(stderr, "generating generate_TERM -> booleanK \n" );
+      return t->val.booleanT;
+      break;
 
     case variableK:
-        generate_TYPE(t->val.variableT);
-        break;
+      fprintf(stderr, "generating generate_TERM -> variableK \n" );
+      generate_TYPE(t->val.variableT);
+      break;
 
     case act_listK:
-        generate_LIST(t->val.act_listT.act_list);//TODO pass the variables needed for the function
-        fprintf(stdout, "jmp %s\n",t->val.act_listT.id);
-        break;
+      fprintf(stderr, "generating generate_TERM -> actlistK \n" );
+      generate_LIST(t->val.act_listT.act_list);//TODO pass the variables needed for the function
+      fprintf(stdout, "jmp %s\n",t->val.act_listT.id);
+      break;
 
     default:
-        fprintf(stderr,"in default case in TERM\n");
-        break;
+      fprintf(stderr,"in default case in TERM\n");
+      break;
   }
 }

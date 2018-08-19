@@ -3,26 +3,32 @@
 
 int rand();
 void generate_STM(STM* s){
+  fprintf(stderr, "generating generate_STM \n" );
   int r;
   int r1;
   switch (s->kind) {
     case returnK:
+      fprintf(stderr, "generating generate_STM -> returnK \n" );
       generate_EXP(s->val.returnS);
       break;
 
     case writeK:
+      fprintf(stderr, "generating generate_STM -> writeK \n" );
       generate_EXP(s->val.writeS);
       break;
 
    case allocateK:
+     fprintf(stderr, "generating generate_STM -> allocateK \n" );
       generate_TYPE(s->val.allocateS);
       break;
 
     case allocateoflengthK:
+      fprintf(stderr, "generating generate_STM -> allocateoflengthK \n" );
       generate_TYPE(s->val.allocateoflengthS.variable);
       break;
 
     case assignK:
+      fprintf(stderr, "generating generate_STM -> assignK \n" );
       generate_TYPE( s->val.assignS.variable);
       generate_EXP( s->val.assignS.expression);
 
@@ -31,6 +37,7 @@ void generate_STM(STM* s){
       break;
 
     case ifthenK:
+      fprintf(stderr, "generating generate_STM -> ifthenK \n" );
       r = rand();
       generate_EXP(s->val.ifthenS.ifState);
       fprintf(stdout, "movq 0 %%rax\ncmp %%rax %%r15\njne %i\n",r);
@@ -39,6 +46,7 @@ void generate_STM(STM* s){
       break;
 
     case ifelseK:
+      fprintf(stderr, "generating generate_STM -> ifelseK \n" );
       r = rand();
       generate_EXP(s->val.ifelseS.ifState);
       fprintf(stdout, "movq 0 %%rax\n");
@@ -51,6 +59,7 @@ void generate_STM(STM* s){
       break;
 
     case whileK:
+      fprintf(stderr, "generating generate_STM -> whileK \n" );
       r = rand();
       r1 = rand();
       fprintf(stdout,"%i:\n", r1);
@@ -67,6 +76,7 @@ void generate_STM(STM* s){
       break;
 
     case stmlistK:
+      fprintf(stderr, "generating generate_STM -> stmlistK \n" );
       break;
 
     default:

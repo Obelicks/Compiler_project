@@ -6,12 +6,14 @@
 void generate_FUNC(FUNC* function){
   switch (function->kind) {
     case functionK:
+      fprintf(stderr, "generating generate_FUNC -> functionK\n" );
       generate_FUNC(function->val.functionF.head);
       generate_FUNC(function->val.functionF.body);
       generate_FUNC(function->val.functionF.tail);
       break;
 
     case headK:
+      fprintf(stderr, "generating generate_FUNC -> headK\n" );
 /*      fprintf(stdout,".data\n");
       fprintf(stdout,"format: .ascii \"%%d\\n\"\n");
       fprintf(stdout,".text\n");
@@ -27,6 +29,7 @@ void generate_FUNC(FUNC* function){
       break;
 
     case bodyK:
+      fprintf(stderr, "generating generate_FUNC -> bodyK\n" );
       if (function->val.bodyF.decl_list != NULL) {
         generate_LIST(function->val.bodyF.decl_list);
       }
@@ -34,6 +37,7 @@ void generate_FUNC(FUNC* function){
       break;
 
     case tailK:
+      fprintf(stderr, "generating generate_FUNC -> tailK\n" );
       fprintf(stdout,"mov $format, %%rdi\n");
       fprintf(stdout,"pop %%rsi\n");
       fprintf(stdout,"mov $0, %%eax\n");

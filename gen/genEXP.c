@@ -190,7 +190,7 @@ void generate_EXP(EXP* e){
       break;
 
     default:
-      fprintf(stdout,"in default case in EXP\n\n");
+      fprintf(stderr,"in default case in EXP\n\n");
       break;
   }return;
 }
@@ -210,7 +210,7 @@ void generate_prologue(){
   fprintf(stdout,"ret\n");
 
   fprintf(stdout,".globl main\n");/*45 identifies the system call invoked by 0x80, specifically, the free memory pointer */
-  fprintf(stdout,"main:\n"); 
+  fprintf(stdout,"main:\n");
   fprintf(stdout,"subq $8, %%rsp\n");
   fprintf(stdout,"movq $0, %%rdi\n");
   fprintf(stdout,"push %%r13\n");
