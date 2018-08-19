@@ -19,7 +19,10 @@ int generate_TERM(TERM* t){
         break;
 
     case numK:
+        //assembly here to replace returnK
+    //    fprintf(stdout,"--->%i<---", t->val.numT);
         return t->val.numT;
+
         break;
 
     case expK:

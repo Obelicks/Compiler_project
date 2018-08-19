@@ -229,12 +229,8 @@ void generate_prologue(){
   fprintf(stdout,"add $16384, %%r10\n");
   fprintf(stdout,"mov %%r10, %%rbx\n");
   fprintf(stdout,"int %%0x80\n");
-
-
-
-
-
 }
+
 
 void generate_epilogue(){
   fprintf(stdout,"mov $format, %%rdi\n");
