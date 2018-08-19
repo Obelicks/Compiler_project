@@ -2,10 +2,13 @@
 #include "../headers/gen.h"
 
 int generate_TERM(TERM* t){
+  int v;
   //int val;
   switch (t->kind) {
     case notK:
-        generate_TERM(t->val.notT);
+        v =generate_TERM(t->val.notT);
+        v = !v;
+        return v;
         break;
 
     case absoluteK:
@@ -38,10 +41,8 @@ int generate_TERM(TERM* t){
         break;
 
     case act_listK:
-        //TODO this code might be outdated
         generate_LIST(t->val.act_listT.act_list);//TODO pass the variables needed for the function
         fprintf(stdout, "jmp %s\n",t->val.act_listT.id);
-        //jumping to id label
         break;
 
     default:

@@ -41,7 +41,6 @@ void generate_FUNC(FUNC* function){
       fprintf(stdout,"pop %%rax\n");
       fprintf(stdout,"pop %%r13\n");
       fprintf(stdout,"pop %%r14\n");
-      //TODO write epilogoue?
       fprintf(stderr,"end of function %s", function->val.tailF);
       break;
 

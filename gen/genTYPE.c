@@ -12,7 +12,7 @@ void generate_TYPE(TYPE* t){
     case intconstK:
       fprintf(stdout,"dfs");
       //fprintf(stdout,"dsf");
-      
+
       //fprintf(stdout,"this is a test 9");
       break;
 

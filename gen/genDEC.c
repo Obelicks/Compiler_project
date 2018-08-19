@@ -11,6 +11,8 @@ void generate_DEC(DEC *d){
       break;
 
     case dectypeK:
+      //TODO assember der laver en variabel
+       
       generate_TYPE(d->val.dectypeD.type);
 
       break;

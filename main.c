@@ -20,7 +20,7 @@ int main(int argc, char* argv[]){
   int doesItWork = typeCheckFUNC(root, thebody);
   if (doesItWork) {
     fprintf(stderr, "typecheck error, code: %d\n", doesItWork);
-    return 10 + doesItWork;
+    return 10 + doesItWork; 
   }else{
     //doesItWork = weeder(thebody);
     //if(doesItWork) return 100 + doesItWork;
