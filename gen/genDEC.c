@@ -12,6 +12,7 @@ void generate_DEC(DEC *d){
 
     case dectypeK:
       generate_TYPE(d->val.dectypeD.type);
+      
       break;
 
     case decfuncK:

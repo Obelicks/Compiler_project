@@ -17,9 +17,9 @@ void generate_LIST(LIST *l){
     case varlistK:
       fprintf(stderr, "generating var_list" );
       while (l->val.varlistL.var_decl_list != NULL){
-        TYPE type=l->val.varlistL.var_type;
-        id = type->val.var_typeT.id;
-        kind = type->kind;
+        TYPE* type=l->val.varlistL.var_type;
+        char* id = type->val.var_typeT.id;
+        int kind = type->kind;
 
         fprintf(stdout,"add $192, r9\n");
         fprintf(stdout,"cmp %%r9, %%r10\n");
