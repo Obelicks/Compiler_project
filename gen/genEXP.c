@@ -80,7 +80,7 @@ void generate_EXP(EXP* e){
       fprintf(stdout,"jmp .+9\n");
       fprintf(stdout,"movq $1, %%r13\n");
       fprintf(stdout,"push %%r13\n");
-       break;
+      break;
 
     case smalequalK:
       fprintf(stderr, "generating generate_EXP -> smalequalK\n" );
@@ -110,96 +110,96 @@ void generate_EXP(EXP* e){
       fprintf(stdout,"push %%r13\n");
       break;
 
-   case moduloK:
-     fprintf(stderr, "generating generate_EXP -> moduloK\n" );
-     generate_EXP(e->val.moduloE.left);
-     generate_EXP(e->val.moduloE.right);
-     fprintf(stdout,"pop %%r14\n");
-     fprintf(stdout,"pop %%r13\n");
-     fprintf(stdout,"cmp %%r14, %%r13\n");
-     fprintf(stdout,"jl .+7\n");
-     fprintf(stdout,"sub %%r14, %%r13\n");
-     fprintf(stdout,"jmp .-8\n");
-     fprintf(stdout,"push %%r13\n");
-     break;
+    case moduloK:
+      fprintf(stderr, "generating generate_EXP -> moduloK\n" );
+      generate_EXP(e->val.moduloE.left);
+      generate_EXP(e->val.moduloE.right);
+      fprintf(stdout,"pop %%r14\n");
+      fprintf(stdout,"pop %%r13\n");
+      fprintf(stdout,"cmp %%r14, %%r13\n");
+      fprintf(stdout,"jl .+7\n");
+      fprintf(stdout,"sub %%r14, %%r13\n");
+      fprintf(stdout,"jmp .-8\n");
+      fprintf(stdout,"push %%r13\n");
+      break;
 
-   case timesK:
-    fprintf(stderr, "generating generate_EXP -> timesK\n" );
-    generate_EXP(e->val.timesE.left);
-    generate_EXP(e->val.timesE.right);
-    fprintf(stdout,"pop %%r13\n");
-    fprintf(stdout,"pop %%r14\n");
-    fprintf(stdout,"movq %%r13, %%rax\n");
-    fprintf(stdout,"mul %%r14\n");
-    fprintf(stdout,"movq %%rax, %%r13\n");
-    fprintf(stdout,"push %%r13\n");
-    /*movq to RX*/
-    /*movq to RY*/
-    /*mul RX RY to RZ*/
-    break;
+    case timesK:
+      fprintf(stderr, "generating generate_EXP -> timesK\n" );
+      generate_EXP(e->val.timesE.left);
+      generate_EXP(e->val.timesE.right);
+      fprintf(stdout,"pop %%r13\n");
+      fprintf(stdout,"pop %%r14\n");
+      fprintf(stdout,"movq %%r13, %%rax\n");
+      fprintf(stdout,"mul %%r14\n");
+      fprintf(stdout,"movq %%rax, %%r13\n");
+      fprintf(stdout,"push %%r13\n");
+      /*movq to RX*/
+      /*movq to RY*/
+      /*mul RX RY to RZ*/
+      break;
 
-   case divK:
-     fprintf(stderr, "generating generate_EXP -> divK\n" );
-     generate_EXP(e->val.divE.left);
-     generate_EXP(e->val.divE.right);
-     fprintf(stdout,"pop %%r13\n");
-     fprintf(stdout,"pop %%r14\n");
-     fprintf(stdout,"xor %%rdx, %%rdx\n");
-     fprintf(stdout,"movq %%r14, %%rax\n");
-     fprintf(stdout,"idiv %%r13\n");
-     fprintf(stdout,"movq %%rax, %%r13\n");
-     fprintf(stdout,"push %%r13\n");
-     break;
+    case divK:
+      fprintf(stderr, "generating generate_EXP -> divK\n" );
+      generate_EXP(e->val.divE.left);
+      generate_EXP(e->val.divE.right);
+      fprintf(stdout,"pop %%r13\n");
+      fprintf(stdout,"pop %%r14\n");
+      fprintf(stdout,"xor %%rdx, %%rdx\n");
+      fprintf(stdout,"movq %%r14, %%rax\n");
+      fprintf(stdout,"idiv %%r13\n");
+      fprintf(stdout,"movq %%rax, %%r13\n");
+      fprintf(stdout,"push %%r13\n");
+      break;
 
-   case plusK:
-    fprintf(stderr, "generating generate_EXP -> plusK\n" );
-    generate_EXP(e->val.plusE.left);
-    generate_EXP(e->val.plusE.right);
-    fprintf(stdout,"pop %%r13\n");
-    fprintf(stdout,"pop %%r14\n");
-    fprintf(stdout,"add %%r14, %%r13\n");
-    fprintf(stdout,"push %%r13\n");
-    break;
+    case plusK:
+      fprintf(stderr, "generating generate_EXP -> plusK\n" );
+      generate_EXP(e->val.plusE.left);
+      generate_EXP(e->val.plusE.right);
+      fprintf(stdout,"pop %%r13\n");
+      fprintf(stdout,"pop %%r14\n");
+      fprintf(stdout,"add %%r14, %%r13\n");
+      fprintf(stdout,"push %%r13\n");
+      break;
 
-  case minusK:
-    fprintf(stderr, "generating generate_EXP -> minusK\n" );
-    generate_EXP(e->val.minusE.left);
-    generate_EXP(e->val.minusE.right);
-    fprintf(stdout,"pop %%r14\n");
-    fprintf(stdout,"pop %%r13\n");
-    fprintf(stdout,"sub %%r14, %%r13\n");
-    fprintf(stdout,"push %%r13\n");
-    break;
+    case minusK:
+      fprintf(stderr, "generating generate_EXP -> minusK\n" );
+      generate_EXP(e->val.minusE.left);
+      generate_EXP(e->val.minusE.right);
+      fprintf(stdout,"pop %%r14\n");
+      fprintf(stdout,"pop %%r13\n");
+      fprintf(stdout,"sub %%r14, %%r13\n");
+      fprintf(stdout,"push %%r13\n");
+      break;
 
-  case termK:
-    fprintf(stderr, "generating generate_EXP -> termK\n" );
-    aterm = generate_TERM(e->val.termE);
-    //TODO since term can be more than just an integer value
-    //we will have to move this code into genTerm.c at some point
-    //fprintf(stdout,"%i \n", aterm);
-    fprintf(stdout,"movq $%i, %%r13\n", aterm);
-    fprintf(stdout,"push %%r13\n");
-    break;
+    case termK:
+      fprintf(stderr, "generating generate_EXP -> termK\n" );
+      aterm = generate_TERM(e->val.termE);
+      //TODO since term can be more than just an integer value
+      //we will have to move this code into genTerm.c at some point
+      //fprintf(stdout,"%i \n", aterm);
+      fprintf(stdout,"movq $%i, %%r13\n", aterm);
+      fprintf(stdout,"push %%r13\n");
+      break;
 
-  case orK:
-    fprintf(stderr, "generating generate_EXP -> orK\n" );
-    generate_EXP(e->val.orE.left);
-    generate_EXP(e->val.orE.right);
-    fprintf(stdout,"pop %%r13\n");
-    fprintf(stdout,"pop %%r14\n");
-    fprintf(stdout,"cmp $0, %%r13\n");
-    fprintf(stdout,"je .+17\n");
-    fprintf(stdout,"cmp $0, %%r14\n");
-    fprintf(stdout,"je .+11\n");
-    fprintf(stdout,"movq $1, %%r13\n");
-    fprintf(stdout,"jmp .+9\n");
-    fprintf(stdout,"movq $0, %%r13\n");
-    fprintf(stdout,"push %%r13\n");
-    break;
+    case orK:
+      fprintf(stderr, "generating generate_EXP -> orK\n" );
+      generate_EXP(e->val.orE.left);
+      generate_EXP(e->val.orE.right);
+      fprintf(stdout,"pop %%r13\n");
+      fprintf(stdout,"pop %%r14\n");
+      fprintf(stdout,"cmp $0, %%r13\n");
+      fprintf(stdout,"je .+17\n");
+      fprintf(stdout,"cmp $0, %%r14\n");
+      fprintf(stdout,"je .+11\n");
+      fprintf(stdout,"movq $1, %%r13\n");
+      fprintf(stdout,"jmp .+9\n");
+      fprintf(stdout,"movq $0, %%r13\n");
+      fprintf(stdout,"push %%r13\n");
+      break;
 
-  default:
-    fprintf(stderr,"in default case in EXP\n\n");
-    break;
+    default:
+      fprintf(stderr,"in default case in EXP\n\n");
+      break;
   }return;
 }
 void generate_prologue(){
