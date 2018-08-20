@@ -31,7 +31,6 @@ void generate_TYPE(TYPE* t){
     case vareK:
       fprintf(stderr, "generating generate_TYPE -> vareK\n" );
       generate_TYPE(t->val.vareT.variable);
-      fprintf(stdout,"this is a test");
       break;
 
     case varexpK:

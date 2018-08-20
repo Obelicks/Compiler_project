@@ -37,6 +37,7 @@ void generate_STM(STM* s){
       break;
 
     case ifthenK:
+      //TODO figure out a better way than rand?
       fprintf(stderr, "generating generate_STM -> ifthenK \n" );
       r = rand();
       generate_EXP(s->val.ifthenS.ifState);
@@ -46,6 +47,7 @@ void generate_STM(STM* s){
       break;
 
     case ifelseK:
+      //TODO figure out a better way than rand?
       fprintf(stderr, "generating generate_STM -> ifelseK \n" );
       r = rand();
       generate_EXP(s->val.ifelseS.ifState);
@@ -59,6 +61,7 @@ void generate_STM(STM* s){
       break;
 
     case whileK:
+      //TODO figure out a better way than rand?
       fprintf(stderr, "generating generate_STM -> whileK \n" );
       r = rand();
       r1 = rand();
