@@ -14,7 +14,8 @@ void generate_FUNC(FUNC* function){
 
     case headK:
       fprintf(stderr, "generating generate_FUNC -> headK\n" );
-/*      fprintf(stdout,".data\n");
+/*
+      fprintf(stdout,".data\n");
       fprintf(stdout,"format: .ascii \"%%d\\n\"\n");
       fprintf(stdout,".text\n");
       fprintf(stdout, ".globl %s:\n", function->val.headF.id);

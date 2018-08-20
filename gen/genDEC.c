@@ -8,15 +8,12 @@ void generate_DEC(DEC *d){
     case listK:
       fprintf(stderr, "generating generate_DEC -> listK\n" );
       generate_LIST(d->val.listD);
-
       break;
 
     case dectypeK:
       fprintf(stderr, "generating generate_DEC -> dectypeK\n" );
       //TODO assember der laver en variabel
-
       generate_TYPE(d->val.dectypeD.type);
-
       break;
 
     case decfuncK:
