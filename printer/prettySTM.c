@@ -67,7 +67,6 @@ void prettySTM(STM* s){
       break;
 
     case stmlistK:
-    //TODO: MAKE THIS!!
       fprintf(stderr,"prettySTM case stmlistK\n");
       break;
 

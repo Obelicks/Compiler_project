@@ -20,7 +20,7 @@ void generate_LIST(LIST *l){
         TYPE* type=l->val.varlistL.var_type;
         char* id = type->val.var_typeT.id;
         int kind = type->kind;
-
+        
         fprintf(stdout,"add $192, r9\n");
         fprintf(stdout,"cmp %%r9, %%r10\n");
         fprintf(stdout,"jge allocate_more\n");//TODO epilogue function
@@ -48,7 +48,6 @@ void generate_LIST(LIST *l){
 
     case statelistK:
       fprintf(stderr, "generating generate_LIST -> statelistK\n" );
-
       //fprintf(stderr,"statelist1\n");
       generate_STM(l->val.statelistL.statement);
       //fprintf(stderr,"statelist2\n");
