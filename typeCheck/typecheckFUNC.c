@@ -5,26 +5,32 @@
 
 int typeCheckFUNC(SymbolTable* symbolTable, FUNC* func){
 
-  fprintf(stderr,"%d\n", func->kind);
-
+  fprintf(stderr,"FUNC kind: %i\n", func->kind);
+  int x,y,z;
   switch (func->kind) {
     case functionK:
-      typeCheckFUNC(symbolTable, func->val.functionF.head);
-      typeCheckFUNC(symbolTable, func->val.functionF.body);
-      typeCheckFUNC(symbolTable, func->val.functionF.tail);
+      x =typeCheckFUNC(symbolTable, func->val.functionF.head);
+      y =typeCheckFUNC(symbolTable, func->val.functionF.body);
+      z =typeCheckFUNC(symbolTable, func->val.functionF.tail);
+      return x+y+z;
       break;
 
     case headK:
       //TODO: Add id
-      typeCheckLIST(symbolTable, func->val.headF.par_decl_list);
-      typeCheckTYPE(symbolTable, func->val.headF.type);
+      x = typeCheckLIST(symbolTable, func->val.headF.par_decl_list);
+      y = typeCheckTYPE(symbolTable, func->val.headF.type);
+      return x+y;
       break;
 
     case bodyK:
       if (func->val.bodyF.decl_list != NULL) {
-        typeCheckLIST(symbolTable, func->val.bodyF.decl_list);
+        x =typeCheckLIST(symbolTable, func->val.bodyF.decl_list);
+        if (x < 0){
+          return x;
+        }
       }
-      typeCheckLIST(symbolTable, func->val.bodyF.statement_list);
+      y =typeCheckLIST(symbolTable, func->val.bodyF.statement_list);
+      return y;
       break;
 
     case tailK:

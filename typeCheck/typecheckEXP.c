@@ -12,7 +12,7 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
     case equaltoK:
       x = typeCheckEXP(symbolTable, expression->val.equaltoE.left);
       y = typeCheckEXP(symbolTable, expression->val.equaltoE.right);
-      if (x == y){
+      if (x == y && x>=0){
         return x;
       }else{
         fprintf(stderr,"type-error '==' on line %i\n",expression->lineno);
@@ -23,7 +23,7 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
     case nequaltoK:
       x = typeCheckEXP(symbolTable, expression->val.nequaltoE.left);
       y = typeCheckEXP(symbolTable, expression->val.nequaltoE.right);
-      if (x == y){
+      if (x == y && x>=0){
         return x;
       }else{
         fprintf(stderr,"type-error '!=' on line %i\n",expression->lineno);
@@ -145,6 +145,9 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
 
     case termK:
       x=typeCheckTERM(symbolTable, expression->val.termE);
+      if (x<0){
+        return x;
+      }
       fprintf(stderr,"found term of kind: %i\n", x);
 
       return x;
@@ -163,7 +166,8 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
 
     default:
       fprintf(stderr,"default case in typeCheckEXP\n");
+      return -1;
       break;
   }
-  return 0;
+  return -1;
 }

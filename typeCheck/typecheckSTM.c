@@ -9,24 +9,39 @@ int typeCheckSTM(SymbolTable* symbolTable, STM* statement){
 
   Symbol* symbol;
   SymbolTable* nextsymbolTable;
-  int typeCheck = 5;
+  int x;
   TYPE* type;
   switch (statement->kind) {
     case returnK:
-      typeCheckEXP(symbolTable, statement->val.returnS);
+      x=typeCheckEXP(symbolTable, statement->val.returnS);
+      if (x<0){
+        return x;
+      }
       break;
 
     case writeK:
-      typeCheckEXP(symbolTable, statement->val.writeS);
+      x=typeCheckEXP(symbolTable, statement->val.writeS);
+      if (x<0){
+        return x;
+      }
       break;
 
     case allocateK:
-      typeCheckTYPE(symbolTable, statement->val.allocateS);
+      x=typeCheckTYPE(symbolTable, statement->val.allocateS);
+      if (x<0){
+        return x;
+      }
       break;
 
     case allocateoflengthK:
-      typeCheckTYPE(symbolTable, statement->val.allocateoflengthS.variable);
-      typeCheckEXP(symbolTable, statement->val.allocateoflengthS.expression);
+      x=typeCheckTYPE(symbolTable, statement->val.allocateoflengthS.variable);
+      if (x<0){
+        return x;
+      }
+      x=typeCheckEXP(symbolTable, statement->val.allocateoflengthS.expression);
+      if (x<0){
+        return x;
+      }
       break;
 
     case assignK:
@@ -37,36 +52,56 @@ int typeCheckSTM(SymbolTable* symbolTable, STM* statement){
         return -1;
       }
       symbol = getSymbol(symbolTable, type->val.idT);
-      typeCheck = typeCheckEXP(symbolTable, statement->val.assignS.expression);
-      if (symbol->type == typeCheck){
+      x = typeCheckEXP(symbolTable, statement->val.assignS.expression);
+      if (symbol->type == x){
         return symbol->type;
       }else{
-        fprintf(stderr,"TYPE ERROR: cant assign type %i to type %i\n", symbol->type, typeCheck);
+        fprintf(stderr,"TYPE ERROR: cant assign type %i to type %i\n", symbol->type, x);
       }
       break;
 
     case ifthenK:
-      typeCheckEXP(symbolTable, statement->val.ifthenS.ifState);
-      nextsymbolTable = scopeSymbolTable(symbolTable);
-      typeCheckSTM(nextsymbolTable, statement->val.ifthenS.thenState);
+      x= typeCheckEXP(symbolTable, statement->val.ifthenS.ifState);
+      if (x<0){
+        return x;
+      }
+      x =typeCheckSTM(symbolTable, statement->val.ifthenS.thenState);
+      if (x<0){
+        return x;
+      }
       break;
 
     case ifelseK:
-      typeCheckEXP(symbolTable, statement->val.ifelseS.ifState);
-      nextsymbolTable = scopeSymbolTable(symbolTable);
-      typeCheckSTM(nextsymbolTable, statement->val.ifelseS.thenState);
-      nextsymbolTable = scopeSymbolTable(symbolTable);
-      typeCheckSTM(nextsymbolTable, statement->val.ifelseS.elseState);
+      x=typeCheckEXP(symbolTable, statement->val.ifelseS.ifState);
+      if (x<0){
+        return x;
+      }
+      x=typeCheckSTM(symbolTable, statement->val.ifelseS.thenState);
+      if (x<0){
+        return x;
+      }
+      x=typeCheckSTM(symbolTable, statement->val.ifelseS.elseState);
+      if (x<0){
+        return x;
+      }
       break;
 
     case whileK:
-      typeCheckEXP(symbolTable, statement->val.whileS.expression);
-      nextsymbolTable = scopeSymbolTable(symbolTable);
-      typeCheckSTM(nextsymbolTable, statement->val.whileS.statement);
+      x=typeCheckEXP(symbolTable, statement->val.whileS.expression);
+      if (x<0){
+        return x;
+      }
+      x=typeCheckSTM(symbolTable, statement->val.whileS.statement);
+      if (x<0){
+        return x;
+      }
       break;
 
     case stmlistK:
-      typeCheckLIST(symbolTable, statement->val.stmlistS);
+      x=typeCheckLIST(symbolTable, statement->val.stmlistS);
+      if (x<0){
+        return x;
+      }
       break;
 
     default:

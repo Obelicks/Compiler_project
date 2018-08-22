@@ -4,15 +4,18 @@
 #include <stdio.h>
 
 int typeCheckTYPE(SymbolTable* symbolTable, TYPE* type){
-  int error;
+  int x;
   int typeCheck;
   Symbol* symbol;
   TYPE* next_type;
-
   fprintf(stderr,"TYPE KIND: %i\n", type->kind);
   switch (type->kind) {
     case idK:
+      fprintf(stderr,"looking for symbol %s\n", type->val.idT);
       symbol = getSymbol(symbolTable, type->val.idT);
+      if (symbol == NULL){
+        return -7;
+      }
       fprintf(stderr,"got symbol %s of type %i\n", symbol->name,symbol->type);
       return symbol->type;
       break;
@@ -26,30 +29,45 @@ int typeCheckTYPE(SymbolTable* symbolTable, TYPE* type){
       break;
 
     case arrayK:
-      typeCheckTYPE(symbolTable, type->val.arrayT);
+      x =typeCheckTYPE(symbolTable, type->val.arrayT);
+      if (x<0){
+        return x;
+      }
       break;
 
     case recordK:
-      typeCheckLIST(symbolTable, type->val.recordT);
+      x=typeCheckLIST(symbolTable, type->val.recordT);
+      if (x<0){
+        return x;
+      }
       break;
 
     case vareK:
-      error=typeCheckTYPE(symbolTable, type->val.vareT.variable);
-      if(error){
+      x=typeCheckTYPE(symbolTable, type->val.vareT.variable);
+      if(x){
         return 1;
       }
       break;
 
     case varexpK:
-      typeCheckTYPE(symbolTable, type->val.varexpT.variable);
-      typeCheckEXP(symbolTable, type->val.varexpT.expression);
+      x=typeCheckTYPE(symbolTable, type->val.varexpT.variable);
+      if (x<0){
+        return x;
+      }
+      x=typeCheckEXP(symbolTable, type->val.varexpT.expression);
+      if (x<0){
+        return x;
+      }
       break;
 
     case var_typeK:
       //fprintf(stderr,"here\n");
       typeCheck = typeCheckTYPE(symbolTable, type->val.var_typeT.variable);
-      putSymbol(symbolTable,type->val.var_typeT.id,typeCheck,NULL);
-
+      symbol = putSymbol(symbolTable,type->val.var_typeT.id,typeCheck,NULL);
+      if (symbol == NULL){
+        fprintf(stderr, "putting error\n");
+        return -1;
+      }
       fprintf(stderr,"putting id: %s of type: %i\n", type->val.var_typeT.id,typeCheck);
 
       break;

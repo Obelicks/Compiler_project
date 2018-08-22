@@ -1,12 +1,6 @@
-write(2<3);
-write(4<3);
-write(2>3);
-write(4>3);
-write(2<=3);
-write(4<=3);
-write(2>=3);
-write(4>=3);
-write(3<=3);
-write(3<=3);
-write(3>=3);
-write(3>=3);
+var rand:int, a:int, b:int, modulo:int;
+
+while(counter < n) do
+{
+  return rand;
+}

@@ -20,8 +20,8 @@ int main(int argc, char* argv[]){
   //prettyFUNC(thebody);
   fprintf(stderr, "Typechecking...\n");
   int doesItWork = typeCheckFUNC(root, thebody);
-  if (doesItWork) {
-    fprintf(stderr, "typecheck error, code: %d\n", doesItWork);
+  if (doesItWork<0) {
+    fprintf(stderr, "typecheck error, code: %i\n", doesItWork);
     return 10 + doesItWork;
   }else{
     //doesItWork = weeder(thebody);

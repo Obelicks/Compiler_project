@@ -82,7 +82,6 @@ Symbol* getSymbol(SymbolTable* table, char* name){
   hashValue = Hash(name);
   if(table->table[hashValue] == NULL){
           fprintf(stderr,"if table \n");
-  
   }else{
           fprintf(stderr,"else table\n");
     symbol = table->table[hashValue];

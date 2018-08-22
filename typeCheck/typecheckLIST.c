@@ -6,58 +6,96 @@
 int typeCheckLIST(SymbolTable* symbolTable, LIST* list){
 
   fprintf(stderr,"LIST kind: %i\n", list->kind);
-
+  int x;
   switch (list->kind) {
     case parK:
       // fprintf(stderr,"par\n");
-      typeCheckLIST(symbolTable, list->val.parL);
+      x = typeCheckLIST(symbolTable, list->val.parL);
+      if (x<0){
+        return x;
+      }
       break;
 
     case varlistK:
       // fprintf(stderr,"varlist\n");
-      typeCheckTYPE(symbolTable, list->val.varlistL.var_type);
-      typeCheckLIST(symbolTable, list->val.varlistL.var_decl_list);
+      x = typeCheckTYPE(symbolTable, list->val.varlistL.var_type);
+      if (x<0){
+        return x;
+      }
+      x = typeCheckLIST(symbolTable, list->val.varlistL.var_decl_list);
+      if (x<0){
+        return x;
+      }
       break;
 
     case varK:
       // fprintf(stderr,"var\n");
-      typeCheckTYPE(symbolTable, list->val.varL);
+      x = typeCheckTYPE(symbolTable, list->val.varL);
+      if (x<0){
+        return x;
+      }
       break;
 
     case decK:
       // fprintf(stderr,"dec\n");
-      typeCheckDEC(symbolTable, list->val.decL.declaration);
-
+      x = typeCheckDEC(symbolTable, list->val.decL.declaration);
+      if (x<0){
+        return x;
+      }
       if (list->val.decL.decl_list != NULL){
-        typeCheckLIST(symbolTable, list->val.decL.decl_list);
+        x = typeCheckLIST(symbolTable, list->val.decL.decl_list);
+        if (x<0){
+          return x;
+        }
       }
       break;
 
     case stateK:
       // fprintf(stderr,"state\n");
-      typeCheckSTM(symbolTable, list->val.stateL);
+      x = typeCheckSTM(symbolTable, list->val.stateL);
+      if (x<0){
+        return x;
+      }
       break;
 
     case statelistK:
       // fprintf(stderr,"statelist\n");
-      typeCheckSTM(symbolTable, list->val.statelistL.statement);
-      typeCheckLIST(symbolTable, list->val.statelistL.statement_list);
+      x = typeCheckSTM(symbolTable, list->val.statelistL.statement);
+      if (x<0){
+        return x;
+      }
+      x =typeCheckLIST(symbolTable, list->val.statelistL.statement_list);
+      if (x<0){
+        return x;
+      }
       break;
 
     case actlistK:
       // fprintf(stderr,"actlist\n");
-      typeCheckLIST(symbolTable, list->val.actlistL);
+      x = typeCheckLIST(symbolTable, list->val.actlistL);
+      if (x<0){
+        return x;
+      }
       break;
 
     case expressionK:
       // fprintf(stderr,"expression\n");
-      typeCheckEXP(symbolTable, list->val.expressionL);
+      x = typeCheckEXP(symbolTable, list->val.expressionL);
+      if (x<0){
+        return x;
+      }
       break;
 
     case explistK:
       // fprintf(stderr,"explist\n");
-      typeCheckEXP(symbolTable, list->val.explistL.expression);
-      typeCheckLIST(symbolTable, list->val.explistL.exp_list);
+      x = typeCheckEXP(symbolTable, list->val.explistL.expression);
+      if (x<0){
+        return x;
+      }
+      x = typeCheckLIST(symbolTable, list->val.explistL.exp_list);
+      if (x<0){
+        return x;
+      }
       break;
 
     default:

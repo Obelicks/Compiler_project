@@ -5,21 +5,23 @@
 
 int atoi (const char* str);
 int typeCheckTERM(SymbolTable* symbolTable, TERM* term){
-
   fprintf(stderr,"TERM KIND: %i\n", term->kind);
-
+  int x;
   int type;
   switch (term->kind) {
     case notK:
       type = typeCheckTERM(symbolTable, term->val.notT);
-      if (type == INTEGER){
+      if (type == ID){
         return -1;
       }
-      return BOOLEAN;
+      return type;
       break;
 
     case absoluteK:
-      typeCheckEXP(symbolTable, term->val.absoluteT);
+      x =typeCheckEXP(symbolTable, term->val.absoluteT);
+      if (x<0){
+        return x;
+      }
       break;
 
     case numK:
@@ -28,7 +30,10 @@ int typeCheckTERM(SymbolTable* symbolTable, TERM* term){
       break;
 
     case expK:
-      typeCheckEXP(symbolTable, term->val.expT);
+      x =typeCheckEXP(symbolTable, term->val.expT);
+      if (x<0){
+        return x;
+      }
       break;
 
     case booleanK:
@@ -41,7 +46,10 @@ int typeCheckTERM(SymbolTable* symbolTable, TERM* term){
       break;
 
     case act_listK:
-      typeCheckLIST(symbolTable, term->val.act_listT.act_list);
+      x =typeCheckLIST(symbolTable, term->val.act_listT.act_list);
+      if (x<0){
+        return x;
+      }
       //return atoi(term->val.act_listT.id);
       break;
 
