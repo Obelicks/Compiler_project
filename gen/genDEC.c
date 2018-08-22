@@ -13,7 +13,7 @@ void generate_DEC(DEC *d){
     case dectypeK:
       fprintf(stderr, "generating generate_DEC -> dectypeK\n" );
       //TODO assember der laver en variabel
-      fprintf(stdout,"movq $'%s', (%%r9)\n",d->val.dectypeD.id);
+      fprintf(stdout,"movq $%i, (%%r9)\n",(long long int)*d->val.dectypeD.id);
       fprintf(stdout,"movq $%i, 64(%%r9)\n", d->val.dectypeD.type->kind);
       fprintf(stdout,"movq $0, 128(%%r9)\n");
       fprintf(stdout,"add $192, %%r9\n");

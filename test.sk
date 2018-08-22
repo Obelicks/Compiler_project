@@ -1,6 +1,5 @@
-type aa = int;
+type aaa = int;
 
+aaa = 5;
 
-aa = 5;
-
-write (aa);
+write (aaa);
