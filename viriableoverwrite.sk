@@ -1,0 +1,7 @@
+type a = int;
+a = 5;
+write (a);
+a = a+5;
+write (a);
+a = 0;
+write (a);
