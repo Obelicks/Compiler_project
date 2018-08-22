@@ -1,0 +1,8 @@
+type aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa = int;
+type ssssssssssssssssssssssssssssssss = int;
+
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa = 5;
+ssssssssssssssssssssssssssssssss = 10;
+
+write (aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa);
+write (ssssssssssssssssssssssssssssssss);
