@@ -1,9 +1,5 @@
 type a = int;
-type b = int;
 
-a = 5;
-b = 7;
+a = 5+(((4*4)/20)*55)+85-75;
+
 write (a);
-write (b);
-write (a+b);
-write (a*b);

@@ -34,7 +34,7 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
     case andK:
       x = typeCheckEXP(symbolTable, expression->val.andE.left);
       y = typeCheckEXP(symbolTable, expression->val.andE.right);
-      if (x == y && (x == BOOLEAN || x == INTEGER){
+      if (x == y && (x == BOOLEAN || x == INTEGER)){
         return x;
       }else{
         fprintf(stderr,"type-error '&&' on line %i\n",expression->lineno);

@@ -59,7 +59,7 @@ void generate_STM(STM* s){
       fprintf(stdout,"add $192, %%r11\n");
       fprintf(stdout,"jmp .-12\n");
       fprintf(stderr, "generating generate_STM -> assignK \n" );
-      generate_EXP( s->val.assignS.expression);
+      generate_EXP(s->val.assignS.expression);
       fprintf(stdout,"movq %%r13, 128(%%r11)\n");
 
       break;
