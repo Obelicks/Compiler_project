@@ -1,6 +1,6 @@
 var rand:int, a:int, b:int, modulo:int;
 
-while(counter < n) do
+while(a < b) do
 {
   return rand;
 }
