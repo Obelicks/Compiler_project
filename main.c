@@ -6,11 +6,13 @@
 #include "headers/weed.h"
 #include "headers/gen.h"
 int lineno;
+long long int jumpnr;
 void yyparse();
 FILE* yyin;
 FUNC* thebody;
 
 int main(int argc, char* argv[]){
+  jumpnr = 0;
   lineno = 1;
   SymbolTable* root = initSymbolTable();
   fprintf(stderr, "Parsing...\n");

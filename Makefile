@@ -70,5 +70,7 @@ run:
 
 compile:
 	gcc -o testout -m64 $(SRC)
+debug:
+	objdump -f -s -d --source testout
 clean:
 	rm -f $(OBJ) compiler lex.yy.c y.tab.c y.tab.h $(SRC) log testout

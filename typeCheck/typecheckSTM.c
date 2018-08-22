@@ -32,7 +32,7 @@ int typeCheckSTM(SymbolTable* symbolTable, STM* statement){
     case assignK:
       type = statement->val.assignS.variable;
       typeCheckTYPE(symbolTable, type);
-      if(type->kind != 0 /*bad coding style i know but i like it*/){
+      if(type->kind != 0 ){
         fprintf(stderr,"error undefined assign variable \n");
         return -1;
       }

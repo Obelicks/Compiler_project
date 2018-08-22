@@ -1,5 +1,12 @@
-type a = int;
-
-a = 5;
-
-write (a);
+write(2<3);
+write(4<3);
+write(2>3);
+write(4>3);
+write(2<=3);
+write(4<=3);
+write(2>=3);
+write(4>=3);
+write(3<=3);
+write(3<=3);
+write(3>=3);
+write(3>=3);

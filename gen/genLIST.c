@@ -16,18 +16,26 @@ void generate_LIST(LIST *l){
 
     case varlistK:
       fprintf(stderr, "generating generate_LIST -> var_list\n" );
-      while (l->val.varlistL.var_decl_list != NULL){
-        TYPE* type=l->val.varlistL.var_type;
-        char* id = type->val.var_typeT.id;
-        int kind = type->kind;
+      fprintf(stderr, "generating generate_DEC -> dectypeK\n" );
+      //TODO assember der laver en variabel
+      fprintf(stdout,"movq $%lli, (%%r9)\n",(long long int)*l->val.varlistL.var_type->val.var_typeT.id);
+      fprintf(stdout,"movq $%i, 64(%%r9)\n", l->val.varlistL.var_type->kind);
+      fprintf(stdout,"movq $0, 128(%%r9)\n");
+      fprintf(stdout,"add $192, %%r9\n");
 
- /*todo list of variables.
- */
-        l = l->val.varlistL.var_decl_list;
+      if (l->val.varlistL.var_decl_list != NULL){
+        generate_LIST(l->val.varlistL.var_decl_list);
+
       }
     case varK:
       fprintf(stderr, "generating generate_LIST -> varK\n" );
-      generate_TYPE(l->val.varL);
+      fprintf(stderr, "generating generate_LIST -> var_list\n" );
+      fprintf(stderr, "generating generate_DEC -> dectypeK\n" );
+      //TODO assember der laver en variabel
+      fprintf(stdout,"movq $%lli, (%%r9)\n",(long long int)*l->val.varL->val.var_typeT.id);
+      fprintf(stdout,"movq $%i, 64(%%r9)\n", l->val.varL->kind);
+      fprintf(stdout,"movq $0, 128(%%r9)\n");
+      fprintf(stdout,"add $192, %%r9\n");
       break;
 
     case decK:
@@ -49,7 +57,9 @@ void generate_LIST(LIST *l){
       //fprintf(stderr,"statelist1\n");
       generate_STM(l->val.statelistL.statement);
       //fprintf(stderr,"statelist2\n");
-      generate_LIST(l->val.statelistL.statement_list);
+      if (l->val.statelistL.statement_list != NULL){
+        generate_LIST(l->val.statelistL.statement_list);
+      }
       break;
 
     case actlistK:
