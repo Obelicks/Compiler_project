@@ -27,7 +27,8 @@ int generate_TERM(TERM* t){
     case numK:
         //assembly here to replace returnK
         fprintf(stderr, "generating generate_TERM -> numK \n" );
-        fprintf(stdout,"movq $%i, %%r13\n", t->val.numT);
+        fprintf(stdout,"push $%i\n", t->val.numT);
+
         /*return t->val.numT;
 */
         break;
