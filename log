@@ -1,0 +1,56 @@
+Parsing...
+Typechecking...
+2
+LIST kind: 3
+DEC kind: 1
+TYPE KIND: 1
+putting aaa 0
+LIST kind: 5
+STM KIND: 4
+TYPE KIND: 0
+got symbol aaa of type 0
+EXP KIND: 12
+TERM KIND: 2
+found term of kind: 0
+LIST kind: 4
+STM KIND: 1
+EXP KIND: 12
+TERM KIND: 3
+EXP KIND: 12
+TERM KIND: 5
+TYPE KIND: 0
+got symbol aaa of type 0
+found term of kind: 0
+found term of kind: 0
+Generating code...
+Generating prologue...
+generating generate_prologue
+ending prologue
+writing main...
+generating generate_FUNC -> bodyK
+enter generate_LIST with variable 3
+generating generate_LIST -> decK
+enter generate_DEC with declaration of 1 
+generating generate_DEC -> dectypeK
+enter generate_LIST with variable 5
+generating generate_LIST -> statelistK
+generating generate_STM 
+generating generate_STM -> assignK 
+generating generate_EXP
+generating generate_EXP -> termK
+generating generate_TERM 
+generating generate_TERM -> numK 
+enter generate_LIST with variable 4
+generating generate_LIST -> stateK
+generating generate_STM 
+generating generate_STM -> writeK 
+generating generate_EXP
+generating generate_EXP -> termK
+generating generate_TERM 
+generating generate_TERM -> expK 
+generating generate_EXP
+generating generate_EXP -> termK
+generating generate_TERM 
+generating generate_TERM -> variableK 
+ending code/starting epilogue...
+code written

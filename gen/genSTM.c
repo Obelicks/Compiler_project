@@ -53,7 +53,7 @@ void generate_STM(STM* s){
     case assignK:
       //typie, code to assign value to variableK
       fprintf(stdout,"movq %%r8, %%r11\n");
-      fprintf(stdout,"movq $'%s', %%r12\n",s->val.assignS.variable->val.idT);
+      fprintf(stdout,"movq $%i, %%r12\n",(int)*s->val.assignS.variable->val.idT);
       fprintf(stdout,"cmp (%%r11), %%r12\n");
       fprintf(stdout,"je .+11\n");
       fprintf(stdout,"add $192, %%r11\n");
@@ -94,7 +94,7 @@ void generate_STM(STM* s){
       fprintf(stderr, "generating generate_STM -> whileK \n" );
       fprintf(stdout, "movq .+7 %%r10\n");
 
-      fprintf(stdout,"%i:\n", r1);
+      fprintf(stdout,"");
       generate_EXP(s->val.whileS.expression);
       fprintf(stdout,"jne %i\n", r);
       if(s->val.whileS.statement->kind == stmlistK){
