@@ -216,7 +216,6 @@ void generate_prologue(){
   fprintf(stdout,"movq $0, %%rdi\n");
   fprintf(stdout,"push %%r13\n");
   fprintf(stdout,"push %%r14\n");
-  fprintf(stdout,"push %%rax\n");
   fprintf(stdout,"push %%r8\n");
   fprintf(stdout,"push %%r9\n");
   fprintf(stdout,"push %%r10\n");
