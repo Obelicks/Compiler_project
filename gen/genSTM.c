@@ -12,6 +12,29 @@ void generate_STM(STM* s){
 
     case writeK:
       generate_EXP(s->val.writeS);
+      fprintf(stdout,"movq $format, %%rdi\n");
+      fprintf(stdout,"pop %%rsi\n");
+      fprintf(stdout,"movq $0, %%rax\n");
+      fprintf(stdout,"push %%r13\n");
+      fprintf(stdout,"push %%r14\n");
+      fprintf(stdout,"push %%rax\n");
+      fprintf(stdout,"push %%r8\n");
+      fprintf(stdout,"push %%r9\n");
+      fprintf(stdout,"push %%r10\n");
+      fprintf(stdout,"push %%r11\n");
+      fprintf(stdout,"push %%r12\n");
+      fprintf(stdout,"push %%rsi\n");
+      fprintf(stdout,"push %%rax\n");
+      fprintf(stdout,"call printf\n");
+      fprintf(stdout,"pop %%rax\n");
+      fprintf(stdout,"pop %%rsi\n");
+      fprintf(stdout,"pop %%r12\n");
+      fprintf(stdout,"pop %%r11\n");
+      fprintf(stdout,"pop %%r10\n");
+      fprintf(stdout,"pop %%r9\n");
+      fprintf(stdout,"pop %%r8\n");
+      fprintf(stdout,"pop %%r14\n");
+      fprintf(stdout,"pop %%r13\n");
       break;
 
    case allocateK:
@@ -23,10 +46,15 @@ void generate_STM(STM* s){
       break;
 
     case assignK:
-      generate_TYPE( s->val.assignS.variable);
+      //typie, code to assign value to variableK
+      fprintf(stdout,"movq %%r8, %%r11\n");
+      fprintf(stdout,"movq $'%s', %%r12\n",s->val.assignS.variable->val.idT);
+      fprintf(stdout,"cmp (%%r11), %%r12\n");
+      fprintf(stdout,"je .+11\n");
+      fprintf(stdout,"add $192, %%r11\n");
+      fprintf(stdout,"jmp .-12\n");
       generate_EXP( s->val.assignS.expression);
-
-      fprintf(stdout,"add $192, r9\n");
+      fprintf(stdout,"movq %%r13, 128(%%r11)\n");
 
       break;
 

@@ -170,8 +170,8 @@ void generate_EXP(EXP* e){
       //TODO since term can be more than just an integer value
       //we will have to move this code into genTerm.c at some point
       //fprintf(stdout,"%i \n", aterm);
-      fprintf(stdout,"movq $%i, %%r13\n", aterm);
-      fprintf(stdout,"push %%r13\n");
+      //fprintf(stdout,"movq $%i, %%r13\n", aterm);
+    //  fprintf(stdout,"push %%r13\n")
       break;
 
     case orK:
@@ -196,21 +196,13 @@ void generate_EXP(EXP* e){
 }
 void generate_prologue(){
   fprintf(stdout,".data\n");
-  fprintf(stdout,"format: .ascii \"%%d\\n\"\n");
-  fprintf(stdout,".text\n");
-  fprintf(stdout,".allocate_more: \n"); /*if I can get away with doing so, kill the push, pop*/
-  fprintf(stdout,"push %%rax\n");
-  fprintf(stdout,"push %%rbx\n");
-  fprintf(stdout,"add $16384, %%r10\n");
-  fprintf(stdout,"mov %%r10 %%rbx\n");
-  fprintf(stdout,"mov $45 %%rax\n");
-  fprintf(stdout,"int %%0x80\n");
-  fprintf(stdout,"pop %%rbx\n");
-  fprintf(stdout,"pop %%rax\n");
-  fprintf(stdout,"ret\n");
 
+  fprintf(stdout,"format: .ascii \"%%d\\n\"\n");
+  fprintf(stdout,".bss\n");
+  fprintf(stdout,".lcomm heap, 1064\n");
+  fprintf(stdout,".text\n");
   fprintf(stdout,".globl main\n");/*45 identifies the system call invoked by 0x80, specifically, the free memory pointer */
-  fprintf(stdout,"main:\n"); 
+  fprintf(stdout,"main:\n");
   fprintf(stdout,"subq $8, %%rsp\n");
   fprintf(stdout,"movq $0, %%rdi\n");
   fprintf(stdout,"push %%r13\n");
@@ -220,23 +212,14 @@ void generate_prologue(){
   fprintf(stdout,"push %%r9\n");
   fprintf(stdout,"push %%r10\n");
   fprintf(stdout,"push %%rax\n");
-  fprintf(stdout,"mov $45, %%rax\n");
-  fprintf(stdout,"xor %%rbx, %%rbx\n");
-  fprintf(stdout,"int %%0x80\n");
-  fprintf(stdout,"mov %%rsi, %%r8\n");
-  fprintf(stdout,"mov %%rsi, %%r9\n");
-  fprintf(stdout,"mov %%rsi, %%r10\n");
-  fprintf(stdout,"add $16384, %%r10\n");
-  fprintf(stdout,"mov %%r10, %%rbx\n");
-  fprintf(stdout,"int %%0x80\n");
+  fprintf(stdout,"leaq heap, %%r8\n");
+  fprintf(stdout,"leaq heap, %%r9\n");
+  fprintf(stdout,"leaq heap, %%r10\n");
+  fprintf(stdout,"add $1064, %%r10\n");
 }
 
 
 void generate_epilogue(){
-  fprintf(stdout,"mov $format, %%rdi\n");
-  fprintf(stdout,"pop %%rsi\n");
-  fprintf(stdout,"mov $0, %%eax\n");
-  fprintf(stdout,"call printf\n");
   fprintf(stdout,"pop %%rax\n");
   fprintf(stdout,"pop %%r10\n");
   fprintf(stdout,"pop %%r9\n");

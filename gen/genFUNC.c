@@ -34,9 +34,9 @@ void generate_FUNC(FUNC* function){
       break;
 
     case tailK:
-      fprintf(stdout,"mov $format, %%rdi\n");
+      fprintf(stdout,"movq $format, %%rdi\n");
       fprintf(stdout,"pop %%rsi\n");
-      fprintf(stdout,"mov $0, %%eax\n");
+      fprintf(stdout,"movq $0, %%rax\n");
       fprintf(stdout,"call printf\n");
       fprintf(stdout,"pop %%rax\n");
       fprintf(stdout,"pop %%r13\n");

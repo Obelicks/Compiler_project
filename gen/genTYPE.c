@@ -10,7 +10,7 @@ void generate_TYPE(TYPE* t){
       break;
 
     case intconstK:
-      fprintf(stdout,"dfs");
+      fprintf(stdout,"what happened");
       //fprintf(stdout,"dsf");
 
       //fprintf(stdout,"this is a test 9");

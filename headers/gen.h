@@ -10,6 +10,12 @@
     struct {IRtree* i; IRtree* el} elseI;
   }val;
 }IRtree;
+On Register Use:
+R8 is the pointer to the start of the allocated memory
+R9 is the pointer to the first empty space in the allocated memory
+R10 is the pointer to the end of the allocated memory.
+
+
 */
 void generate_prologue();
 

@@ -21,14 +21,8 @@ void generate_LIST(LIST *l){
         char* id = type->val.var_typeT.id;
         int kind = type->kind;
 
-        fprintf(stdout,"add $192, r9\n");
-        fprintf(stdout,"cmp %%r9, %%r10\n");
-        fprintf(stdout,"jge allocate_more\n");//TODO epilogue function
-        fprintf(stdout,"sub $192, r9\n");
-        fprintf(stdout,"movq $%i, (%%r9)\n", id);
-        fprintf(stdout,"add $64, %%r9\n");
-        fprintf(stdout,"movq $%i, (%%r9)\n", kind);
-        fprintf(stdout,"movq $0, (%%r9)\n");
+ /*todo list of variables.
+ */
         l = l->val.varlistL.var_decl_list;
       }
     case varK:
@@ -39,6 +33,10 @@ void generate_LIST(LIST *l){
     case decK:
 
       generate_DEC(l->val.decL.declaration);
+      if (l->val.decL.decl_list != NULL){
+        generate_LIST(l->val.decL.decl_list);
+      }
+
       break;
 
     case stateK:

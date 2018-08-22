@@ -23,9 +23,9 @@ int generate_TERM(TERM* t){
 
     case numK:
         //assembly here to replace returnK
-    //    fprintf(stdout,"--->%i<---", t->val.numT);
-        return t->val.numT;
-
+        fprintf(stdout,"movq $%i, %%r13\n", t->val.numT);
+        /*return t->val.numT;
+*/
         break;
 
     case expK:
@@ -37,7 +37,16 @@ int generate_TERM(TERM* t){
         break;
 
     case variableK:
-        generate_TYPE(t->val.variableT);
+        //assembly that returns
+
+        fprintf(stdout,"movq $'%s', %%r12\n", t->val.variableT->val.idT);
+        fprintf(stdout,"movq %%r8, %%r11\n");
+        fprintf(stdout,"cmp (%%r11), %%r12\n");
+        fprintf(stdout,"je .+11\n");
+        fprintf(stdout,"add $192, %%r11\n");
+        fprintf(stdout,"jmp .-12\n");
+        fprintf(stdout,"push 128(%%r11)\n");
+        //generate_TYPE(t->val.variableT);
         break;
 
     case act_listK:
