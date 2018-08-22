@@ -30,14 +30,18 @@ int typeCheckSTM(SymbolTable* symbolTable, STM* statement){
       break;
 
     case assignK:
+  
       type = statement->val.assignS.variable;
-      typeCheckTYPE(symbolTable, type);
+      typeCheckTYPE(symbolTable, statement->val.assignS.variable);
+                  fprintf(stderr,"12345 \n");
       if(type->kind != 0 /*bad coding style i know but i like it*/){
         fprintf(stderr,"error undefined assign variable \n");
         return -1;
       }
       symbol = getSymbol(symbolTable, type->val.idT);
+            fprintf(stderr,"symbol \n");
       typeCheck = typeCheckEXP(symbolTable, statement->val.assignS.expression);
+                  fprintf(stderr,"typecheck\n");
       if (symbol->type == typeCheck){
         return symbol->type;
       }else{

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "../headers/gen.h"
-
+extern long long int jumpnr;
 int rand();
 void generate_STM(STM* s){
   fprintf(stderr, "generating generate_STM \n" );
@@ -53,7 +53,7 @@ void generate_STM(STM* s){
     case assignK:
       //typie, code to assign value to variableK
       fprintf(stdout,"movq %%r8, %%r11\n");
-      fprintf(stdout,"movq $%i, %%r12\n",(long long int)*s->val.assignS.variable->val.idT);
+      fprintf(stdout,"movq $%lli, %%r12\n",(long long int)*s->val.assignS.variable->val.idT);
       fprintf(stdout,"cmp (%%r11), %%r12\n");
       fprintf(stdout,"je .+11\n");
       fprintf(stdout,"add $192, %%r11\n");
@@ -92,19 +92,43 @@ void generate_STM(STM* s){
       //TODO figure out a better way than rand?
 
       fprintf(stderr, "generating generate_STM -> whileK \n" );
-      fprintf(stdout, "movq .+7 %%r10\n");
-
-      fprintf(stdout,"");
+      fprintf(stdout,"push %%r13\n");
+      fprintf(stdout,"push %%r14\n");
+      fprintf(stdout,"push %%rax\n");
+      fprintf(stdout,"push %%r8\n");
+      fprintf(stdout,"push %%r9\n");
+      fprintf(stdout,"push %%r10\n");
+      fprintf(stdout,"push %%r11\n");
+      fprintf(stdout,"push %%r12\n");
+      fprintf(stdout,"push %%rsi\n");
+      fprintf(stdout,"push %%rax\n");
       generate_EXP(s->val.whileS.expression);
-      fprintf(stdout,"jne %i\n", r);
+      jumpnr = jumpnr + 2;
+      fprintf(stdout,"pop %%r8\n");
+      fprintf(stdout,"cmp $0, %%r8\n");
+      fprintf(stdout,"je %lli\n", jumpnr);
+      fprintf(stdout,"%lli:\n",(jumpnr-1));
       if(s->val.whileS.statement->kind == stmlistK){
         generate_LIST(s->val.whileS.statement->val.stmlistS);
       }else{
         generate_STM(s->val.whileS.statement);
       }
-      fprintf(stdout,"jmp %i\n", r1);
-      fprintf(stdout,"%i\n", r);
+      generate_EXP(s->val.whileS.expression);
+      fprintf(stdout,"pop %%r8\n");
+      fprintf(stdout,"cmp $0, %%r8\n");
+      fprintf(stdout,"je %lli\n", jumpnr);
+      fprintf(stdout,"jmp %lli\n",(jumpnr-1));
+      fprintf(stdout,"%lli:\n", jumpnr);
 
+      fprintf(stdout,"pop %%rax\n");
+      fprintf(stdout,"pop %%rsi\n");
+      fprintf(stdout,"pop %%r12\n");
+      fprintf(stdout,"pop %%r11\n");
+      fprintf(stdout,"pop %%r10\n");
+      fprintf(stdout,"pop %%r9\n");
+      fprintf(stdout,"pop %%r8\n");
+      fprintf(stdout,"pop %%r14\n");
+      fprintf(stdout,"pop %%r13\n");
       break;
 
     case stmlistK:
