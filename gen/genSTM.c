@@ -53,7 +53,7 @@ void generate_STM(STM* s){
     case assignK:
       //typie, code to assign value to variableK
       fprintf(stdout,"movq %%r8, %%r11\n");
-      fprintf(stdout,"movq $%i, %%r12\n",(int)*s->val.assignS.variable->val.idT);
+      fprintf(stdout,"movq $%i, %%r12\n",(long long int)*s->val.assignS.variable->val.idT);
       fprintf(stdout,"cmp (%%r11), %%r12\n");
       fprintf(stdout,"je .+11\n");
       fprintf(stdout,"add $192, %%r11\n");
