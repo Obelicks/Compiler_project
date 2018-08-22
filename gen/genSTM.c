@@ -3,14 +3,17 @@
 
 int rand();
 void generate_STM(STM* s){
+  fprintf(stderr, "generating generate_STM \n" );
   int r;
   int r1;
   switch (s->kind) {
     case returnK:
+      fprintf(stderr, "generating generate_STM -> returnK \n" );
       generate_EXP(s->val.returnS);
       break;
 
     case writeK:
+      fprintf(stderr, "generating generate_STM -> writeK \n" );
       generate_EXP(s->val.writeS);
       fprintf(stdout,"movq $format, %%rdi\n");
       fprintf(stdout,"pop %%rsi\n");
@@ -38,10 +41,12 @@ void generate_STM(STM* s){
       break;
 
    case allocateK:
+     fprintf(stderr, "generating generate_STM -> allocateK \n" );
       generate_TYPE(s->val.allocateS);
       break;
 
     case allocateoflengthK:
+      fprintf(stderr, "generating generate_STM -> allocateoflengthK \n" );
       generate_TYPE(s->val.allocateoflengthS.variable);
       break;
 
@@ -53,12 +58,15 @@ void generate_STM(STM* s){
       fprintf(stdout,"je .+11\n");
       fprintf(stdout,"add $192, %%r11\n");
       fprintf(stdout,"jmp .-12\n");
+      fprintf(stderr, "generating generate_STM -> assignK \n" );
       generate_EXP( s->val.assignS.expression);
       fprintf(stdout,"movq %%r13, 128(%%r11)\n");
 
       break;
 
     case ifthenK:
+      //TODO figure out a better way than rand?
+      fprintf(stderr, "generating generate_STM -> ifthenK \n" );
       r = rand();
       generate_EXP(s->val.ifthenS.ifState);
       fprintf(stdout, "movq 0 %%rax\ncmp %%rax %%r15\njne %i\n",r);
@@ -67,6 +75,8 @@ void generate_STM(STM* s){
       break;
 
     case ifelseK:
+      //TODO figure out a better way than rand?
+      fprintf(stderr, "generating generate_STM -> ifelseK \n" );
       r = rand();
       generate_EXP(s->val.ifelseS.ifState);
       fprintf(stdout, "movq 0 %%rax\n");
@@ -79,6 +89,8 @@ void generate_STM(STM* s){
       break;
 
     case whileK:
+      //TODO figure out a better way than rand?
+      fprintf(stderr, "generating generate_STM -> whileK \n" );
       r = rand();
       r1 = rand();
       fprintf(stdout,"%i:\n", r1);
@@ -95,6 +107,7 @@ void generate_STM(STM* s){
       break;
 
     case stmlistK:
+      fprintf(stderr, "generating generate_STM -> stmlistK \n" );
       break;
 
     default:
