@@ -60,7 +60,7 @@ void generate_STM(STM* s){
       fprintf(stdout,"jmp .-12\n");
       fprintf(stderr, "generating generate_STM -> assignK \n" );
       generate_EXP(s->val.assignS.expression);
-      fprintf(stdout,"movq %%r13, 128(%%r11)\n");
+      fprintf(stdout,"pop 128(%%r11)\n");
 
       break;
 
@@ -90,9 +90,10 @@ void generate_STM(STM* s){
 
     case whileK:
       //TODO figure out a better way than rand?
+
       fprintf(stderr, "generating generate_STM -> whileK \n" );
-      r = rand();
-      r1 = rand();
+      fprintf(stdout, "movq .+7 %%r10\n");
+
       fprintf(stdout,"%i:\n", r1);
       generate_EXP(s->val.whileS.expression);
       fprintf(stdout,"jne %i\n", r);
