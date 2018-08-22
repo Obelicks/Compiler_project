@@ -21,7 +21,6 @@ void generate_STM(STM* s){
       fprintf(stdout,"push %%r13\n");
       fprintf(stdout,"push %%r14\n");
       fprintf(stdout,"push %%rax\n");
-      fprintf(stdout,"push %%r8\n");
       fprintf(stdout,"push %%r9\n");
       fprintf(stdout,"push %%r10\n");
       fprintf(stdout,"push %%r11\n");
@@ -35,9 +34,9 @@ void generate_STM(STM* s){
       fprintf(stdout,"pop %%r11\n");
       fprintf(stdout,"pop %%r10\n");
       fprintf(stdout,"pop %%r9\n");
-      fprintf(stdout,"pop %%r8\n");
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"pop %%r13\n");
+      fprintf(stdout,"leaq heap, %%r8\n");
       break;
 
    case allocateK:
@@ -94,8 +93,6 @@ void generate_STM(STM* s){
       fprintf(stderr, "generating generate_STM -> whileK \n" );
       fprintf(stdout,"push %%r13\n");
       fprintf(stdout,"push %%r14\n");
-      fprintf(stdout,"push %%rax\n");
-      fprintf(stdout,"push %%r8\n");
       fprintf(stdout,"push %%r9\n");
       fprintf(stdout,"push %%r10\n");
       fprintf(stdout,"push %%r11\n");
@@ -104,29 +101,27 @@ void generate_STM(STM* s){
       fprintf(stdout,"push %%rax\n");
       generate_EXP(s->val.whileS.expression);
       jumpnr = jumpnr + 2;
-      fprintf(stdout,"pop %%r8\n");
-      fprintf(stdout,"cmp $0, %%r8\n");
-      fprintf(stdout,"je %lli\n", jumpnr);
-      fprintf(stdout,"%lli:\n",(jumpnr-1));
+      fprintf(stdout,"pop %%r14\n");
+      fprintf(stdout,"cmp $0, %%r14\n");
+      fprintf(stdout,"je .%lli\n", jumpnr);
+      fprintf(stdout,".%lli:\n",(jumpnr-1));
       if(s->val.whileS.statement->kind == stmlistK){
         generate_LIST(s->val.whileS.statement->val.stmlistS);
       }else{
         generate_STM(s->val.whileS.statement);
       }
       generate_EXP(s->val.whileS.expression);
-      fprintf(stdout,"pop %%r8\n");
-      fprintf(stdout,"cmp $0, %%r8\n");
-      fprintf(stdout,"je %lli\n", jumpnr);
-      fprintf(stdout,"jmp %lli\n",(jumpnr-1));
-      fprintf(stdout,"%lli:\n", jumpnr);
-
+      fprintf(stdout,"pop %%r14\n");
+      fprintf(stdout,"cmp $0, %%r14\n");
+      fprintf(stdout,"je .%lli\n", jumpnr);
+      fprintf(stdout,"jmp .%lli\n",(jumpnr-1));
+      fprintf(stdout,".%lli:\n", jumpnr);
       fprintf(stdout,"pop %%rax\n");
       fprintf(stdout,"pop %%rsi\n");
       fprintf(stdout,"pop %%r12\n");
       fprintf(stdout,"pop %%r11\n");
       fprintf(stdout,"pop %%r10\n");
       fprintf(stdout,"pop %%r9\n");
-      fprintf(stdout,"pop %%r8\n");
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"pop %%r13\n");
       break;

@@ -15,9 +15,9 @@ void generate_EXP(EXP* e){
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"cmp %%r14, %%r13\n");
       fprintf(stdout,"je .+11\n");
-      fprintf(stdout,"movq $1, %%r13\n");
-      fprintf(stdout,"jmp .+9\n");
       fprintf(stdout,"movq $0, %%r13\n");
+      fprintf(stdout,"jmp .+9\n");
+      fprintf(stdout,"movq $1, %%r13\n");
       fprintf(stdout,"push %%r13\n");
       break;
 
@@ -29,9 +29,9 @@ void generate_EXP(EXP* e){
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"cmp %%r14, %%r13\n");
       fprintf(stdout,"jne .+11\n");
-      fprintf(stdout,"movq $1, %%r13\n");
-      fprintf(stdout,"jmp .+9\n");
       fprintf(stdout,"movq $0, %%r13\n");
+      fprintf(stdout,"jmp .+9\n");
+      fprintf(stdout,"movq $1, %%r13\n");
       fprintf(stdout,"push %%r13\n");
       break;
 
@@ -216,7 +216,6 @@ void generate_prologue(){
   fprintf(stdout,"movq $0, %%rdi\n");
   fprintf(stdout,"push %%r13\n");
   fprintf(stdout,"push %%r14\n");
-  fprintf(stdout,"push %%rax\n");
   fprintf(stdout,"push %%r8\n");
   fprintf(stdout,"push %%r9\n");
   fprintf(stdout,"push %%r10\n");
