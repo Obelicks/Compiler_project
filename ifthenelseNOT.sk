@@ -4,6 +4,11 @@ var b: int;
 b = 1;
 if b then
    write 0;
-if 0 then
-  write 1;
-write 2;
+else
+   write 1;
+
+b = !b;
+if b then
+   write 1;
+else
+   write 0;
