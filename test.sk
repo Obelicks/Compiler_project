@@ -1,9 +1,14 @@
-var j: int;
+# Code generation, simple if statements
+var b: bool;
 
+b = true;
+if b then
+   write 0;
+else
+   write 1;
 
-j = 1;
-
-while j do {
-   j = j + 1;
-   write j;
-}
+b = !b;
+if b then
+   write 1;
+else
+   write 0;
