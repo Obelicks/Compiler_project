@@ -8,9 +8,13 @@ int generate_TERM(TERM* t){
   switch (t->kind) {
     case notK:
       fprintf(stderr, "generating generate_TERM -> notK \n" );
-      v =generate_TERM(t->val.notT);
-      v = !v;
-      return v;
+      generate_TERM(t->val.notT);
+      fprintf(stdout,"pop %%r14\n");
+      fprintf(stdout,"cmp $0, %%r14\n");
+      fprintf(stdout,"jne .+6\n");
+      fprintf(stdout,"push $1\n");
+      fprintf(stdout,"jmp .+4\n");
+      fprintf(stdout,"push $0\n");
       break;
 
     case absoluteK:
@@ -40,7 +44,7 @@ int generate_TERM(TERM* t){
 
     case booleanK:
       fprintf(stderr, "generating generate_TERM -> booleanK \n" );
-      return t->val.booleanT;
+      fprintf(stdout,"push $%i\n", t->val.booleanT);
       break;
 
     case variableK:

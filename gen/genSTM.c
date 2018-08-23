@@ -64,29 +64,60 @@ void generate_STM(STM* s){
       break;
 
     case ifthenK:
-      //TODO figure out a better way than rand?
+      jumpnr++;
       fprintf(stderr, "generating generate_STM -> ifthenK \n" );
-      r = rand();
+      fprintf(stdout,"push %%r13\n");
+      fprintf(stdout,"push %%r14\n");
+      fprintf(stdout,"push %%r9\n");
+      fprintf(stdout,"push %%r10\n");
+      fprintf(stdout,"push %%r11\n");
+      fprintf(stdout,"push %%r12\n");
+      fprintf(stdout,"push %%rsi\n");
+      fprintf(stdout,"push %%rax\n");
       generate_EXP(s->val.ifthenS.ifState);
-      fprintf(stdout, "movq 0 %%rax\ncmp %%rax %%r15\njne %i\n",r);
+      fprintf(stdout, "pop %%r14\n");
+      fprintf(stdout, "cmp $0, %%r14\n");
+      fprintf(stdout, "je .%lli\n",jumpnr);
       generate_STM(s->val.ifthenS.thenState);
-      fprintf(stdout, "%i:\n",r);
+      fprintf(stdout, ".%lli:\n",jumpnr);
+      fprintf(stdout,"pop %%rax\n");
+      fprintf(stdout,"pop %%rsi\n");
+      fprintf(stdout,"pop %%r12\n");
+      fprintf(stdout,"pop %%r11\n");
+      fprintf(stdout,"pop %%r10\n");
+      fprintf(stdout,"pop %%r9\n");
+      fprintf(stdout,"pop %%r14\n");
+      fprintf(stdout,"pop %%r13\n");
       break;
 
-    case ifelseK:
-      //TODO figure out a better way than rand?
+  /*  case ifelseK:
+      jumpnr++;
       fprintf(stderr, "generating generate_STM -> ifelseK \n" );
-      r = rand();
+      fprintf(stdout,"push %%r13\n");
+      fprintf(stdout,"push %%r14\n");
+      fprintf(stdout,"push %%r9\n");
+      fprintf(stdout,"push %%r10\n");
+      fprintf(stdout,"push %%r11\n");
+      fprintf(stdout,"push %%r12\n");
+      fprintf(stdout,"push %%rsi\n");
+      fprintf(stdout,"push %%rax\n");
       generate_EXP(s->val.ifelseS.ifState);
-      fprintf(stdout, "movq 0 %%rax\n");
-      fprintf(stdout, "cmp %%rax %%r15\n");
-      fprintf(stdout, "jne %i\n", r);
-      generate_STM(s->val.ifelseS.thenState);
-      fprintf(stdout, "jmp %i\n %i:\n",r+1,r);
+      fprintf(stdout, "pop %%r14\n");
+      fprintf(stdout, "cmp $0, %%r14\n");
+      fprintf(stdout, "je .%lli\n",jumpnr);
       generate_STM(s->val.ifelseS.elseState);
-      fprintf(stdout, "%i:\n",r );
+      fprintf(stdout, ".%lli:\n",jumpnr);
+      fprintf(stdout,"pop %%rax\n");
+      fprintf(stdout,"pop %%rax\n");
+      fprintf(stdout,"pop %%rsi\n");
+      fprintf(stdout,"pop %%r12\n");
+      fprintf(stdout,"pop %%r11\n");
+      fprintf(stdout,"pop %%r10\n");
+      fprintf(stdout,"pop %%r9\n");
+      fprintf(stdout,"pop %%r14\n");
+      fprintf(stdout,"pop %%r13\n");
       break;
-
+*/
     case whileK:
       //TODO figure out a better way than rand?
 
