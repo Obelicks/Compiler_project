@@ -1,6 +1,5 @@
 var j: int;
 
-
 j = 1;
 
 while j do {

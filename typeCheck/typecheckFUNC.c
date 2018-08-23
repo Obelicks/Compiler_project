@@ -10,16 +10,28 @@ int typeCheckFUNC(SymbolTable* symbolTable, FUNC* func){
   switch (func->kind) {
     case functionK:
       x =typeCheckFUNC(symbolTable, func->val.functionF.head);
+      if (x<0){
+        return x;
+      }
       y =typeCheckFUNC(symbolTable, func->val.functionF.body);
+      if (y<0){
+        return y;
+      }
       z =typeCheckFUNC(symbolTable, func->val.functionF.tail);
-      return x+y+z;
+      if (z<0){
+        return z;
+      }
+      return 0;
       break;
 
     case headK:
       //TODO: Add id
       x = typeCheckLIST(symbolTable, func->val.headF.par_decl_list);
+      if (x<0){
+        return x;
+      }
       y = typeCheckTYPE(symbolTable, func->val.headF.type);
-      return x+y;
+      return y;
       break;
 
     case bodyK:

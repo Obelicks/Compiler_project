@@ -1,9 +1,14 @@
-# Code generation, simple if statements
-var b: int;
+func quicksort(f : int, l : int) : bool
+var q : int, dummy : bool;
+{
+  if (f < l) then
+  {
+    q = partition(f,l);
+    dummy = quicksort(f,q-1);
+    dummy = quicksort(q+1,l);
+  }
+  return true;
+}
+end quicksort
 
-b = 1;
-if b then
-   write 0;
-if 0 then
-  write 1;
-write 2;
+write 42;

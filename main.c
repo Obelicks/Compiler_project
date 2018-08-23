@@ -17,6 +17,7 @@ int main(int argc, char* argv[]){
   SymbolTable* root = initSymbolTable();
   fprintf(stderr, "Parsing...\n");
   yyparse();
+  fprintf(stderr, "Parsed\n");
   //prettyFUNC(thebody);
   fprintf(stderr, "Typechecking...\n");
   int doesItWork = typeCheckFUNC(root, thebody);
@@ -24,6 +25,8 @@ int main(int argc, char* argv[]){
     fprintf(stderr, "typecheck error, code: %i\n", doesItWork);
     return 10 + doesItWork;
   }else{
+
+    fprintf(stderr, "typecheked\n");
     //doesItWork = weeder(thebody);
     //if(doesItWork) return 100 + doesItWork;
     fprintf(stderr, "Generating code...\nGenerating prologue...\n");
