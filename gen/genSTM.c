@@ -4,7 +4,7 @@ extern long long int jumpnr;
 int rand();
 void generate_STM(STM* s){
   fprintf(stderr, "generating generate_STM \n" );
-  int r;
+  long long int r;
   int r1;
   switch (s->kind) {
     case returnK:
@@ -101,10 +101,11 @@ void generate_STM(STM* s){
       fprintf(stdout,"push %%rax\n");
       generate_EXP(s->val.whileS.expression);
       jumpnr = jumpnr + 2;
+      r = jumpnr;
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"cmp $0, %%r14\n");
-      fprintf(stdout,"je .%lli\n", jumpnr);
-      fprintf(stdout,".%lli:\n",(jumpnr-1));
+      fprintf(stdout,"je .%lli\n", r);
+      fprintf(stdout,".%lli:\n",(r-1));
       if(s->val.whileS.statement->kind == stmlistK){
         generate_LIST(s->val.whileS.statement->val.stmlistS);
       }else{
@@ -113,9 +114,9 @@ void generate_STM(STM* s){
       generate_EXP(s->val.whileS.expression);
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"cmp $0, %%r14\n");
-      fprintf(stdout,"je .%lli\n", jumpnr);
-      fprintf(stdout,"jmp .%lli\n",(jumpnr-1));
-      fprintf(stdout,".%lli:\n", jumpnr);
+      fprintf(stdout,"je .%lli\n", r);
+      fprintf(stdout,"jmp .%lli\n",(r-1));
+      fprintf(stdout,".%lli:\n", r);
       fprintf(stdout,"pop %%rax\n");
       fprintf(stdout,"pop %%rsi\n");
       fprintf(stdout,"pop %%r12\n");
