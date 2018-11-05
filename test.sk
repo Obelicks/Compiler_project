@@ -1,14 +1,1 @@
-func quicksort(f : int, l : int) : bool
-var q : int, dummy : bool;
-{
-  if (f < l) then
-  {
-    q = partition(f,l);
-    dummy = quicksort(f,q-1);
-    dummy = quicksort(q+1,l);
-  }
-  return true;
-}
-end quicksort
-
-write 42;
+write 2;

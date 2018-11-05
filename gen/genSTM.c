@@ -15,8 +15,24 @@ void generate_STM(STM* s){
     case writeK:
       fprintf(stderr, "generating generate_STM -> writeK \n" );
       generate_EXP(s->val.writeS);
-      fprintf(stdout,"movq $format, %%rdi\n");
-      fprintf(stdout,"pop %%rsi\n");
+      fprintf(stdout,"subq	$8, %rsp\n");
+      fprintf(stdout,"pop %rdx\n");
+      fprintf(stdout,"movq	$1, %rdi\n");
+      fprintf(stdout,"xorq	%rax, %rax\n");
+      fprintf(stdout,"call	__printf_chk@PLT\n");
+      fprintf(stdout,"xorq	%rax, %rax\n");
+      fprintf(stdout,"addq	$8, %rsp\n");
+
+
+
+
+
+
+
+
+
+      /*fprintf(stdout,"movq $format, %%rdi\n");
+
       fprintf(stdout,"movq $0, %%rax\n");
       fprintf(stdout,"push %%r13\n");
       fprintf(stdout,"push %%r14\n");
@@ -36,7 +52,8 @@ void generate_STM(STM* s){
       fprintf(stdout,"pop %%r9\n");
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"pop %%r13\n");
-      fprintf(stdout,"leaq heap, %%r8\n");
+  */
+    //  fprintf(stdout,"leaq heap, %%r8\n");
       break;
 
    case allocateK:
