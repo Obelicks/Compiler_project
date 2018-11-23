@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "../headers/gen.h"
 #include"../headers/tree.h"
-
+extern long long int jumpnr;
 void generate_EXP(EXP* e){
   fprintf(stderr, "generating generate_EXP\n" );
   int aterm;
@@ -202,37 +202,30 @@ void generate_EXP(EXP* e){
       break;
   }return;
 }
-void generate_prologue(){
-  fprintf(stderr, "generating generate_prologue\n" );
-  fprintf(stdout,".data\n");
 
-  fprintf(stdout,"format: .ascii \"%%d\\n\"\n");
-  fprintf(stdout,".bss\n");
-  fprintf(stdout,".lcomm heap, 1064\n");
+
+void generate_prologue(){
+  fprintf(stdout,"format: \n .string \"%%d\\n\"\n");
   fprintf(stdout,".text\n");
   fprintf(stdout,".globl main\n");/*45 identifies the system call invoked by 0x80, specifically, the free memory pointer */
   fprintf(stdout,"main:\n");
-  fprintf(stdout,"subq $8, %%rsp\n");
-  fprintf(stdout,"movq $0, %%rdi\n");
-  fprintf(stdout,"push %%r13\n");
-  fprintf(stdout,"push %%r14\n");
-  fprintf(stdout,"push %%r8\n");
-  fprintf(stdout,"push %%r9\n");
-  fprintf(stdout,"push %%r10\n");
-  fprintf(stdout,"push %%rax\n");
-  fprintf(stdout,"leaq heap, %%r8\n");
-  fprintf(stdout,"leaq heap, %%r9\n");
-  fprintf(stdout,"leaq heap, %%r10\n");
-  fprintf(stdout,"add $1064, %%r10\n");
+  fprintf(stdout,"movq %%rsp, %%r8\n");
+  fprintf(stdout,"add $-8, %%r8\n");
+  fprintf(stdout,"movq %%rsp, %%r9\n");
 }
 
 
 void generate_epilogue(){
-  fprintf(stdout,"pop %%rax\n");
-  fprintf(stdout,"pop %%r10\n");
-  fprintf(stdout,"pop %%r9\n");
-  fprintf(stdout,"pop %%r8\n");
-  fprintf(stdout,"pop %%r14\n");
-  fprintf(stdout,"pop %%r13\n");
-  fprintf(stdout,"call _exit\n");
+/*  fprintf(stdout,"movq $0, %%rax\n");
+  fprintf(stdout,"movq %%r8, %%rsp\n");
+*/
+  fprintf(stdout, "call _exit\n");
+/*  pop %r15	 # restoring "callee save" register
+  pop %r14	 # restoring "callee save" register
+  pop %r13	 # restoring "callee save" register
+  pop %r12	 # restoring "callee save" register
+  pop %rbx	 # restoring "callee save" register
+        movq %rbp,%rsp	 # restoring stack pointer
+        pop %rbp	 # restoring base pointer
+*/
 }

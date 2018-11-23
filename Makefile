@@ -69,7 +69,7 @@ run:
 	./compiler < test.sk > $(SRC) 2>log
 
 compile:
-	gcc -o testout -m64 $(SRC)
+	gcc -no-pie -o testout -m64 $(SRC)
 debug:
 	objdump -f -s -d --source testout
 clean:

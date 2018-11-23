@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include "../headers/gen.h"
-
+extern long long int jumpnr;
 int generate_TERM(TERM* t){
   fprintf(stderr, "generating generate_TERM \n" );
-  int v;
+  long long int r, r1;
   //int val;
   switch (t->kind) {
     case notK:
@@ -48,15 +48,21 @@ int generate_TERM(TERM* t){
       break;
 
     case variableK:
+        r = jumpnr;
+        jumpnr++;
+        r1 = jumpnr;
+        jumpnr++;
         //assembly that returns
         fprintf(stderr, "generating generate_TERM -> variableK \n" );
         fprintf(stdout,"movq $%lli, %%r12\n", (long long int)*t->val.variableT->val.idT);
         fprintf(stdout,"movq %%r8, %%r11\n");
+        fprintf(stdout, ".%lli:\n",r1);
         fprintf(stdout,"cmp (%%r11), %%r12\n");
-        fprintf(stdout,"je .+11\n");
-        fprintf(stdout,"add $192, %%r11\n");
-        fprintf(stdout,"jmp .-12\n");
-        fprintf(stdout,"push 128(%%r11)\n");
+        fprintf(stdout, "je .%lli\n",r);
+        fprintf(stdout,"add $-24, %%r11\n");
+        fprintf(stdout, "jmp .%lli\n",r1);;
+        fprintf(stdout, ".%lli:\n",r);
+        fprintf(stdout,"push -16(%%r11)\n");
         //generate_TYPE(t->val.variableT);
         break;
 
