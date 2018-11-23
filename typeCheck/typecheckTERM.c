@@ -19,7 +19,7 @@ int typeCheckTERM(SymbolTable* symbolTable, TERM* term){
 
     case absoluteK:
       x =typeCheckEXP(symbolTable, term->val.absoluteT);
-      if (x<0){
+      if (x<=0){
         return x;
       }
       break;
@@ -31,7 +31,7 @@ int typeCheckTERM(SymbolTable* symbolTable, TERM* term){
 
     case expK:
       x =typeCheckEXP(symbolTable, term->val.expT);
-      if (x<0){
+      if (x<=0){
         return x;
       }
       break;
@@ -47,7 +47,7 @@ int typeCheckTERM(SymbolTable* symbolTable, TERM* term){
 
     case act_listK:
       x =typeCheckLIST(symbolTable, term->val.act_listT.act_list);
-      if (x<0){
+      if (x<=0){
         return x;
       }
       //return atoi(term->val.act_listT.id);

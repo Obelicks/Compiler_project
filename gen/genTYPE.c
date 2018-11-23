@@ -3,7 +3,6 @@
 #include "../headers/symbol.h"
 
 void generate_TYPE(TYPE* t){
-  int x;
   fprintf(stderr, "generating generate_TYPE\n" );
    switch (t->kind) {
     case idK:

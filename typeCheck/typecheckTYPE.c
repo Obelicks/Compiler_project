@@ -30,14 +30,14 @@ int typeCheckTYPE(SymbolTable* symbolTable, TYPE* type){
 
     case arrayK:
       x =typeCheckTYPE(symbolTable, type->val.arrayT);
-      if (x<0){
+      if (x<=0){
         return x;
       }
       break;
 
     case recordK:
       x=typeCheckLIST(symbolTable, type->val.recordT);
-      if (x<0){
+      if (x<=0){
         return x;
       }
       break;
@@ -51,11 +51,11 @@ int typeCheckTYPE(SymbolTable* symbolTable, TYPE* type){
 
     case varexpK:
       x=typeCheckTYPE(symbolTable, type->val.varexpT.variable);
-      if (x<0){
+      if (x<=0){
         return x;
       }
       x=typeCheckEXP(symbolTable, type->val.varexpT.expression);
-      if (x<0){
+      if (x<=0){
         return x;
       }
       break;
