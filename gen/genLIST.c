@@ -65,7 +65,9 @@ void generate_LIST(LIST *l){
 
     case actlistK:
       fprintf(stderr, "generating generate_LIST -> actlistK\n" );
-      generate_LIST(l->val.actlistL);
+      if(NULL != l->val.actlistL){
+        generate_LIST(l->val.actlistL);
+      }
       break;
 
     case expressionK:
