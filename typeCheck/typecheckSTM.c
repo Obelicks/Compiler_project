@@ -14,32 +14,32 @@ int typeCheckSTM(SymbolTable* symbolTable, STM* statement){
   switch (statement->kind) {
     case returnK:
       x=typeCheckEXP(symbolTable, statement->val.returnS);
-      if (x<0){
+      if (x<=0){
         return x;
       }
       break;
 
     case writeK:
       x=typeCheckEXP(symbolTable, statement->val.writeS);
-      if (x<0){
+      if (x<=0){
         return x;
       }
       break;
 
     case allocateK:
       x=typeCheckTYPE(symbolTable, statement->val.allocateS);
-      if (x<0){
+      if (x<=0){
         return x;
       }
       break;
 
     case allocateoflengthK:
       x=typeCheckTYPE(symbolTable, statement->val.allocateoflengthS.variable);
-      if (x<0){
+      if (x<=0){
         return x;
       }
       x=typeCheckEXP(symbolTable, statement->val.allocateoflengthS.expression);
-      if (x<0){
+      if (x<=0){
         return x;
       }
       break;
@@ -62,44 +62,44 @@ int typeCheckSTM(SymbolTable* symbolTable, STM* statement){
 
     case ifthenK:
       x= typeCheckEXP(symbolTable, statement->val.ifthenS.ifState);
-      if (x<0){
+      if (x<=0){
         return x;
       }
       x =typeCheckSTM(symbolTable, statement->val.ifthenS.thenState);
-      if (x<0){
+      if (x<=0){
         return x;
       }
       break;
 
     case ifelseK:
       x=typeCheckEXP(symbolTable, statement->val.ifelseS.ifState);
-      if (x<0){
+      if (x<=0){
         return x;
       }
       x=typeCheckSTM(symbolTable, statement->val.ifelseS.thenState);
-      if (x<0){
+      if (x<=0){
         return x;
       }
       x=typeCheckSTM(symbolTable, statement->val.ifelseS.elseState);
-      if (x<0){
+      if (x<=0){
         return x;
       }
       break;
 
     case whileK:
       x=typeCheckEXP(symbolTable, statement->val.whileS.expression);
-      if (x<0){
+      if (x<=0){
         return x;
       }
       x=typeCheckSTM(symbolTable, statement->val.whileS.statement);
-      if (x<0){
+      if (x<=0){
         return x;
       }
       break;
 
     case stmlistK:
       x=typeCheckLIST(symbolTable, statement->val.stmlistS);
-      if (x<0){
+      if (x<=0){
         return x;
       }
       break;
