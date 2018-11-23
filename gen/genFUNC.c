@@ -14,19 +14,9 @@ void generate_FUNC(FUNC* function){
 
     case headK:
       fprintf(stderr, "generating generate_FUNC -> headK\n" );
-/*
-      fprintf(stdout,".data\n");
-      fprintf(stdout,"format: .ascii \"%%d\\n\"\n");
-      fprintf(stdout,".text\n");
-      fprintf(stdout, ".globl %s:\n", function->val.headF.id);
-      fprintf(stdout, "%s:\n", function->val.headF.id);
-*/
-      fprintf(stdout,"subq $8, %%rsp\n");
-      fprintf(stdout,"movq $0, %%rdi\n");
-      fprintf(stdout,"push %%r13\n");
-      fprintf(stdout,"push %%r14\n");
-      fprintf(stdout,"push %%rax\n");
-      //TODO function prologue with parsing variables
+      fprintf(stdout,"%lli:\n",(long long int) function->val.headF.id);
+    //  function->val.headF.par_decl_list
+
       break;
 
     case bodyK:
