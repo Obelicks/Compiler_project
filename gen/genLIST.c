@@ -18,23 +18,24 @@ void generate_LIST(LIST *l){
       fprintf(stderr, "generating generate_LIST -> var_list\n" );
       fprintf(stderr, "generating generate_DEC -> dectypeK\n" );
       //TODO assember der laver en variabel
-      fprintf(stdout,"movq $%lli, (%%r9)\n",(long long int)*l->val.varlistL.var_type->val.var_typeT.id);
-      fprintf(stdout,"movq $%i, 64(%%r9)\n", l->val.varlistL.var_type->kind);
-      fprintf(stdout,"movq $0, 128(%%r9)\n");
+      fprintf(stdout,"push $%lli\n",(long long int)*l->val.varlistL.var_type->val.var_typeT.id);
+      fprintf(stdout,"push $%lli\n",(long long int)l->val.varlistL.var_type->kind);
+      fprintf(stdout,"push $0\n");
       fprintf(stdout,"add $192, %%r9\n");
 
       if (l->val.varlistL.var_decl_list != NULL){
         generate_LIST(l->val.varlistL.var_decl_list);
 
       }
+      break;
     case varK:
       fprintf(stderr, "generating generate_LIST -> varK\n" );
       fprintf(stderr, "generating generate_LIST -> var_list\n" );
       fprintf(stderr, "generating generate_DEC -> dectypeK\n" );
       //TODO assember der laver en variabel
-      fprintf(stdout,"movq $%lli, (%%r9)\n",(long long int)*l->val.varL->val.var_typeT.id);
-      fprintf(stdout,"movq $%i, 64(%%r9)\n", l->val.varL->kind);
-      fprintf(stdout,"movq $0, 128(%%r9)\n");
+      fprintf(stdout,"push $%lli\n",(long long int)*l->val.varL->val.var_typeT.id);
+      fprintf(stdout,"push $%lli\n", (long long int)l->val.varL->kind);
+      fprintf(stdout,"push $0\n");
       fprintf(stdout,"add $192, %%r9\n");
       break;
 
