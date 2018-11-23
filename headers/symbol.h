@@ -5,6 +5,7 @@
 #define INTEGER 0
 #define BOOLEAN 1
 #define ID 2
+#define FUNKTION 3
 
 #define HashSize 317
 

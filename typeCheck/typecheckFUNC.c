@@ -26,6 +26,9 @@ int typeCheckFUNC(SymbolTable* symbolTable, FUNC* func){
 
     case headK:
       //TODO: Add id
+      if(NULL == putSymbol(symbolTable,func->val.headF.id,FUNKTION,0)){
+        return -11;
+      }
       x = typeCheckLIST(symbolTable, func->val.headF.par_decl_list);
       if (x<0){
         return x;
