@@ -43,6 +43,7 @@ void generate_TYPE(TYPE* t){
       fprintf(stderr, "generating generate_TYPE -> var_typeK\n" );
       //add code
       generate_TYPE(t->val.var_typeT.variable);
+      fprintf(stdout,"push $%lli\n",(long long int)d->val.dectypeD.type->kind);
       break;
 
     default:

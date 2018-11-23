@@ -14,7 +14,11 @@ void generate_DEC(DEC *d){
       fprintf(stderr, "generating generate_DEC -> dectypeK\n" );
       //TODO assember der laver en variabel
       fprintf(stdout,"push $%lli\n",(long long int)*d->val.dectypeD.id);
-      fprintf(stdout,"push $%lli\n",(long long int)d->val.dectypeD.type->kind);
+      if(d->val.dectypeD.type->kind == 7){
+        generate_TYPE(d->val.dectypeD.type);
+      }else{
+        fprintf(stdout,"push $%lli\n",(long long int)d->val.dectypeD.type->kind);
+      }
       fprintf(stdout,"push $0\n");
 
       //fprintf(stdout,"add $192, %%r9\n");
