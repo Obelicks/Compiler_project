@@ -148,7 +148,7 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
       if (x<0){
         return x;
       }
-      fprintf(stderr,"found term of kind: %i\n", x);
+      //fprintf(stderr,"found term of kind: %i\n", x);
 
       return x;
       break;
