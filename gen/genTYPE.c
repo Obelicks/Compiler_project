@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include "../headers/gen.h"
+#include "../headers/symbol.h"
 
-void generate_TYPE(TYPE* t){
+int generate_TYPE(TYPE* t){
+  int x;
   fprintf(stderr, "generating generate_TYPE\n" );
    switch (t->kind) {
     case idK:
@@ -10,7 +12,6 @@ void generate_TYPE(TYPE* t){
 
     case intconstK:
       fprintf(stderr, "generating generate_TYPE -> intconstK\n" );
-      //fprintf(stdout,"dsf");
       //fprintf(stdout,"this is a test 9");
       break;
 
@@ -43,7 +44,7 @@ void generate_TYPE(TYPE* t){
       fprintf(stderr, "generating generate_TYPE -> var_typeK\n" );
       //add code
       generate_TYPE(t->val.var_typeT.variable);
-      fprintf(stdout,"push $%lli\n",(long long int)d->val.dectypeD.type->kind);
+      fprintf(stdout,"push $%lli\n",t->val.var_typeT.variable->kind);
       break;
 
     default:
