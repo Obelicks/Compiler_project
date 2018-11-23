@@ -2,7 +2,7 @@
 #include "../headers/gen.h"
 #include "../headers/symbol.h"
 
-int generate_TYPE(TYPE* t){
+void generate_TYPE(TYPE* t){
   int x;
   fprintf(stderr, "generating generate_TYPE\n" );
    switch (t->kind) {
