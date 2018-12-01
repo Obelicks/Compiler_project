@@ -71,49 +71,5 @@ call	printf
 pop %rdx
 pop %r9
 pop %r8
-push $0
-push $43
-pop %r14
-pop %r13
-sub %r14, %r13
-push %r13
-push $50
-call adder
-movq $format, %rdi
-pop %rsi
-xorq	%rax, %rax
-push %r8
-push %r9
-push %rdx
-call	printf
-pop %rdx
-pop %r9
-pop %r8
-push $0
-push $0
-call adder
-movq $format, %rdi
-pop %rsi
-xorq	%rax, %rax
-push %r8
-push %r9
-push %rdx
-call	printf
-pop %rdx
-pop %r9
-pop %r8
-push $1023
-push $765
-call adder
-movq $format, %rdi
-pop %rsi
-xorq	%rax, %rax
-push %r8
-push %r9
-push %rdx
-call	printf
-pop %rdx
-pop %r9
-pop %r8
 movq %r9, %rsp
 call _exit

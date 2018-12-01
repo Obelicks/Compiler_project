@@ -11,7 +11,7 @@ LIST kind: 1
 TYPE KIND: 7
 TYPE KIND: 1
 putting id: i of type: 1
-LIST kind: 5
+LIST kind: 4
 STM KIND: 1
 EXP KIND: 12
 TERM KIND: 6
@@ -58,79 +58,7 @@ generating generate_EXP -> termK
 generating generate_TERM 
 generating generate_TERM -> variableK 
 generating generate_FUNC -> tailK
-end of function adderenter generate_LIST with variable 5
-generating generate_LIST -> statelistK
-generating generate_STM 
-generating generate_STM -> writeK 
-generating generate_EXP
-generating generate_EXP -> termK
-generating generate_TERM 
-generating generate_TERM -> actlistK 
-enter generate_LIST with variable 6
-generating generate_LIST -> actlistK
-enter generate_LIST with variable 8
-generating generate_LIST -> explistK
-generating generate_EXP
-generating generate_EXP -> termK
-generating generate_TERM 
-generating generate_TERM -> numK 
-enter generate_LIST with variable 7
-generating generate_LIST -> expressionK
-generating generate_EXP
-generating generate_EXP -> termK
-generating generate_TERM 
-generating generate_TERM -> numK 
-enter generate_LIST with variable 5
-generating generate_LIST -> statelistK
-generating generate_STM 
-generating generate_STM -> writeK 
-generating generate_EXP
-generating generate_EXP -> termK
-generating generate_TERM 
-generating generate_TERM -> actlistK 
-enter generate_LIST with variable 6
-generating generate_LIST -> actlistK
-enter generate_LIST with variable 8
-generating generate_LIST -> explistK
-generating generate_EXP
-generating generate_EXP -> minusK
-generating generate_EXP
-generating generate_EXP -> termK
-generating generate_TERM 
-generating generate_TERM -> numK 
-generating generate_EXP
-generating generate_EXP -> termK
-generating generate_TERM 
-generating generate_TERM -> numK 
-enter generate_LIST with variable 7
-generating generate_LIST -> expressionK
-generating generate_EXP
-generating generate_EXP -> termK
-generating generate_TERM 
-generating generate_TERM -> numK 
-enter generate_LIST with variable 5
-generating generate_LIST -> statelistK
-generating generate_STM 
-generating generate_STM -> writeK 
-generating generate_EXP
-generating generate_EXP -> termK
-generating generate_TERM 
-generating generate_TERM -> actlistK 
-enter generate_LIST with variable 6
-generating generate_LIST -> actlistK
-enter generate_LIST with variable 8
-generating generate_LIST -> explistK
-generating generate_EXP
-generating generate_EXP -> termK
-generating generate_TERM 
-generating generate_TERM -> numK 
-enter generate_LIST with variable 7
-generating generate_LIST -> expressionK
-generating generate_EXP
-generating generate_EXP -> termK
-generating generate_TERM 
-generating generate_TERM -> numK 
-enter generate_LIST with variable 4
+end of function adderenter generate_LIST with variable 4
 generating generate_LIST -> stateK
 generating generate_STM 
 generating generate_STM -> writeK 
