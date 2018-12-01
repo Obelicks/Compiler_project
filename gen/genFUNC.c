@@ -4,6 +4,7 @@
 #include "../headers/gen.h"
 extern long long int jumpnr;
 extern long long int variablecounter;
+extern long long int returnadress;
 void generate_FUNC(FUNC* function){
   long long int r;
   long long int r1;
@@ -20,8 +21,7 @@ void generate_FUNC(FUNC* function){
       jumpnr++;
       fprintf(stderr, "generating generate_FUNC -> headK\n" );
       fprintf(stdout,"jmp .%lli\n", r);
-      fprintf(stdout,"%s:\n", function->val.headF.id);
-      fprintf(stdout,"add $-8, %%rsp\n");
+      fprintf(stdout,".%s:\n", function->val.headF.id);
       fprintf(stdout,"push %%r8\n");//static pointer.
       fprintf(stdout,"push %%r9\n");
       fprintf(stdout,"push %%r11\n");
@@ -59,14 +59,14 @@ void generate_FUNC(FUNC* function){
 
     case tailK:
       fprintf(stderr, "generating generate_FUNC -> tailK\n" );
-      fprintf(stdout,"pop %%rax\n");
+      fprintf(stdout,"pop %%r10\n");
       fprintf(stdout,"movq %%r15, %%rsp\n");
       fprintf(stdout,"pop %%r12\n");
       fprintf(stdout,"pop %%r11\n");
       fprintf(stdout,"pop %%r9\n");
       fprintf(stdout,"pop %%r8\n");
-      fprintf(stdout,"add $8, %%rsp\n");
-      fprintf(stdout,"ret\n");
+      fprintf(stdout,"push %%r10\n");
+      fprintf(stdout, "jmp .%s1\n", function->val.headF.id);
       fprintf(stdout,".%lli:\n",(r));
       fprintf(stderr,"end of function %s", function->val.tailF);
       break;

@@ -7,8 +7,7 @@ movq %rsp, %r8
 add $-8, %r8
 movq %rsp, %r9
 jmp .0
-adder:
-add $-8, %rsp
+.adder:
 push %r8
 push %r9
 push %r11
@@ -49,18 +48,66 @@ pop %r13
 pop %r14
 add %r14, %r13
 push %r13
-pop %rax
+pop %r10
 movq %r15, %rsp
 pop %r12
 pop %r11
 pop %r9
 pop %r8
-add $8, %rsp
-ret
+push %r10
+jmp .adder1
 .0:
 push $11
 push $34
-call adder
+jmp .adder
+.adder1:
+movq $format, %rdi
+pop %rsi
+xorq	%rax, %rax
+push %r8
+push %r9
+push %rdx
+call	printf
+pop %rdx
+pop %r9
+pop %r8
+push $0
+push $43
+pop %r14
+pop %r13
+sub %r14, %r13
+push %r13
+push $50
+jmp .adder
+.adder1:
+movq $format, %rdi
+pop %rsi
+xorq	%rax, %rax
+push %r8
+push %r9
+push %rdx
+call	printf
+pop %rdx
+pop %r9
+pop %r8
+push $0
+push $0
+jmp .adder
+.adder1:
+movq $format, %rdi
+pop %rsi
+xorq	%rax, %rax
+push %r8
+push %r9
+push %rdx
+call	printf
+pop %rdx
+pop %r9
+pop %r8
+push $1023
+push $765
+jmp .adder
+.adder1:
 movq $format, %rdi
 pop %rsi
 xorq	%rax, %rax

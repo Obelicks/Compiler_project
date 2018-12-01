@@ -8,7 +8,7 @@
 int lineno;
 long long int jumpnr;
 long long int variablecounter;
-long long int comparator;
+long long int returnadress;
 void yyparse();
 FILE* yyin;
 FUNC* thebody;

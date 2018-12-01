@@ -2,6 +2,7 @@
 #include "../headers/gen.h"
 extern long long int jumpnr;
 extern long long int comparator;
+extern long long int returnadress;
 int generate_TERM(TERM* t){
   fprintf(stderr, "generating generate_TERM \n" );
   long long int r, r1;
@@ -69,7 +70,7 @@ int generate_TERM(TERM* t){
     case act_listK:
       fprintf(stderr, "generating generate_TERM -> actlistK \n" );
       generate_LIST(t->val.act_listT.act_list);//TODO pass the variables needed for the function
-      fprintf(stdout, "call %s\n",t->val.act_listT.id);
+      fprintf(stdout, "jmp .%s\n",t->val.act_listT.id);
       break;
 
     default:
