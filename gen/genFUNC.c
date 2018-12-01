@@ -21,23 +21,26 @@ void generate_FUNC(FUNC* function){
       fprintf(stderr, "generating generate_FUNC -> headK\n" );
       fprintf(stdout,"jmp .%lli\n", r);
       fprintf(stdout,"%s:\n", function->val.headF.id);
-      fprintf(stdout,"push %%r8\n");
+      fprintf(stdout,"add $-8, %%rsp\n");
+      fprintf(stdout,"push %%r8\n");//static pointer.
       fprintf(stdout,"push %%r9\n");
       fprintf(stdout,"push %%r11\n");
       fprintf(stdout,"push %%r12\n");
       fprintf(stdout,"movq %%rsp, %%r15\n");
-      variablecounter = 0
-      ;
+      variablecounter = 0;
+      fprintf(stdout,"movq %%rsp, %%r8\n");
+      fprintf(stdout,"add $-8, %%r8\n");
       if (function->val.headF.par_decl_list != NULL) {
         generate_LIST(function->val.headF.par_decl_list);
 
       }
+      fprintf(stdout,"movq %%rsp, %%r9\n");
       if(variablecounter > 0){
       long long int temp = variablecounter*32;
-      temp = temp + 32; //this is to reach past the saved registers.
+      temp = temp + 24; //this is to reach past the saved registers.
       long long int temp2 = variablecounter*24;
-      temp2 = temp2-16;
-      for(;temp2 > 0; temp2 = temp2 -24){
+      temp2 = temp2-24;
+      for(;temp2 >= 0; temp2 = temp2 -24){
 
         fprintf(stdout,"movq %lli(%%rsp), %%r10\n", temp);
         temp = temp-8;
@@ -56,13 +59,13 @@ void generate_FUNC(FUNC* function){
 
     case tailK:
       fprintf(stderr, "generating generate_FUNC -> tailK\n" );
-      fprintf(stdout,"pop %%r10\n");
+      fprintf(stdout,"pop %%rax\n");
       fprintf(stdout,"movq %%r15, %%rsp\n");
       fprintf(stdout,"pop %%r12\n");
       fprintf(stdout,"pop %%r11\n");
       fprintf(stdout,"pop %%r9\n");
       fprintf(stdout,"pop %%r8\n");
-      fprintf(stdout,"push %%r10\n");
+      fprintf(stdout,"add $8, %%rsp\n");
       fprintf(stdout,"ret\n");
       fprintf(stdout,".%lli:\n",(r));
       fprintf(stderr,"end of function %s", function->val.tailF);

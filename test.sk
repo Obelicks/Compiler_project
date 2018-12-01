@@ -1,10 +1,9 @@
-var b: bool;
+# Code generation, simple function
+func adder(i: int, j: int): int
+   return i + j;
+end adder
 
-b = true;
-if b then
-   write 0;
-else
-   write 1;
-
-if b then
-  write 1;
+write adder(11, 34);
+write adder(0-43, 50);
+write adder(0, 0);
+write adder(1023, 765);
