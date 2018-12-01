@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "../headers/gen.h"
-
+extern long long int variablecounter;
 
 void generate_DEC(DEC *d){
   fprintf(stderr, "enter generate_DEC with declaration of %d \n", d->kind );
@@ -20,9 +20,6 @@ void generate_DEC(DEC *d){
         fprintf(stdout,"push $%lli\n",(long long int)d->val.dectypeD.type->kind);
       }
       fprintf(stdout,"push $0\n");
-
-      //fprintf(stdout,"add $192, %%r9\n");
-//      generate_TYPE(d->val.dectypeD.type);
 
       break;
 

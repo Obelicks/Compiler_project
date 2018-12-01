@@ -13,7 +13,8 @@
 On Register Use:
 R8 is the pointer to the start of the allocated memory
 R9 is the pointer to the first empty space in the allocated memory
-R10 is the pointer to the end of the allocated memory.
+R10 counts how many variables are passed to a function
+is the pointer to the end of the allocated memory.
 
 
 */

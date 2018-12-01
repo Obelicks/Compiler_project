@@ -1,0 +1,88 @@
+Parsing...
+Parsed
+Typechecking...
+FUNC kind: 2
+LIST kind: 3
+DEC kind: 0
+LIST kind: 2
+TYPE KIND: 7
+TYPE KIND: 2
+putting id: b of type: 2
+LIST kind: 5
+STM KIND: 4
+TYPE KIND: 0
+looking for symbol b
+else table
+got symbol b of type 2
+else table
+EXP KIND: 12
+TERM KIND: 4
+LIST kind: 5
+STM KIND: 6
+EXP KIND: 12
+TERM KIND: 5
+TYPE KIND: 0
+looking for symbol b
+else table
+got symbol b of type 2
+STM KIND: 1
+EXP KIND: 12
+TERM KIND: 2
+typecheked
+Generating code...
+Generating prologue...
+ending prologue
+writing main...
+generating generate_FUNC -> bodyK
+enter generate_LIST with variable 3
+generating generate_LIST -> decK
+enter generate_DEC with declaration of 0 
+generating generate_DEC -> listK
+enter generate_LIST with variable 2
+generating generate_LIST -> varK
+generating generate_LIST -> var_list
+generating generate_DEC -> dectypeK
+enter generate_LIST with variable 5
+generating generate_LIST -> statelistK
+generating generate_STM 
+generating generate_STM -> assignK 
+generating generate_EXP
+generating generate_EXP -> termK
+generating generate_TERM 
+generating generate_TERM -> booleanK 
+enter generate_LIST with variable 5
+generating generate_LIST -> statelistK
+generating generate_STM 
+generating generate_STM -> ifelseK 
+generating generate_EXP
+generating generate_EXP -> termK
+generating generate_TERM 
+generating generate_TERM -> variableK 
+generating generate_STM 
+generating generate_STM -> writeK 
+generating generate_EXP
+generating generate_EXP -> termK
+generating generate_TERM 
+generating generate_TERM -> numK 
+generating generate_STM 
+generating generate_STM -> writeK 
+generating generate_EXP
+generating generate_EXP -> termK
+generating generate_TERM 
+generating generate_TERM -> numK 
+enter generate_LIST with variable 4
+generating generate_LIST -> stateK
+generating generate_STM 
+generating generate_STM -> ifthenK 
+generating generate_EXP
+generating generate_EXP -> termK
+generating generate_TERM 
+generating generate_TERM -> variableK 
+generating generate_STM 
+generating generate_STM -> writeK 
+generating generate_EXP
+generating generate_EXP -> termK
+generating generate_TERM 
+generating generate_TERM -> numK 
+ending code/starting epilogue...
+code written

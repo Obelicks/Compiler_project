@@ -7,6 +7,8 @@
 #include "headers/gen.h"
 int lineno;
 long long int jumpnr;
+long long int variablecounter;
+long long int comparator;
 void yyparse();
 FILE* yyin;
 FUNC* thebody;

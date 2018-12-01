@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include "../headers/gen.h"
-
+extern long long int variablecounter;
 void generate_LIST(LIST *l){
   fprintf(stderr, "enter generate_LIST with variable %d\n",l->kind );
   LIST* apointer;//
   int countes = 0;
   int countes2;
+
   switch (l->kind) {
     case parK:
       if(l->val.parL == NULL){
@@ -21,8 +22,7 @@ void generate_LIST(LIST *l){
       fprintf(stdout,"push $%lli\n",(long long int)*l->val.varlistL.var_type->val.var_typeT.id);
       fprintf(stdout,"push $%lli\n",(long long int)l->val.varlistL.var_type->kind);
       fprintf(stdout,"push $0\n");
-      fprintf(stdout,"add $192, %%r9\n");
-
+      variablecounter++;
       if (l->val.varlistL.var_decl_list != NULL){
         generate_LIST(l->val.varlistL.var_decl_list);
 
@@ -36,7 +36,7 @@ void generate_LIST(LIST *l){
       fprintf(stdout,"push $%lli\n",(long long int)*l->val.varL->val.var_typeT.id);
       fprintf(stdout,"push $%lli\n", (long long int)l->val.varL->kind);
       fprintf(stdout,"push $0\n");
-      fprintf(stdout,"add $192, %%r9\n");
+      variablecounter++;
       break;
 
     case decK:

@@ -2,7 +2,7 @@
 # If the evaluation order is from left to right, this test will pass 
 var a : int;
 
-func b(d1 : int, d2 : int) : int
+func b(e : int, f : int) : int
   return d2 - d1;
 end b
 

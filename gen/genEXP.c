@@ -216,16 +216,7 @@ void generate_prologue(){
 
 
 void generate_epilogue(){
-/*  fprintf(stdout,"movq $0, %%rax\n");
-  fprintf(stdout,"movq %%r8, %%rsp\n");
-*/
+  fprintf(stdout,"movq %%r9, %%rsp\n");
   fprintf(stdout, "call _exit\n");
-/*  pop %r15	 # restoring "callee save" register
-  pop %r14	 # restoring "callee save" register
-  pop %r13	 # restoring "callee save" register
-  pop %r12	 # restoring "callee save" register
-  pop %rbx	 # restoring "callee save" register
-        movq %rbp,%rsp	 # restoring stack pointer
-        pop %rbp	 # restoring base pointer
-*/
+
 }

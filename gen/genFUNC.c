@@ -2,8 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../headers/gen.h"
-
+extern long long int jumpnr;
+extern long long int variablecounter;
 void generate_FUNC(FUNC* function){
+  long long int r;
+  long long int r1;
   switch (function->kind) {
     case functionK:
       fprintf(stderr, "generating generate_FUNC -> functionK\n" );
@@ -13,10 +16,34 @@ void generate_FUNC(FUNC* function){
       break;
 
     case headK:
+      r = jumpnr;
+      jumpnr++;
       fprintf(stderr, "generating generate_FUNC -> headK\n" );
-      fprintf(stdout,"%lli:\n",(long long int) function->val.headF.id);
-    //  function->val.headF.par_decl_list
+      fprintf(stdout,"jmp .%lli\n", r);
+      fprintf(stdout,"%s:\n", function->val.headF.id);
+      fprintf(stdout,"push %%r8\n");
+      fprintf(stdout,"push %%r9\n");
+      fprintf(stdout,"push %%r11\n");
+      fprintf(stdout,"push %%r12\n");
+      fprintf(stdout,"movq %%rsp, %%r15\n");
+      variablecounter = 0
+      ;
+      if (function->val.headF.par_decl_list != NULL) {
+        generate_LIST(function->val.headF.par_decl_list);
 
+      }
+      if(variablecounter > 0){
+      long long int temp = variablecounter*32;
+      temp = temp + 32; //this is to reach past the saved registers.
+      long long int temp2 = variablecounter*24;
+      temp2 = temp2-16;
+      for(;temp2 > 0; temp2 = temp2 -24){
+
+        fprintf(stdout,"movq %lli(%%rsp), %%r10\n", temp);
+        temp = temp-8;
+        fprintf(stdout,"movq %%r10, %lli(%%rsp)\n", temp2);
+      }
+    }
       break;
 
     case bodyK:
@@ -29,13 +56,15 @@ void generate_FUNC(FUNC* function){
 
     case tailK:
       fprintf(stderr, "generating generate_FUNC -> tailK\n" );
-      fprintf(stdout,"mov $format, %%rdi\n");
-      fprintf(stdout,"pop %%rsi\n");
-      fprintf(stdout,"movq $0, %%rax\n");
-      fprintf(stdout,"call printf\n");
-      fprintf(stdout,"pop %%rax\n");
-      fprintf(stdout,"pop %%r13\n");
-      fprintf(stdout,"pop %%r14\n");
+      fprintf(stdout,"pop %%r10\n");
+      fprintf(stdout,"movq %%r15, %%rsp\n");
+      fprintf(stdout,"pop %%r12\n");
+      fprintf(stdout,"pop %%r11\n");
+      fprintf(stdout,"pop %%r9\n");
+      fprintf(stdout,"pop %%r8\n");
+      fprintf(stdout,"push %%r10\n");
+      fprintf(stdout,"ret\n");
+      fprintf(stdout,".%lli:\n",(r));
       fprintf(stderr,"end of function %s", function->val.tailF);
       break;
 

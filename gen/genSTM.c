@@ -66,7 +66,7 @@ void generate_STM(STM* s){
       generate_EXP(s->val.ifthenS.ifState);
       fprintf(stdout, "pop %%r14\n");
       fprintf(stdout, "cmp $0, %%r14\n");
-      fprintf(stdout, "je .%lli\n",r);
+      fprintf(stdout, "jne .%lli\n",r);
       generate_STM(s->val.ifthenS.thenState);
       fprintf(stdout, ".%lli:\n",r);
 
@@ -83,7 +83,7 @@ void generate_STM(STM* s){
       generate_EXP(s->val.ifelseS.ifState);
       fprintf(stdout, "pop %%r14\n");
       fprintf(stdout, "cmp $0, %%r14\n");
-      fprintf(stdout, "je .%lli\n",r);
+      fprintf(stdout, "jne .%lli\n",r);
       generate_STM(s->val.ifelseS.thenState);
       fprintf(stdout, "jmp .%lli\n",r1);
       fprintf(stdout, ".%lli:\n",r);
@@ -115,7 +115,7 @@ void generate_STM(STM* s){
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"cmp $0, %%r14\n");
       fprintf(stdout,"je .%lli\n", r);
-      fprintf(stdout,"jmp .%lli\n",(r1));
+      fprintf(stdout,"jmp %lli\n",(r1));
       fprintf(stdout,".%lli:\n", r);
 
       break;
