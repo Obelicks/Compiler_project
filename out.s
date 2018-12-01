@@ -8,6 +8,7 @@ add $-8, %r8
 movq %rsp, %r9
 jmp .0
 .adder:
+pop %r12
 push %r8
 push %r9
 push %r11
@@ -55,12 +56,12 @@ pop %r11
 pop %r9
 pop %r8
 push %r10
-jmp .adder1
+push %r12
+ret
 .0:
 push $11
 push $34
-jmp .adder
-.adder1:
+call .adder
 movq $format, %rdi
 pop %rsi
 xorq	%rax, %rax
@@ -78,8 +79,7 @@ pop %r13
 sub %r14, %r13
 push %r13
 push $50
-jmp .adder
-.adder1:
+call .adder
 movq $format, %rdi
 pop %rsi
 xorq	%rax, %rax
@@ -92,8 +92,7 @@ pop %r9
 pop %r8
 push $0
 push $0
-jmp .adder
-.adder1:
+call .adder
 movq $format, %rdi
 pop %rsi
 xorq	%rax, %rax
@@ -106,8 +105,7 @@ pop %r9
 pop %r8
 push $1023
 push $765
-jmp .adder
-.adder1:
+call .adder
 movq $format, %rdi
 pop %rsi
 xorq	%rax, %rax

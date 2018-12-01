@@ -22,6 +22,7 @@ void generate_FUNC(FUNC* function){
       fprintf(stderr, "generating generate_FUNC -> headK\n" );
       fprintf(stdout,"jmp .%lli\n", r);
       fprintf(stdout,".%s:\n", function->val.headF.id);
+      fprintf(stdout,"pop %%r12\n");
       fprintf(stdout,"push %%r8\n");//static pointer.
       fprintf(stdout,"push %%r9\n");
       fprintf(stdout,"push %%r11\n");
@@ -66,7 +67,8 @@ void generate_FUNC(FUNC* function){
       fprintf(stdout,"pop %%r9\n");
       fprintf(stdout,"pop %%r8\n");
       fprintf(stdout,"push %%r10\n");
-      fprintf(stdout, "jmp .%s1\n", function->val.headF.id);
+      fprintf(stdout, "push %%r12\n");
+      fprintf(stdout, "ret\n");
       fprintf(stdout,".%lli:\n",(r));
       fprintf(stderr,"end of function %s", function->val.tailF);
       break;
