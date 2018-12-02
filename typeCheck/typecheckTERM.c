@@ -16,7 +16,7 @@ int typeCheckTERM(SymbolTable* symbolTable, TERM* term){
 
     case absoluteK:
       x =typeCheckEXP(symbolTable, term->val.absoluteT);
-      if (x<0){
+      if (x>0){
         return x;
       }
       break;
@@ -28,7 +28,7 @@ int typeCheckTERM(SymbolTable* symbolTable, TERM* term){
 
     case expK:
       x =typeCheckEXP(symbolTable, term->val.expT);
-      if (x<0){
+      if (x>0){
         return x;
       }
       break;
@@ -40,7 +40,7 @@ int typeCheckTERM(SymbolTable* symbolTable, TERM* term){
 
     case variableK:
       x=typeCheckTYPE(symbolTable, term->val.variableT);
-      if (x<0){
+      if (x>0){
         return x;
       }
       break;
