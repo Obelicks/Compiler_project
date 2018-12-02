@@ -128,6 +128,7 @@ void generate_STM(STM* s){
 
     case stmlistK:
       fprintf(stderr, "generating generate_STM -> stmlistK \n" );
+      //fprintf(stderr,"statelist2\n");
       if (s->val.stmlistS != NULL){
         generate_LIST(s->val.stmlistS);
       }
