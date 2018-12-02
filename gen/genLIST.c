@@ -20,8 +20,6 @@ void generate_LIST(LIST *l){
       fprintf(stderr, "generating generate_LIST -> var_list\n" );
       //TODO assember der laver en variabel
       generate_TYPE(l->val.varlistL.var_type);
-
-
       //fprintf(stdout,"push $%i\n",l->val.varlistL.var_type->kind);
       //fprintf(stdout,"push $0\n");
       variablecounter++;
