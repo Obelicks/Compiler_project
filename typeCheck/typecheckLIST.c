@@ -22,7 +22,9 @@ int typeCheckLIST(SymbolTable* symbolTable, LIST* list){
       if (x<=0){
         return x;
       }
-      x = typeCheckLIST(symbolTable, list->val.varlistL.var_decl_list);
+      if(list->val.varlistL.var_decl_list != NULL){
+        x = typeCheckLIST(symbolTable, list->val.varlistL.var_decl_list);
+      }
       if (x<=0){
         return x;
       }
