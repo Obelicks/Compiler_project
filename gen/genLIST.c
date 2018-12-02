@@ -33,7 +33,6 @@ void generate_LIST(LIST *l){
     case varK:
       fprintf(stderr, "generating generate_LIST -> varK\n" );
       //TODO assember der laver en variabel
-      fprintf(stderr,"EMIL %i\n",hash(l->val.varL->val.var_typeT.id));
       fprintf(stdout,"push $%i\n",hash(l->val.varL->val.var_typeT.id));
       fprintf(stderr,"%s\n",l->val.varL->val.var_typeT.id);
       fprintf(stdout,"push $%i\n", l->val.varL->kind);
