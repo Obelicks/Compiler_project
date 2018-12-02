@@ -36,7 +36,7 @@ void generate_FUNC(FUNC* function){
         generate_LIST(function->val.headF.par_decl_list);
 
       }
-      fprintf(stdout,"movq %%rsp, %%r9\n");
+
       if(variablecounter > 0){
       long long int temp = variablecounter*32;
       temp = temp + 32; //this is to reach past the saved registers.
@@ -56,6 +56,7 @@ void generate_FUNC(FUNC* function){
       if (function->val.bodyF.decl_list != NULL) {
         generate_LIST(function->val.bodyF.decl_list);
       }
+      fprintf(stdout,"movq %%rsp, %%r9\n");
       generate_LIST(function->val.bodyF.statement_list);//cant be empty so no reason to check
       break;
 
