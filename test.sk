@@ -1,5 +1,13 @@
-func myFunc(a44 : int, b44 : int, c44 : int) : int
-  return 5;
-end myFunc
+var i: int, j: int;
 
-write myFunc();
+i = 10;
+j = 1;
+
+while i < 20 do {
+   while j < 5 do {
+    j = j + 1;
+    write j;
+   }
+   i = i + 1;
+   write i;
+}

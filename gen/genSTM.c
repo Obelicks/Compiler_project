@@ -110,8 +110,8 @@ void generate_STM(STM* s){
       jumpnr++;
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"cmp $0, %%r14\n");
-      fprintf(stdout,"je .%lli\n", r);
-      fprintf(stdout,".%lli:\n",(r1));
+      fprintf(stdout,"jne .%lli\n", r);
+      fprintf(stdout,".%lli:\n",r1);
       if(s->val.whileS.statement->kind == stmlistK){
         generate_LIST(s->val.whileS.statement->val.stmlistS);
       }else{
@@ -120,15 +120,14 @@ void generate_STM(STM* s){
       generate_EXP(s->val.whileS.expression);
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"cmp $0, %%r14\n");
-      fprintf(stdout,"je .%lli\n", r);
-      fprintf(stdout,"jmp %lli\n",(r1));
+      fprintf(stdout,"je .%lli\n", r1);
       fprintf(stdout,".%lli:\n", r);
 
       break;
 
     case stmlistK:
       fprintf(stderr, "generating generate_STM -> stmlistK \n" );
-      //fprintf(stderr,"statelist2\n");
+
       if (s->val.stmlistS != NULL){
         generate_LIST(s->val.stmlistS);
       }
