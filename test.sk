@@ -1,10 +1,24 @@
-func myFunc(a44 : int, b44 : int, c44 : int) : int
-  type a32 = int;
-  a32 = 5;
-  if a44 < 5 then
-    return a44 + b44 + c44;
-  else
-    return a44 - b44 - c44;
-end myFunc
+var a : int, temp : int;
 
-write myFunc(4, 2, 4);
+func b() : int
+  var a : int;
+  a = 3;
+  write a;
+  write temp;
+  temp = 0;
+  return a + 10;
+end b
+
+func c() : int
+  write a;
+  return 5;
+end c
+
+a = 7;
+temp = 9;
+write a;
+temp = c();
+write temp;
+a = b();
+write a;
+write temp;

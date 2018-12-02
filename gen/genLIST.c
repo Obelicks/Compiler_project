@@ -88,5 +88,6 @@ void generate_LIST(LIST *l){
       fprintf(stderr,"in default case in LIST\n");
       break;
   }
+  return;
 
 }
