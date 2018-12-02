@@ -98,6 +98,7 @@ Symbol* getSymbol(SymbolTable* table, char* name){
 
     symbol = getSymbol(table->next, name);
     if (symbol != NULL){
+      fprintf(stderr, "FOUND %s\n", name);
       return symbol;
     }
   }

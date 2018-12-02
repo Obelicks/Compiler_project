@@ -18,8 +18,10 @@ void generate_LIST(LIST *l){
 
     case varlistK:
       fprintf(stderr, "generating generate_LIST -> var_list\n" );
-
+  
       generate_TYPE(l->val.varlistL.var_type);
+
+      variablecounter++;
       if (l->val.varlistL.var_decl_list != NULL){
         generate_LIST(l->val.varlistL.var_decl_list);
 
