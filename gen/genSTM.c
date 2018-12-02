@@ -52,7 +52,7 @@ void generate_STM(STM* s){
 
       //typie, code to assign value to variableK
       fprintf(stdout,"movq %%r8, %%r11\n");
-      fprintf(stdout,"movq $%lli, %%r12\n",(long long int)*s->val.assignS.variable->val.idT);
+      fprintf(stdout,"movq $%i, %%r12\n",hash(s->val.assignS.variable->val.idT));
       fprintf(stdout, ".%lli:\n",r1);
       fprintf(stdout,"cmp (%%r11), %%r12\n");
       fprintf(stdout, "je .%lli\n",r);
