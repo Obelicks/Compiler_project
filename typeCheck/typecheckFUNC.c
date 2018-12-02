@@ -16,11 +16,12 @@ void typeCheckFUNC(SymbolTable* symbolTable, FUNC* func){
 
     case headK:
       //TODO: Add id
-      if(NULL == putSymbol(symbolTable,func->val.headF.id,FUNKTION,0)){
-        fprintf(stderr, "ERROR FUNCTION ALREADY %s EXISTS TWICE\n", func->val.headF.id);
-        return;
+
+
+
+      if(NULL != func->val.headF.par_decl_list){
+        typeCheckLIST(symbolTable, func->val.headF.par_decl_list);
       }
-      typeCheckLIST(symbolTable, func->val.headF.par_decl_list);
       typeCheckTYPE(symbolTable, func->val.headF.type);
       break;
 
@@ -36,6 +37,5 @@ void typeCheckFUNC(SymbolTable* symbolTable, FUNC* func){
       break;
   }
 
-  return 1;
   return;
 }

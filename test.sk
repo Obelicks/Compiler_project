@@ -3,7 +3,7 @@
 # The references to the variable 'a' in the inner function 'sub'
 # should refer to the 'a' declared in 'b'
 # However, when 'sub' calls 'c', the 'a' in 'c' refers to the outer 'a'
-var a : int, temp : int;
+var a : int,d : int, temp : int;
 
 func b() : int
   func sub(input : int) : int
