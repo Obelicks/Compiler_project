@@ -5,7 +5,7 @@ extern long long int jumpnr;
 void generate_STM(STM* s){
   fprintf(stderr, "generating generate_STM %d \n",s->kind);
   long long int r;
-  long long int r1;
+  long long int r1, r2, r3;
   switch (s->kind) {
     case returnK:
       fprintf(stderr, "generating generate_STM -> returnK \n" );
@@ -49,20 +49,32 @@ void generate_STM(STM* s){
       jumpnr++;
       r1 = jumpnr;
       jumpnr++;
+      r2 = jumpnr;
+      jumpnr++;
+      r3 = jumpnr;
+      jumpnr++;
 
       //typie, code to assign value to variableK
       fprintf(stdout,"movq %%r8, %%r11\n");
       fprintf(stdout,"movq $%i, %%r12\n",hash(s->val.assignS.variable->val.idT));
+      fprintf(stdout,"movq %%r9, %%r10\n");
       fprintf(stdout, ".%lli:\n",r1);
       fprintf(stdout,"cmp (%%r11), %%r12\n");
       fprintf(stdout, "je .%lli\n",r);
       fprintf(stdout,"add $-24, %%r11\n");
+      fprintf(stdout,"cmp %%r11, %%r10\n");
+      fprintf(stdout, "jg .%lli\n",r2);
       fprintf(stdout, "jmp .%lli\n",r1);
       fprintf(stdout, ".%lli:\n",r);
       fprintf(stderr, "generating generate_STM -> assignK \n" );
       generate_EXP(s->val.assignS.expression);
       fprintf(stdout,"pop -16(%%r11)\n");
-
+      fprintf(stdout, "jmp .%lli\n",r3);
+      fprintf(stdout, ".%lli:\n",r2);
+      fprintf(stdout, "movq 40(%%r8), %%r11\n");
+      fprintf(stdout, "movq 32(%%r8), %%r10\n");
+      fprintf(stdout, "jmp .%lli\n",r1);
+      fprintf(stdout, ".%lli:\n",r3);
       break;
 
     case ifthenK:
