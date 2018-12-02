@@ -30,7 +30,7 @@ int typeCheckTYPE(SymbolTable* symbolTable, TYPE* type){
 
     case arrayK:
       x =typeCheckTYPE(symbolTable, type->val.arrayT);
-      if (x<=0){
+      if (x){
         return x;
       }
       break;
