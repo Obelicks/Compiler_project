@@ -5,7 +5,7 @@ extern long long int comparator;
 extern long long int returnadress;
 int generate_TERM(TERM* t){
   fprintf(stderr, "generating generate_TERM \n" );
-  long long int r, r1;
+  long long int r, r1, r2, r3;
   //int val;
   switch (t->kind) {
     case notK:
@@ -73,8 +73,8 @@ int generate_TERM(TERM* t){
         fprintf(stdout,"push -16(%%r11)\n");
         fprintf(stdout, "jmp .%lli\n",r3);
         fprintf(stdout, ".%lli:\n",r2);
-        fprintf(stdout, "movq 40(%%r8), %%r11");
-        fprintf(stdout, "movq 32(%%r8), %%r10");
+        fprintf(stdout, "movq 40(%%r8), %%r11\n");
+        fprintf(stdout, "movq 32(%%r8), %%r10\n");
         fprintf(stdout, "jmp .%lli\n",r1);
         fprintf(stdout, ".%lli:\n",r3);
 
