@@ -3,14 +3,14 @@
 extern long long int jumpnr;
 extern long long int comparator;
 extern long long int returnadress;
-int generate_TERM(TERM* t){
+int generate_TERM(TERM* t, int flag){
   fprintf(stderr, "generating generate_TERM \n" );
   long long int r, r1, r2, r3;
   //int val;
   switch (t->kind) {
     case notK:
       fprintf(stderr, "generating generate_TERM -> notK \n" );
-      generate_TERM(t->val.notT);
+      generate_TERM(t->val.notT, flag);
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"cmp $0, %%r14\n");
       fprintf(stdout,"jne .+6\n");
@@ -21,7 +21,7 @@ int generate_TERM(TERM* t){
 
     case absoluteK:
       fprintf(stderr, "generating generate_TERM -> absoluteK \n" );
-      /*val=*/generate_EXP(t->val.absoluteT);
+      /*val=*/generate_EXP(t->val.absoluteT, flag);
       //TODO this will have to be done in assembler
       //unless we can peephole it
       /*if (val < 0){
@@ -40,7 +40,7 @@ int generate_TERM(TERM* t){
 
     case expK:
       fprintf(stderr, "generating generate_TERM -> expK \n" );
-      generate_EXP(t->val.expT);
+      generate_EXP(t->val.expT, flag);
       break;
 
     case booleanK:
@@ -84,7 +84,7 @@ int generate_TERM(TERM* t){
     case act_listK:
       fprintf(stderr, "generating generate_TERM -> actlistK \n" );
       if (NULL != t->val.act_listT.act_list){
-        generate_LIST(t->val.act_listT.act_list);
+        generate_LIST(t->val.act_listT.act_list, flag);
       }
       fprintf(stdout, "call .%s\n",t->val.act_listT.id);
 

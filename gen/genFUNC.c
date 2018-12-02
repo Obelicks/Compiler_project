@@ -5,15 +5,15 @@
 extern long long int jumpnr;
 extern long long int variablecounter;
 extern long long int returnadress;
-void generate_FUNC(FUNC* function){
+void generate_FUNC(FUNC* function, int flag){
   long long int r;
   long long int r1,r2;
   switch (function->kind) {
     case functionK:
       fprintf(stderr, "generating generate_FUNC -> functionK\n" );
-      generate_FUNC(function->val.functionF.head);
-      generate_FUNC(function->val.functionF.body);
-      generate_FUNC(function->val.functionF.tail);
+      generate_FUNC(function->val.functionF.head, flag);
+      generate_FUNC(function->val.functionF.body, flag);
+      generate_FUNC(function->val.functionF.tail, flag);
       break;
 
     case headK:
@@ -21,7 +21,7 @@ void generate_FUNC(FUNC* function){
       jumpnr++;
       fprintf(stderr, "generating generate_FUNC -> headK\n" );
       fprintf(stdout,"jmp .%lli\n", r);
-      fprintf(stdout,".%s:\n", function->val.headF.id);
+      fprintf(stdout,".%s:\n", function->val.headF.id, flag);
       fprintf(stdout,"pop %%r12\n");
       fprintf(stdout,"push %%r8\n");//static pointer.
       fprintf(stdout,"push %%r9\n");
@@ -33,7 +33,7 @@ void generate_FUNC(FUNC* function){
       fprintf(stdout,"movq %%rsp, %%r8\n");
       fprintf(stdout,"add $-8, %%r8\n");
       if (function->val.headF.par_decl_list != NULL){
-        generate_LIST(function->val.headF.par_decl_list);
+        generate_LIST(function->val.headF.par_decl_list, flag);
 
       }
 
@@ -54,10 +54,10 @@ void generate_FUNC(FUNC* function){
     case bodyK:
       fprintf(stderr, "generating generate_FUNC -> bodyK\n" );
       if (function->val.bodyF.decl_list != NULL) {
-        generate_LIST(function->val.bodyF.decl_list);
+        generate_LIST(function->val.bodyF.decl_list, flag);
       }
       fprintf(stdout,"movq %%rsp, %%r9\n");
-      generate_LIST(function->val.bodyF.statement_list);//cant be empty so no reason to check
+      generate_LIST(function->val.bodyF.statement_list, flag);//cant be empty so no reason to check
       break;
 
     case tailK:

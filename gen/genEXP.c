@@ -2,7 +2,7 @@
 #include "../headers/gen.h"
 #include"../headers/tree.h"
 extern long long int jumpnr;
-void generate_EXP(EXP* e){
+void generate_EXP(EXP* e, int flag){
   fprintf(stderr, "generating generate_EXP\n" );
   int aterm;
   long long int r, r1;
@@ -14,8 +14,8 @@ void generate_EXP(EXP* e){
     r1 = jumpnr;
     jumpnr++;
     fprintf(stderr, "generating generate_EXP -> equaltoK\n" );
-    generate_EXP(e->val.equaltoE.left);
-    generate_EXP(e->val.equaltoE.right);
+    generate_EXP(e->val.equaltoE.left, flag);
+    generate_EXP(e->val.equaltoE.right, flag);
     fprintf(stdout,"pop %%r13\n");
     fprintf(stdout,"pop %%r14\n");
     fprintf(stdout,"cmp %%r14, %%r13\n");
@@ -34,8 +34,8 @@ void generate_EXP(EXP* e){
     r1 = jumpnr;
     jumpnr++;
     fprintf(stderr, "generating generate_EXP -> equaltoK\n" );
-    generate_EXP(e->val.nequaltoE.left);
-    generate_EXP(e->val.nequaltoE.right);
+    generate_EXP(e->val.nequaltoE.left, flag);
+    generate_EXP(e->val.nequaltoE.right, flag);
     fprintf(stdout,"pop %%r13\n");
     fprintf(stdout,"pop %%r14\n");
     fprintf(stdout,"cmp %%r14, %%r13\n");
@@ -56,8 +56,8 @@ void generate_EXP(EXP* e){
       r1 = jumpnr;
       jumpnr++;
       fprintf(stderr, "generating generate_EXP -> andK\n" );
-      generate_EXP(e->val.andE.left);
-      generate_EXP(e->val.andE.right);
+      generate_EXP(e->val.andE.left, flag);
+      generate_EXP(e->val.andE.right, flag);
       fprintf(stdout,"pop %%r13\n");
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"cmp $0, %%r13\n");
@@ -81,8 +81,8 @@ void generate_EXP(EXP* e){
       r1 = jumpnr;
       jumpnr++;
       fprintf(stderr, "generating generate_EXP -> smallerK\n" );
-      generate_EXP(e->val.smallerE.left);
-      generate_EXP(e->val.smallerE.right);
+      generate_EXP(e->val.smallerE.left, flag);
+      generate_EXP(e->val.smallerE.right, flag);
       fprintf(stdout,"pop %%r13\n");
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"cmp %%r13, %%r14\n");
@@ -101,8 +101,8 @@ void generate_EXP(EXP* e){
     r1 = jumpnr;
     jumpnr++;
     fprintf(stderr, "generating generate_EXP -> smallerK\n" );
-    generate_EXP(e->val.biggerE.left);
-    generate_EXP(e->val.biggerE.right);
+    generate_EXP(e->val.biggerE.left, flag);
+    generate_EXP(e->val.biggerE.right, flag);
     fprintf(stdout,"pop %%r13\n");
     fprintf(stdout,"pop %%r14\n");
     fprintf(stdout,"cmp %%r13, %%r14\n");
@@ -121,8 +121,8 @@ void generate_EXP(EXP* e){
     r1 = jumpnr;
     jumpnr++;
     fprintf(stderr, "generating generate_EXP -> smallerK\n" );
-    generate_EXP(e->val.smalequalE.left);
-    generate_EXP(e->val.smalequalE.right);
+    generate_EXP(e->val.smalequalE.left, flag);
+    generate_EXP(e->val.smalequalE.right, flag);
     fprintf(stdout,"pop %%r13\n");
     fprintf(stdout,"pop %%r14\n");
     fprintf(stdout,"cmp %%r13, %%r14\n");
@@ -141,8 +141,8 @@ void generate_EXP(EXP* e){
     r1 = jumpnr;
     jumpnr++;
       fprintf(stderr, "generating generate_EXP -> bigequalK\n" );
-      generate_EXP(e->val.bigequalE.left);
-      generate_EXP(e->val.bigequalE.right);
+      generate_EXP(e->val.bigequalE.left, flag);
+      generate_EXP(e->val.bigequalE.right, flag);
       fprintf(stdout,"pop %%r13\n");
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"cmp %%r13, %%r14\n");
@@ -162,8 +162,8 @@ void generate_EXP(EXP* e){
     r1 = jumpnr;
     jumpnr++;
       fprintf(stderr, "generating generate_EXP -> moduloK\n" );
-      generate_EXP(e->val.moduloE.left);
-      generate_EXP(e->val.moduloE.right);
+      generate_EXP(e->val.moduloE.left, flag);
+      generate_EXP(e->val.moduloE.right, flag);
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"pop %%r13\n");
       fprintf(stdout,".%lli:\n",r);
@@ -177,8 +177,8 @@ void generate_EXP(EXP* e){
 
     case timesK:
       fprintf(stderr, "generating generate_EXP -> timesK\n" );
-      generate_EXP(e->val.timesE.left);
-      generate_EXP(e->val.timesE.right);
+      generate_EXP(e->val.timesE.left, flag);
+      generate_EXP(e->val.timesE.right, flag);
       fprintf(stdout,"pop %%r13\n");
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"movq %%r13, %%rax\n");
@@ -192,8 +192,8 @@ void generate_EXP(EXP* e){
 
     case divK:
       fprintf(stderr, "generating generate_EXP -> divK\n" );
-      generate_EXP(e->val.divE.left);
-      generate_EXP(e->val.divE.right);
+      generate_EXP(e->val.divE.left, flag);
+      generate_EXP(e->val.divE.right, flag);
       fprintf(stdout,"pop %%r13\n");
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"xor %%rdx, %%rdx\n");
@@ -205,8 +205,8 @@ void generate_EXP(EXP* e){
 
     case plusK:
       fprintf(stderr, "generating generate_EXP -> plusK\n" );
-      generate_EXP(e->val.plusE.left);
-      generate_EXP(e->val.plusE.right);
+      generate_EXP(e->val.plusE.left, flag);
+      generate_EXP(e->val.plusE.right, flag);
       fprintf(stdout,"pop %%r13\n");
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"add %%r14, %%r13\n");
@@ -215,8 +215,8 @@ void generate_EXP(EXP* e){
 
     case minusK:
       fprintf(stderr, "generating generate_EXP -> minusK\n" );
-      generate_EXP(e->val.minusE.left);
-      generate_EXP(e->val.minusE.right);
+      generate_EXP(e->val.minusE.left, flag);
+      generate_EXP(e->val.minusE.right, flag);
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"pop %%r13\n");
       fprintf(stdout,"sub %%r14, %%r13\n");
@@ -225,7 +225,7 @@ void generate_EXP(EXP* e){
 
     case termK:
       fprintf(stderr, "generating generate_EXP -> termK\n" );
-      aterm = generate_TERM(e->val.termE);
+      aterm = generate_TERM(e->val.termE, flag);
       //TODO since term can be more than just an integer value
       //we will have to move this code into genTerm.c at some point
       //fprintf(stdout,"%i \n", aterm);
@@ -239,8 +239,8 @@ void generate_EXP(EXP* e){
     r1 = jumpnr;
     jumpnr++;
       fprintf(stderr, "generating generate_EXP -> orK\n" );
-      generate_EXP(e->val.orE.left);
-      generate_EXP(e->val.orE.right);
+      generate_EXP(e->val.orE.left, flag);
+      generate_EXP(e->val.orE.right, flag);
       fprintf(stdout,"pop %%r13\n");
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"cmp $0, %%r13\n");

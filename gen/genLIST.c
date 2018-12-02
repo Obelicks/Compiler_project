@@ -2,7 +2,7 @@
 #include "../headers/gen.h"
 extern long long int variablecounter;
 
-void generate_LIST(LIST *l){
+void generate_LIST(LIST *l, int flag){
   fprintf(stderr, "enter generate_LIST with variable %d\n",l->kind );
   LIST* apointer;//
   int countes = 0;
@@ -13,17 +13,17 @@ void generate_LIST(LIST *l){
       if(l->val.parL == NULL){
         return;
       }
-      generate_LIST(l->val.parL);
+      generate_LIST(l->val.parL, flag);
       break;
 
     case varlistK:
       fprintf(stderr, "generating generate_LIST -> var_list\n" );
-  
-      generate_TYPE(l->val.varlistL.var_type);
+
+      generate_TYPE(l->val.varlistL.var_type, flag);
 
       variablecounter++;
       if (l->val.varlistL.var_decl_list != NULL){
-        generate_LIST(l->val.varlistL.var_decl_list);
+        generate_LIST(l->val.varlistL.var_decl_list, flag);
 
       }
       break;
@@ -39,25 +39,25 @@ void generate_LIST(LIST *l){
 
     case decK:
       fprintf(stderr, "generating generate_LIST -> decK\n" );
-      generate_DEC(l->val.decL.declaration);
+      generate_DEC(l->val.decL.declaration, flag);
       if (l->val.decL.decl_list != NULL){
-        generate_LIST(l->val.decL.decl_list);
+        generate_LIST(l->val.decL.decl_list, flag);
       }
 
       break;
 
     case stateK:
       fprintf(stderr, "generating generate_LIST -> stateK\n" );
-      generate_STM(l->val.stateL);
+      generate_STM(l->val.stateL, flag);
       break;
 
     case statelistK:
       fprintf(stderr, "generating generate_LIST -> statelistK\n" );
       //fprintf(stderr,"statelist1\n");
-      generate_STM(l->val.statelistL.statement);
+      generate_STM(l->val.statelistL.statement, flag);
       //fprintf(stderr,"statelist2\n");
       if (l->val.statelistL.statement_list != NULL){
-        generate_LIST(l->val.statelistL.statement_list);
+        generate_LIST(l->val.statelistL.statement_list, flag);
       }
       break;
 
@@ -65,21 +65,21 @@ void generate_LIST(LIST *l){
       fprintf(stderr, "generating generate_LIST -> actlistK\n" );
       if(NULL != l->val.actlistL){
 
-        generate_LIST(l->val.actlistL);
+        generate_LIST(l->val.actlistL, flag);
       }
 
       break;
 
     case expressionK:
       fprintf(stderr, "generating generate_LIST -> expressionK\n" );
-      generate_EXP(l->val.expressionL);
+      generate_EXP(l->val.expressionL, flag);
       variablecounter++;
       break;
 
     case explistK:
       fprintf(stderr, "generating generate_LIST -> explistK\n" );
-      generate_EXP(l->val.explistL.expression);
-      generate_LIST(l->val.explistL.exp_list);
+      generate_EXP(l->val.explistL.expression, flag);
+      generate_LIST(l->val.explistL.exp_list, flag);
       break;
 
     default:

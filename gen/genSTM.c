@@ -2,19 +2,19 @@
 #include "../headers/gen.h"
 extern long long int jumpnr;
 
-void generate_STM(STM* s){
+void generate_STM(STM* s, int flag){
   fprintf(stderr, "generating generate_STM %d \n",s->kind);
   long long int r;
   long long int r1, r2, r3;
   switch (s->kind) {
     case returnK:
       fprintf(stderr, "generating generate_STM -> returnK \n" );
-      generate_EXP(s->val.returnS);
+      generate_EXP(s->val.returnS, flag);
       break;
 
     case writeK:
       fprintf(stderr, "generating generate_STM -> writeK \n" );
-      generate_EXP(s->val.writeS);
+      generate_EXP(s->val.writeS, flag);
 
       fprintf(stdout,"movq $format, %%rdi\n");
       fprintf(stdout,"pop %%rsi\n");
@@ -36,12 +36,12 @@ void generate_STM(STM* s){
 
    case allocateK:
      fprintf(stderr, "generating generate_STM -> allocateK \n" );
-      generate_TYPE(s->val.allocateS);
+      generate_TYPE(s->val.allocateS, flag);
       break;
 
     case allocateoflengthK:
       fprintf(stderr, "generating generate_STM -> allocateoflengthK \n" );
-      generate_TYPE(s->val.allocateoflengthS.variable);
+      generate_TYPE(s->val.allocateoflengthS.variable, flag);
       break;
 
     case assignK:
@@ -67,7 +67,7 @@ void generate_STM(STM* s){
       fprintf(stdout, "jmp .%lli\n",r1);
       fprintf(stdout, ".%lli:\n",r);
       fprintf(stderr, "generating generate_STM -> assignK \n" );
-      generate_EXP(s->val.assignS.expression);
+      generate_EXP(s->val.assignS.expression, flag);
       fprintf(stdout,"pop -16(%%r11)\n");
       fprintf(stdout, "jmp .%lli\n",r3);
       fprintf(stdout, ".%lli:\n",r2);
@@ -81,11 +81,11 @@ void generate_STM(STM* s){
       r =jumpnr;
       jumpnr++;
       fprintf(stderr, "generating generate_STM -> ifthenK \n" );
-      generate_EXP(s->val.ifthenS.ifState);
+      generate_EXP(s->val.ifthenS.ifState, flag);
       fprintf(stdout, "pop %%r14\n");
       fprintf(stdout, "cmp $0, %%r14\n");
       fprintf(stdout, "jne .%lli\n",r);
-      generate_STM(s->val.ifthenS.thenState);
+      generate_STM(s->val.ifthenS.thenState, flag);
       fprintf(stdout, ".%lli:\n",r);
 
       break;
@@ -98,14 +98,14 @@ void generate_STM(STM* s){
 
       fprintf(stderr, "generating generate_STM -> ifelseK \n" );
 
-      generate_EXP(s->val.ifelseS.ifState);
+      generate_EXP(s->val.ifelseS.ifState, flag);
       fprintf(stdout, "pop %%r14\n");
       fprintf(stdout, "cmp $0, %%r14\n");
       fprintf(stdout, "jne .%lli\n",r);
-      generate_STM(s->val.ifelseS.thenState);
+      generate_STM(s->val.ifelseS.thenState, flag);
       fprintf(stdout, "jmp .%lli\n",r1);
       fprintf(stdout, ".%lli:\n",r);
-      generate_STM(s->val.ifelseS.elseState);
+      generate_STM(s->val.ifelseS.elseState, flag);
       fprintf(stdout, ".%lli:\n",r1);
 
       break;
@@ -115,7 +115,7 @@ void generate_STM(STM* s){
 
       fprintf(stderr, "generating generate_STM -> whileK \n" );
 
-      generate_EXP(s->val.whileS.expression);
+      generate_EXP(s->val.whileS.expression, flag);
       r = jumpnr;
       jumpnr++;
       r1= jumpnr;
@@ -125,11 +125,11 @@ void generate_STM(STM* s){
       fprintf(stdout,"jne .%lli\n", r);
       fprintf(stdout,".%lli:\n",r1);
       if(s->val.whileS.statement->kind == stmlistK){
-        generate_LIST(s->val.whileS.statement->val.stmlistS);
+        generate_LIST(s->val.whileS.statement->val.stmlistS, flag);
       }else{
-        generate_STM(s->val.whileS.statement);
+        generate_STM(s->val.whileS.statement, flag);
       }
-      generate_EXP(s->val.whileS.expression);
+      generate_EXP(s->val.whileS.expression, flag);
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"cmp $0, %%r14\n");
       fprintf(stdout,"je .%lli\n", r1);
@@ -141,7 +141,7 @@ void generate_STM(STM* s){
       fprintf(stderr, "generating generate_STM -> stmlistK \n" );
 
       if (s->val.stmlistS != NULL){
-        generate_LIST(s->val.stmlistS);
+        generate_LIST(s->val.stmlistS, flag);
       }
       break;
     default:

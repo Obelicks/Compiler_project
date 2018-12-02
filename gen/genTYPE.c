@@ -2,7 +2,7 @@
 #include "../headers/gen.h"
 #include "../headers/symbol.h"
 
-void generate_TYPE(TYPE* t){
+void generate_TYPE(TYPE* t, int flag){
   fprintf(stderr, "generating generate_TYPE\n" );
    switch (t->kind) {
     case idK:
@@ -21,30 +21,30 @@ void generate_TYPE(TYPE* t){
 
     case arrayK:
       fprintf(stderr, "generating generate_TYPE -> arrayK\n" );
-      generate_TYPE(t->val.arrayT);
+      generate_TYPE(t->val.arrayT, flag);
       break;
 
     case recordK:
       fprintf(stderr, "generating generate_TYPE -> recordK\n" );
-      generate_LIST(t->val.recordT);
+      generate_LIST(t->val.recordT, flag);
       break;
 
     case vareK:
       fprintf(stderr, "generating generate_TYPE -> vareK\n" );
-      generate_TYPE(t->val.vareT.variable);
+      generate_TYPE(t->val.vareT.variable, flag);
       break;
 
     case varexpK:
       fprintf(stderr, "generating generate_TYPE -> varexpK\n" );
-      generate_TYPE(t->val.varexpT.variable);
-      generate_EXP(t->val.varexpT.expression);
+      generate_TYPE(t->val.varexpT.variable, flag);
+      generate_EXP(t->val.varexpT.expression, flag);
       break;
 
     case var_typeK:
       fprintf(stderr, "generating generate_TYPE -> var_typeK\n" );
       //add code
       fprintf(stdout, "push $%i \n",hash(t->val.var_typeT.id));
-      generate_TYPE(t->val.var_typeT.variable);
+      generate_TYPE(t->val.var_typeT.variable, flag);
       fprintf(stdout, "push $0 \n");
 
       break;
