@@ -84,7 +84,7 @@ int generate_TERM(TERM* t){
     case act_listK:
       fprintf(stderr, "generating generate_TERM -> actlistK \n" );
       if (NULL != t->val.act_listT.act_list){
-      generate_LIST(t->val.act_listT.act_list);
+        generate_LIST(t->val.act_listT.act_list);
       }
       fprintf(stdout, "call .%s\n",t->val.act_listT.id);
 

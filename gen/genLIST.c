@@ -89,5 +89,4 @@ void generate_LIST(LIST *l){
       break;
   }
   return;
-
 }

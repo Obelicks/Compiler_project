@@ -46,10 +46,13 @@ int typeCheckTERM(SymbolTable* symbolTable, TERM* term){
       break;
 
     case act_listK:
-      x =typeCheckLIST(symbolTable, term->val.act_listT.act_list);
-      if (x<=0){
-        return x;
+      if(NULL!=term->val.act_listT.act_list){
+        x =typeCheckLIST(symbolTable, term->val.act_listT.act_list);
+        if (x<=0){
+          return x;
+        }
       }
+      return 0;
       //return atoi(term->val.act_listT.id);
       break;
 
