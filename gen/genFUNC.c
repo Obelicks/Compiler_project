@@ -33,7 +33,7 @@ void generate_FUNC(FUNC* function, int flag){
       fprintf(stdout,"movq %%rsp, %%r8\n");
       fprintf(stdout,"add $-8, %%r8\n");
       if (function->val.headF.par_decl_list != NULL){
-        generate_LIST(function->val.headF.par_decl_list, flag);
+        generate_LIST(function->val.headF.par_decl_list, 0);
 
       }
 

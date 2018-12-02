@@ -36,7 +36,7 @@ int main(int argc, char* argv[]){
     fprintf(stderr, "Generating code...\nGenerating prologue...\n");
     generate_prologue();//method is in genEXP.c
     fprintf(stderr,"ending prologue\nwriting main...\n");
-    generate_FUNC(thebody);
+    generate_FUNC(thebody, 1);
     fprintf(stderr,"ending code/starting epilogue...\n");
     generate_epilogue();//method is in genEXP.c
     fprintf(stderr,"code written\n");
