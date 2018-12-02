@@ -145,9 +145,6 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
 
     case termK:
       x=typeCheckTERM(symbolTable, expression->val.termE);
-      if (x<=0){
-        return x;
-      }
       //fprintf(stderr,"found term of kind: %i\n", x);
 
       return x;
@@ -169,5 +166,5 @@ int typeCheckEXP(SymbolTable* symbolTable, EXP* expression){
       return 0;
       break;
   }
-  return 1;
+  return INTEGER;
 }
