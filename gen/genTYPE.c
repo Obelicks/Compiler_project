@@ -11,6 +11,7 @@ void generate_TYPE(TYPE* t){
 
     case intconstK:
       fprintf(stderr, "generating generate_TYPE -> intconstK\n" );
+      fprintf(stdout, "push $%i\n", t->kind);
       //fprintf(stdout,"this is a test 9");
       break;
 
@@ -42,8 +43,11 @@ void generate_TYPE(TYPE* t){
     case var_typeK:
       fprintf(stderr, "generating generate_TYPE -> var_typeK\n" );
       //add code
+      fprintf(stderr, "EMIL2 %s \n", t->val.var_typeT.id);
+      fprintf(stdout, "push $%i \n",hash(t->val.var_typeT.id));
       generate_TYPE(t->val.var_typeT.variable);
-      fprintf(stdout,"push $%lli\n",(long long int) t->val.var_typeT.variable->kind);
+      fprintf(stdout, "push $0 \n");
+
       break;
 
     default:

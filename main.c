@@ -22,7 +22,8 @@ int main(int argc, char* argv[]){
   fprintf(stderr, "Parsed\n");
   prettyFUNC(thebody);
   fprintf(stderr, "Typechecking...\n");
-  int doesItWork = typeCheckFUNC(root, thebody);
+  int doesItWork = 0;
+  //int doesItWork = typeCheckFUNC(root, thebody);
   if (doesItWork<0) {
     fprintf(stderr, "typecheck error, code: %i\n", doesItWork);
     return 10 + doesItWork;

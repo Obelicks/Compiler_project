@@ -55,7 +55,7 @@ int generate_TERM(TERM* t){
         jumpnr++;
         //assembly that returns
         fprintf(stderr, "generating generate_TERM -> variableK \n" );
-        fprintf(stdout,"movq $%lli, %%r12\n", (long long int)*t->val.variableT->val.idT);
+        fprintf(stdout,"movq $%i, %%r12\n",hash(t->val.variableT->val.idT));
         fprintf(stdout,"movq %%r8, %%r11\n");
         fprintf(stdout, ".%lli:\n",r1);
         fprintf(stdout,"cmp (%%r11), %%r12\n");

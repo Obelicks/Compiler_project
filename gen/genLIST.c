@@ -18,11 +18,12 @@ void generate_LIST(LIST *l){
 
     case varlistK:
       fprintf(stderr, "generating generate_LIST -> var_list\n" );
-      fprintf(stderr, "generating generate_DEC -> dectypeK\n" );
       //TODO assember der laver en variabel
-      fprintf(stdout,"push $%lli\n",(long long int)*l->val.varlistL.var_type->val.var_typeT.id);
-      fprintf(stdout,"push $%lli\n",(long long int)l->val.varlistL.var_type->kind);
-      fprintf(stdout,"push $0\n");
+      generate_TYPE(l->val.varlistL.var_type);
+
+
+      //fprintf(stdout,"push $%i\n",l->val.varlistL.var_type->kind);
+      //fprintf(stdout,"push $0\n");
       variablecounter++;
       if (l->val.varlistL.var_decl_list != NULL){
         generate_LIST(l->val.varlistL.var_decl_list);
@@ -31,11 +32,11 @@ void generate_LIST(LIST *l){
       break;
     case varK:
       fprintf(stderr, "generating generate_LIST -> varK\n" );
-      fprintf(stderr, "generating generate_LIST -> var_list\n" );
-      fprintf(stderr, "generating generate_DEC -> dectypeK\n" );
       //TODO assember der laver en variabel
-      fprintf(stdout,"push $%lli\n",(long long int)*l->val.varL->val.var_typeT.id);
-      fprintf(stdout,"push $%lli\n", (long long int)l->val.varL->kind);
+      fprintf(stderr,"EMIL %i\n",hash(l->val.varL->val.var_typeT.id));
+      fprintf(stdout,"push $%i\n",hash(l->val.varL->val.var_typeT.id));
+      fprintf(stderr,"%s\n",l->val.varL->val.var_typeT.id);
+      fprintf(stdout,"push $%i\n", l->val.varL->kind);
       fprintf(stdout,"push $0\n");
       variablecounter++;
       break;
