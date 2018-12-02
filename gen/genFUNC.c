@@ -27,6 +27,7 @@ void generate_FUNC(FUNC* function){
       fprintf(stdout,"push %%r9\n");
       fprintf(stdout,"push %%r11\n");
       fprintf(stdout,"push %%r12\n");
+      fprintf(stdout,"push %%r15\n");
       fprintf(stdout,"movq %%rsp, %%r15\n");
       variablecounter = 0;
       fprintf(stdout,"movq %%rsp, %%r8\n");
@@ -38,7 +39,7 @@ void generate_FUNC(FUNC* function){
       fprintf(stdout,"movq %%rsp, %%r9\n");
       if(variablecounter > 0){
       long long int temp = variablecounter*32;
-      temp = temp + 24; //this is to reach past the saved registers.
+      temp = temp + 32; //this is to reach past the saved registers.
       long long int temp2 = variablecounter*24;
       temp2 = temp2-24;
       for(;temp2 >= 0; temp2 = temp2 -24){
@@ -62,6 +63,7 @@ void generate_FUNC(FUNC* function){
       fprintf(stderr, "generating generate_FUNC -> tailK\n" );
       fprintf(stdout,"pop %%r10\n");
       fprintf(stdout,"movq %%r15, %%rsp\n");
+      fprintf(stdout,"pop %%r15\n");
       fprintf(stdout,"pop %%r12\n");
       fprintf(stdout,"pop %%r11\n");
       fprintf(stdout,"pop %%r9\n");

@@ -71,6 +71,7 @@ int generate_TERM(TERM* t){
       fprintf(stderr, "generating generate_TERM -> actlistK \n" );
       generate_LIST(t->val.act_listT.act_list);//TODO pass the variables needed for the function
       fprintf(stdout, "call .%s\n",t->val.act_listT.id);
+
       break;
 
     default:

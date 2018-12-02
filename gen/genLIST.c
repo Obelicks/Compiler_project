@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "../headers/gen.h"
 extern long long int variablecounter;
+
 void generate_LIST(LIST *l){
   fprintf(stderr, "enter generate_LIST with variable %d\n",l->kind );
   LIST* apointer;//
@@ -66,8 +67,10 @@ void generate_LIST(LIST *l){
     case actlistK:
       fprintf(stderr, "generating generate_LIST -> actlistK\n" );
       if(NULL != l->val.actlistL){
+
         generate_LIST(l->val.actlistL);
       }
+
       break;
 
     case expressionK:

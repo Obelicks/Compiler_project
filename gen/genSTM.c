@@ -19,13 +19,19 @@ void generate_STM(STM* s){
       fprintf(stdout,"movq $format, %%rdi\n");
       fprintf(stdout,"pop %%rsi\n");
       fprintf(stdout,"xorq	%%rax, %%rax\n");
-      fprintf(stdout,"push %%r8\n");
+      fprintf(stdout,"push %%r15\n");
+      fprintf(stdout,"push %%r12\n");
+      fprintf(stdout,"push %%r11\n");
       fprintf(stdout,"push %%r9\n");
+      fprintf(stdout,"push %%r8\n");
       fprintf(stdout,"push %%rdx\n");
       fprintf(stdout,"call	printf\n");
       fprintf(stdout,"pop %%rdx\n");
-      fprintf(stdout,"pop %%r9\n");
       fprintf(stdout,"pop %%r8\n");
+      fprintf(stdout,"pop %%r9\n");
+      fprintf(stdout,"pop %%r11\n");
+      fprintf(stdout,"pop %%r12\n");
+      fprintf(stdout,"pop %%r15\n");
       break;
 
    case allocateK:
