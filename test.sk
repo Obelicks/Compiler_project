@@ -1,9 +1,13 @@
-# Code generation, realistic example of recursive code
-func factorial(n: int): int
-   if (n == 0) || (n == 1) then
-      return 1;
-   else
-      return n * factorial(n-1);
-end factorial
+var i: int, j: int;
 
-write factorial(5);
+i = 10;
+j = 1;
+
+while i < 20 do {
+   while j < 5 do {
+    j = j + 1;
+    write j;
+   }
+   i = i + 1;
+   write i;
+}

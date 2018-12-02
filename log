@@ -1,0 +1,234 @@
+Parsing...
+Parsed
+Typechecking...
+FUNC kind: 2
+LIST kind: 3
+DECLARATION
+DEC kind: 0
+LIST kind: 1
+TYPE KIND: 7
+TYPE KIND: 1
+putting id: i of type: 1
+LIST kind: 2
+TYPE KIND: 7
+TYPE KIND: 1
+putting id: j of type: 1
+LIST kind: 5
+STM KIND: 4
+TYPE KIND: 0
+looking for symbol i
+else table
+got symbol i of type 1
+else table
+EXP KIND: 12
+TERM KIND: 2
+LIST kind: 5
+STM KIND: 4
+TYPE KIND: 0
+looking for symbol j
+else table
+got symbol j of type 1
+else table
+EXP KIND: 12
+TERM KIND: 2
+LIST kind: 4
+STM KIND: 7
+EXP KIND: 3
+EXP KIND: 12
+TERM KIND: 5
+TYPE KIND: 0
+looking for symbol i
+else table
+got symbol i of type 1
+EXP KIND: 12
+TERM KIND: 2
+STM KIND: 8
+LIST kind: 5
+STM KIND: 7
+EXP KIND: 3
+EXP KIND: 12
+TERM KIND: 5
+TYPE KIND: 0
+looking for symbol j
+else table
+got symbol j of type 1
+EXP KIND: 12
+TERM KIND: 2
+STM KIND: 8
+LIST kind: 5
+STM KIND: 4
+TYPE KIND: 0
+looking for symbol j
+else table
+got symbol j of type 1
+else table
+EXP KIND: 10
+EXP KIND: 12
+TERM KIND: 5
+TYPE KIND: 0
+looking for symbol j
+else table
+got symbol j of type 1
+EXP KIND: 12
+TERM KIND: 2
+LIST kind: 4
+STM KIND: 1
+EXP KIND: 12
+TERM KIND: 5
+TYPE KIND: 0
+looking for symbol j
+else table
+got symbol j of type 1
+LIST kind: 5
+STM KIND: 4
+TYPE KIND: 0
+looking for symbol i
+else table
+got symbol i of type 1
+else table
+EXP KIND: 10
+EXP KIND: 12
+TERM KIND: 5
+TYPE KIND: 0
+looking for symbol i
+else table
+got symbol i of type 1
+EXP KIND: 12
+TERM KIND: 2
+LIST kind: 4
+STM KIND: 1
+EXP KIND: 12
+TERM KIND: 5
+TYPE KIND: 0
+looking for symbol i
+else table
+got symbol i of type 1
+typecheked
+Generating code...
+Generating prologue...
+ending prologue
+writing main...
+generating generate_FUNC -> bodyK
+enter generate_LIST with variable 3
+generating generate_LIST -> decK
+enter generate_DEC with declaration of 0 
+generating generate_DEC -> listK
+enter generate_LIST with variable 1
+generating generate_LIST -> var_list
+generating generate_TYPE
+generating generate_TYPE -> var_typeK
+generating generate_TYPE
+generating generate_TYPE -> intconstK
+enter generate_LIST with variable 2
+generating generate_LIST -> varK
+j
+enter generate_LIST with variable 5
+generating generate_LIST -> statelistK
+generating generate_STM 4 
+generating generate_STM -> assignK 
+generating generate_EXP
+generating generate_EXP -> termK
+generating generate_TERM 
+generating generate_TERM -> numK 
+enter generate_LIST with variable 5
+generating generate_LIST -> statelistK
+generating generate_STM 4 
+generating generate_STM -> assignK 
+generating generate_EXP
+generating generate_EXP -> termK
+generating generate_TERM 
+generating generate_TERM -> numK 
+enter generate_LIST with variable 4
+generating generate_LIST -> stateK
+generating generate_STM 7 
+generating generate_STM -> whileK 
+generating generate_EXP
+generating generate_EXP -> smallerK
+generating generate_EXP
+generating generate_EXP -> termK
+generating generate_TERM 
+generating generate_TERM -> variableK 
+generating generate_EXP
+generating generate_EXP -> termK
+generating generate_TERM 
+generating generate_TERM -> numK 
+enter generate_LIST with variable 5
+generating generate_LIST -> statelistK
+generating generate_STM 7 
+generating generate_STM -> whileK 
+generating generate_EXP
+generating generate_EXP -> smallerK
+generating generate_EXP
+generating generate_EXP -> termK
+generating generate_TERM 
+generating generate_TERM -> variableK 
+generating generate_EXP
+generating generate_EXP -> termK
+generating generate_TERM 
+generating generate_TERM -> numK 
+enter generate_LIST with variable 5
+generating generate_LIST -> statelistK
+generating generate_STM 4 
+generating generate_STM -> assignK 
+generating generate_EXP
+generating generate_EXP -> plusK
+generating generate_EXP
+generating generate_EXP -> termK
+generating generate_TERM 
+generating generate_TERM -> variableK 
+generating generate_EXP
+generating generate_EXP -> termK
+generating generate_TERM 
+generating generate_TERM -> numK 
+enter generate_LIST with variable 4
+generating generate_LIST -> stateK
+generating generate_STM 1 
+generating generate_STM -> writeK 
+generating generate_EXP
+generating generate_EXP -> termK
+generating generate_TERM 
+generating generate_TERM -> variableK 
+generating generate_EXP
+generating generate_EXP -> smallerK
+generating generate_EXP
+generating generate_EXP -> termK
+generating generate_TERM 
+generating generate_TERM -> variableK 
+generating generate_EXP
+generating generate_EXP -> termK
+generating generate_TERM 
+generating generate_TERM -> numK 
+enter generate_LIST with variable 5
+generating generate_LIST -> statelistK
+generating generate_STM 4 
+generating generate_STM -> assignK 
+generating generate_EXP
+generating generate_EXP -> plusK
+generating generate_EXP
+generating generate_EXP -> termK
+generating generate_TERM 
+generating generate_TERM -> variableK 
+generating generate_EXP
+generating generate_EXP -> termK
+generating generate_TERM 
+generating generate_TERM -> numK 
+enter generate_LIST with variable 4
+generating generate_LIST -> stateK
+generating generate_STM 1 
+generating generate_STM -> writeK 
+generating generate_EXP
+generating generate_EXP -> termK
+generating generate_TERM 
+generating generate_TERM -> variableK 
+generating generate_EXP
+generating generate_EXP -> smallerK
+generating generate_EXP
+generating generate_EXP -> termK
+generating generate_TERM 
+generating generate_TERM -> variableK 
+generating generate_EXP
+generating generate_EXP -> termK
+generating generate_TERM 
+generating generate_TERM -> numK 
+ending code/starting epilogue...
+code written

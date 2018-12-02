@@ -20,12 +20,13 @@ void generate_LIST(LIST *l, int flag){
       fprintf(stderr, "generating generate_LIST -> var_list\n" );
 
       generate_TYPE(l->val.varlistL.var_type, flag);
-      if flag{
-      variablecounter++;
-    }
+
+
       if (l->val.varlistL.var_decl_list != NULL){
         generate_LIST(l->val.varlistL.var_decl_list, flag);
-
+        if(!flag){
+          variablecounter++;
+        }
       }
       break;
     case varK:
@@ -35,10 +36,13 @@ void generate_LIST(LIST *l, int flag){
       fprintf(stderr,"%s\n",l->val.varL->val.var_typeT.id);
       fprintf(stdout,"push $%i\n", l->val.varL->kind);
       fprintf(stdout,"push $0\n");
-      if flag{
-        variablecounter++;
+
+      if (!flag){
+              variablecounter++;
         flag = 1;
       }
+
+
       break;
 
     case decK:
