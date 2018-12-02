@@ -1,13 +1,8 @@
-var i: int, j: int;
+type aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa = int;
+type asssssssssssssssssssssssssssss = int;
 
-i = 10;
-j = 1;
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa = 5;
+asssssssssssssssssssssssssssss = 10;
 
-while i < 20 do {
-   while j < 5 do {
-    j = j + 1;
-    write j;
-   }
-   i = i + 1;
-   write i;
-}
+write (aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa);
+write (asssssssssssssssssssssssssssss);

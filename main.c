@@ -23,24 +23,18 @@ int main(int argc, char* argv[]){
   //prettyFUNC(thebody);
   fprintf(stderr, "Typechecking...\n");
   //int doesItWork = 0;
-  int doesItWork = typeCheckFUNC(root, thebody);
+  typeCheckFUNC(root, thebody);
+  fprintf(stderr, "typecheked\n");
+  //doesItWork = weeder(thebody);
+  //if(doesItWork) return 100 + doesItWork;
+  fprintf(stderr, "Generating code...\nGenerating prologue...\n");
+  generate_prologue();//method is in genEXP.c
+  fprintf(stderr,"ending prologue\nwriting main...\n");
+  generate_FUNC(thebody, 1);
+  fprintf(stderr,"ending code/starting epilogue...\n");
+  generate_epilogue();//method is in genEXP.c
+  fprintf(stderr,"code written\n");
 
-  if (doesItWork<0) {
-    fprintf(stderr, "typecheck error, code: %i\n", doesItWork);
-    return 10 + doesItWork;
-  }else{
-
-    fprintf(stderr, "typecheked\n");
-    //doesItWork = weeder(thebody);
-    //if(doesItWork) return 100 + doesItWork;
-    fprintf(stderr, "Generating code...\nGenerating prologue...\n");
-    generate_prologue();//method is in genEXP.c
-    fprintf(stderr,"ending prologue\nwriting main...\n");
-    generate_FUNC(thebody, 1);
-    fprintf(stderr,"ending code/starting epilogue...\n");
-    generate_epilogue();//method is in genEXP.c
-    fprintf(stderr,"code written\n");
-  }
   fclose(yyin);
   // fprintf(stderr,"doesItWork = %i\n", doesItWork);
   return 0;

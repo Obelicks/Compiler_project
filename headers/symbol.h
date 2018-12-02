@@ -2,10 +2,10 @@
 #define SYMBOL_H
 
 
-#define ID 0
-#define INTEGER 1
-#define BOOLEAN 2
-#define FUNKTION 3
+#define ID 1
+#define INTEGER 2
+#define BOOLEAN 3
+#define FUNKTION 4
 
 #define HashSize 317
 

@@ -3,49 +3,32 @@
 #include "../headers/typecheck.h"
 #include <stdio.h>
 
-int typeCheckFUNC(SymbolTable* symbolTable, FUNC* func){
+void typeCheckFUNC(SymbolTable* symbolTable, FUNC* func){
 
   fprintf(stderr,"FUNC kind: %i\n", func->kind);
   int x,y,z;
   switch (func->kind) {
     case functionK:
-      x =typeCheckFUNC(symbolTable, func->val.functionF.head);
-      if (x<=0){
-        return x;
-      }
-      y =typeCheckFUNC(symbolTable, func->val.functionF.body);
-      if (y<0){
-        return y;
-      }
-      z =typeCheckFUNC(symbolTable, func->val.functionF.tail);
-      if (z<0){
-        return z;
-      }
-      return 0;
+      typeCheckFUNC(symbolTable, func->val.functionF.head);
+      typeCheckFUNC(symbolTable, func->val.functionF.body);
+      typeCheckFUNC(symbolTable, func->val.functionF.tail);
       break;
 
     case headK:
       //TODO: Add id
       if(NULL == putSymbol(symbolTable,func->val.headF.id,FUNKTION,0)){
-        return -11;
+        fprintf(stderr, "ERROR FUNCTION ALREADY %s EXISTS TWICE\n", func->val.headF.id);
+        return;
       }
-      x = typeCheckLIST(symbolTable, func->val.headF.par_decl_list);
-      if (x<=0){
-        return x;
-      }
-      y = typeCheckTYPE(symbolTable, func->val.headF.type);
-      return y;
+      typeCheckLIST(symbolTable, func->val.headF.par_decl_list);
+      typeCheckTYPE(symbolTable, func->val.headF.type);
       break;
 
     case bodyK:
       if (func->val.bodyF.decl_list != NULL) {
-        x =typeCheckLIST(symbolTable, func->val.bodyF.decl_list);
-        if (x < 0){
-          return x;
-        }
+        typeCheckLIST(symbolTable, func->val.bodyF.decl_list);
       }
-      y =typeCheckLIST(symbolTable, func->val.bodyF.statement_list);
-      return y;
+      typeCheckLIST(symbolTable, func->val.bodyF.statement_list);
       break;
 
     case tailK:
@@ -53,5 +36,5 @@ int typeCheckFUNC(SymbolTable* symbolTable, FUNC* func){
       break;
   }
 
-  return 0;
+  return 1;
 }

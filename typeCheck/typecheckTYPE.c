@@ -14,7 +14,7 @@ int typeCheckTYPE(SymbolTable* symbolTable, TYPE* type){
       fprintf(stderr,"looking for symbol %s\n", type->val.idT);
       symbol = getSymbol(symbolTable, type->val.idT);
       if (symbol == NULL){
-        return -7;
+        return 0;
       }
       fprintf(stderr,"got symbol %s of type %i\n", symbol->name,symbol->type);
       return symbol->type;
@@ -36,26 +36,24 @@ int typeCheckTYPE(SymbolTable* symbolTable, TYPE* type){
       break;
 
     case recordK:
-      x=typeCheckLIST(symbolTable, type->val.recordT);
-      if (x<=0){
-        return x;
-      }
+      typeCheckLIST(symbolTable, type->val.recordT);
+
       break;
 
     case vareK:
       x=typeCheckTYPE(symbolTable, type->val.vareT.variable);
       if(x){
-        return 1;
+        return x;
       }
       break;
 
     case varexpK:
       x=typeCheckTYPE(symbolTable, type->val.varexpT.variable);
-      if (x<=0){
+      if (x){
         return x;
       }
       x=typeCheckEXP(symbolTable, type->val.varexpT.expression);
-      if (x<=0){
+      if (x){
         return x;
       }
       break;
@@ -66,7 +64,7 @@ int typeCheckTYPE(SymbolTable* symbolTable, TYPE* type){
       symbol = putSymbol(symbolTable,type->val.var_typeT.id,typeCheck,NULL);
       if (symbol == NULL){
         fprintf(stderr, "putting error\n");
-        return -1;
+        return 0;
       }
       fprintf(stderr,"putting id: %s of type: %i\n", type->val.var_typeT.id,typeCheck);
 
@@ -95,5 +93,5 @@ int findType(TYPE* type){
       break;
   }
 
-  return -1;
+  return 0;
 }

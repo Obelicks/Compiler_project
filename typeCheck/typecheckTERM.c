@@ -11,15 +11,12 @@ int typeCheckTERM(SymbolTable* symbolTable, TERM* term){
   switch (term->kind) {
     case notK:
       type = typeCheckTERM(symbolTable, term->val.notT);
-      if (type == ID){
-        return -1;
-      }
       return type;
       break;
 
     case absoluteK:
       x =typeCheckEXP(symbolTable, term->val.absoluteT);
-      if (x<=0){
+      if (x<0){
         return x;
       }
       break;
@@ -31,7 +28,7 @@ int typeCheckTERM(SymbolTable* symbolTable, TERM* term){
 
     case expK:
       x =typeCheckEXP(symbolTable, term->val.expT);
-      if (x<=0){
+      if (x<0){
         return x;
       }
       break;
@@ -42,17 +39,16 @@ int typeCheckTERM(SymbolTable* symbolTable, TERM* term){
       break;
 
     case variableK:
-      return typeCheckTYPE(symbolTable, term->val.variableT);
+      x=typeCheckTYPE(symbolTable, term->val.variableT);
+      if (x<0){
+        return x;
+      }
       break;
 
     case act_listK:
       if(NULL!=term->val.act_listT.act_list){
-        x =typeCheckLIST(symbolTable, term->val.act_listT.act_list);
-        if (x<=0){
-          return x;
-        }
+        typeCheckLIST(symbolTable, term->val.act_listT.act_list);
       }
-      return 0;
       //return atoi(term->val.act_listT.id);
       break;
 
