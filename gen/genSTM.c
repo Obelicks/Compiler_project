@@ -3,7 +3,7 @@
 extern long long int jumpnr;
 
 void generate_STM(STM* s){
-  fprintf(stderr, "generating generate_STM \n" );
+  fprintf(stderr, "generating generate_STM %d \n",s->kind);
   long long int r;
   long long int r1;
   switch (s->kind) {
@@ -128,8 +128,10 @@ void generate_STM(STM* s){
 
     case stmlistK:
       fprintf(stderr, "generating generate_STM -> stmlistK \n" );
+      if (s->val.stmlistS != NULL){
+        generate_LIST(s->val.stmlistS);
+      }
       break;
-
     default:
       fprintf(stderr,"in default case in STM\n");
       break;

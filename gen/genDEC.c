@@ -14,8 +14,6 @@ void generate_DEC(DEC *d){
       fprintf(stderr, "generating generate_DEC -> dectypeK\n" );
       //TODO assember der laver en variabel
       int holder = hash(*d->val.dectypeD.id);
-      fprintf(stderr,"EMIL %s\n",holder);
-
       fprintf(stdout,"push $%i\n",holder);
       if(d->val.dectypeD.type->kind == 7){
         generate_TYPE(d->val.dectypeD.type);
