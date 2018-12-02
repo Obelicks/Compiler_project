@@ -36,5 +36,5 @@ void typeCheckFUNC(SymbolTable* symbolTable, FUNC* func){
       break;
   }
 
-  return 1;
+  return;
 }
