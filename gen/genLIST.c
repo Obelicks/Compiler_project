@@ -18,13 +18,8 @@ void generate_LIST(LIST *l){
 
     case varlistK:
       fprintf(stderr, "generating generate_LIST -> var_list\n" );
-      //TODO assember der laver en variabel
+
       generate_TYPE(l->val.varlistL.var_type);
-
-
-      //fprintf(stdout,"push $%i\n",l->val.varlistL.var_type->kind);
-      //fprintf(stdout,"push $0\n");
-      variablecounter++;
       if (l->val.varlistL.var_decl_list != NULL){
         generate_LIST(l->val.varlistL.var_decl_list);
 
@@ -76,6 +71,7 @@ void generate_LIST(LIST *l){
     case expressionK:
       fprintf(stderr, "generating generate_LIST -> expressionK\n" );
       generate_EXP(l->val.expressionL);
+      variablecounter++;
       break;
 
     case explistK:
