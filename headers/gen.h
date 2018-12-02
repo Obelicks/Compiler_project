@@ -22,23 +22,23 @@ void generate_prologue();
 
 void generate_epilogue();
 
-void generate_EXP(EXP* expression);
+void generate_EXP(EXP* expression,int flag);
 
-void generate_STM(STM* statement);
+void generate_STM(STM* statement, int flag);
 
-void generate_FUNC(FUNC* function);
+void generate_FUNC(FUNC* function, int flag);
 
-void generate_LIST(LIST* list);
+void generate_LIST(LIST* list, int flag);
 
-void generate_TYPE(TYPE* type);
+void generate_TYPE(TYPE* type, int flag);
 
-int generate_TERM(TERM* term);
+int generate_TERM(TERM* term, int flag);
 
-void generate_DEC(DEC* declaration);
+void generate_DEC(DEC* declaration, int flag);
 
-void parse_variables(LIST* decl_list);
+void parse_variables(LIST* decl_list, int flag);
 
 char* concat(const char* s1, const char* s2);
-int hash(const char* word); 
+int hash(const char* word);
 
 #endif
