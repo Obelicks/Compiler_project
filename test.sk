@@ -1,9 +1,5 @@
-# Typecheck of function call, that the type of the arguments are compatible
-# with the type specified in the function definition
-func myFunc(a44 : int, b44 : int, c44 : int) : int
-{
-  return a44 + b44 + c44;
-}
-end myFunc
+# Check typechecking of assignments, that the lhs is not a type
+type a = int;
 
-write myFunc(4, 2, 4);
+a = 5;
+write a;

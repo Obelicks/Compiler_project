@@ -53,17 +53,31 @@ int generate_TERM(TERM* t){
         jumpnr++;
         r1 = jumpnr;
         jumpnr++;
+        r2 = jumpnr;
+        jumpnr++;
+        r3 = jumpnr;
+        jumpnr++;
         //assembly that returns
         fprintf(stderr, "generating generate_TERM -> variableK \n" );
         fprintf(stdout,"movq $%i, %%r12\n",hash(t->val.variableT->val.idT));
         fprintf(stdout,"movq %%r8, %%r11\n");
+        fprintf(stdout,"movq %%r9, %%r10\n");
         fprintf(stdout, ".%lli:\n",r1);
         fprintf(stdout,"cmp (%%r11), %%r12\n");
         fprintf(stdout, "je .%lli\n",r);
         fprintf(stdout,"add $-24, %%r11\n");
-        fprintf(stdout, "jmp .%lli\n",r1);;
+        fprintf(stdout,"cmp %%r11, %%r10\n");
+        fprintf(stdout, "jl .%lli\n",r2);
+        fprintf(stdout, "jmp .%lli\n",r1);
         fprintf(stdout, ".%lli:\n",r);
         fprintf(stdout,"push -16(%%r11)\n");
+        fprintf(stdout, "jmp .%lli\n",r3);
+        fprintf(stdout, ".%lli:\n",r2);
+        fprintf(stdout, "movq 40(%%r8), %%r11");
+        fprintf(stdout, "movq 32(%%r8), %%r10");
+        fprintf(stdout, "jmp .%lli\n",r1);
+        fprintf(stdout, ".%lli:\n",r3);
+
         //generate_TYPE(t->val.variableT);
         break;
 
