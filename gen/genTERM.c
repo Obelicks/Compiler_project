@@ -67,7 +67,7 @@ int generate_TERM(TERM* t){
         fprintf(stdout, "je .%lli\n",r);
         fprintf(stdout,"add $-24, %%r11\n");
         fprintf(stdout,"cmp %%r11, %%r10\n");
-        fprintf(stdout, "jl .%lli\n",r2);
+        fprintf(stdout, "jg .%lli\n",r2);
         fprintf(stdout, "jmp .%lli\n",r1);
         fprintf(stdout, ".%lli:\n",r);
         fprintf(stdout,"push -16(%%r11)\n");
