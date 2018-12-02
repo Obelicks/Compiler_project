@@ -7,7 +7,7 @@ extern long long int variablecounter;
 extern long long int returnadress;
 void generate_FUNC(FUNC* function){
   long long int r;
-  long long int r1;
+  long long int r1,r2;
   switch (function->kind) {
     case functionK:
       fprintf(stderr, "generating generate_FUNC -> functionK\n" );
@@ -61,6 +61,7 @@ void generate_FUNC(FUNC* function){
 
     case tailK:
       fprintf(stderr, "generating generate_FUNC -> tailK\n" );
+      long long int memoryfreedom = variablecounter*8;
       fprintf(stdout,"pop %%r10\n");
       fprintf(stdout,"movq %%r15, %%rsp\n");
       fprintf(stdout,"pop %%r15\n");
@@ -68,10 +69,11 @@ void generate_FUNC(FUNC* function){
       fprintf(stdout,"pop %%r11\n");
       fprintf(stdout,"pop %%r9\n");
       fprintf(stdout,"pop %%r8\n");
+      fprintf(stdout,"add $%lli, %%rsp\n",memoryfreedom);
       fprintf(stdout,"push %%r10\n");
       fprintf(stdout, "push %%r12\n");
       fprintf(stdout, "ret\n");
-      fprintf(stdout,".%lli:\n",(r));
+      fprintf(stdout,".%lli:\n",r);
       fprintf(stderr,"end of function %s", function->val.tailF);
       break;
 
