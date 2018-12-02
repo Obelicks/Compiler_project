@@ -20,7 +20,7 @@ int main(int argc, char* argv[]){
   fprintf(stderr, "Parsing...\n");
   yyparse();
   fprintf(stderr, "Parsed\n");
-  prettyFUNC(thebody);
+  //prettyFUNC(thebody);
   fprintf(stderr, "Typechecking...\n");
   //int doesItWork = 0;
   int doesItWork = typeCheckFUNC(root, thebody);
