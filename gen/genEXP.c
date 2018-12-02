@@ -194,7 +194,7 @@ void generate_EXP(EXP* e){
       fprintf(stderr, "generating generate_EXP -> divK\n" );
       generate_EXP(e->val.divE.left);
       generate_EXP(e->val.divE.right);
-      printf(stdout,"pop %%r13\n");
+      fprintf(stdout,"pop %%r13\n");
       fprintf(stdout,"pop %%r14\n");
       fprintf(stdout,"xor %%rdx, %%rdx\n");
       fprintf(stdout,"movq %%r14, %%rax\n");
